@@ -50,7 +50,7 @@ class User(object):
     # Method to loan an item to the user.
 
     def loan_item(self, item_id):
-        self._user_items.add_item(item_id)
+        self._user_items.AddItem(item_id)
 
 if __name__ == "__main__":
     pass

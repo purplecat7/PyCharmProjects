@@ -44,7 +44,7 @@ class LibraryController:
         item_requested = self.item_list.GetItem(item_title)
 
         # add item to user's list
-        user.add_item(item_requested)
+        user.loan_item(item_requested)
 
     def add_item(self, item_to_add):
         """
