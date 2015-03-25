@@ -1,8 +1,30 @@
 class ItemList(list):
     '''
     FUNCTIONS:
+        AddItem: Adds an item to the list
+        
+        RemoveItem: Removes an item from the list
+        
         GetItem: Return a single item object from the list
+        
+        NumberOfItems:
     '''
+    def __init__(self):
+        pass
+    
+    def AddItem(self,Item):
+        '''
+        Adds an item object to the item list
+        '''
+        # TODO - Check the item is valid
+        self.append(Item)
+        
+    def RemoveItem(self,Item):
+        '''
+        Removes an item object from the item list
+        '''
+        self.remove(Item)
+    
     def GetItem(self,parameter):
         '''
         Searches for an item object in the itemlist given the parameter
@@ -23,9 +45,10 @@ class ItemList(list):
             
         elif type(parameter) == str:
             parameterType = 'Title'
-            
-        else:
-            raise Exception
+        
+        #TODO - raise an exception if the argument is invalid
+        #else:
+        #    raise Exception
 
         # Loop over items
         for item in self:
@@ -34,7 +57,7 @@ class ItemList(list):
             if parameter == itemParameter:
                 # Yes - Return the item matching the ID
                 return item
-        # If no item is found raise an exception
+        #TODO - If no item is found raise an exception
         #raise ItemNotFoundException()
         
     def NumberOfItems(self):
