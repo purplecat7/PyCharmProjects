@@ -1,4 +1,4 @@
-from itemList import UserItemList as user_item_list
+import itemList
 
 
 class User(object):
@@ -9,7 +9,7 @@ class User(object):
 
     def __init__(self):
         self._identification = int()
-        self._user_items = user_item_list
+        self._user_items = itemList.UserItemList()
 
     def __del__(self):
         pass
