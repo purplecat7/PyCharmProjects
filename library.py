@@ -6,9 +6,9 @@ __author__ = 'SimonPeatman'
 import datetime
 
 
-class Library:
+class LibraryController:
     """
-    Co-ordinator class for LibrarySystem.
+    LibraryController class for LibrarySystem.
 
     Saves lists of items and users; handles checking out of items."""
 
@@ -40,7 +40,7 @@ class Library:
         itemIDs_loaned_list = user.getAllItems()
 
         # check whether user has too many items on loan already
-        if not self.loanedLessThanLimit(itemIDs_loaned_list, Library.maxLoans):
+        if not self.loanedLessThanLimit(itemIDs_loaned_list, LibraryController.maxLoans):
             print 'Too many items already on loan'
         else:
 
@@ -54,8 +54,8 @@ class Library:
             if not item_overdue:
 
                 # check whether existing fines are over the limit
-                if user.isFineOverLimit(Library.maxFine):
-                    print 'User has fines over the limit of %s pounds' % Library.maxFine
+                if user.isFineOverLimit(LibraryController.maxFine):
+                    print 'User has fines over the limit of %s pounds' % LibraryController.maxFine
                 else:
 
                     # get itemID of requested title
