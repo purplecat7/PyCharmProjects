@@ -69,7 +69,7 @@ class UserItemList(ItemList):
         GetFines:
             Accumulates the fines from each overdue item
     '''
-    def GetFines(self):
+    def GetFines(self,date):
         '''
         Calculates the fines from each item in the list
         
@@ -83,7 +83,7 @@ class UserItemList(ItemList):
         # Intitialise the fine
         fine = 0.0
         for item in self:
-            fine += item.Fine()
+            fine += item.Fine(date)
             
         return fine
             
