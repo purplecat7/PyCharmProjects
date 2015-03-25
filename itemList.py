@@ -46,9 +46,9 @@ class ItemList(list):
         elif type(parameter) == str:
             parameterType = 'Title'
         
-        #TODO - raise an exception if the argument is invalid
-        #else:
-        #    raise Exception
+        # Raise an exception if the argument is invalid
+        else:
+            raise TypeError('Item can only be searched on ID or title')
 
         # Loop over items
         for item in self:
@@ -57,8 +57,9 @@ class ItemList(list):
             if parameter == itemParameter:
                 # Yes - Return the item matching the ID
                 return item
-        #TODO - If no item is found raise an exception
-        #raise ItemNotFoundException()
+        #If no item is found raise an exception
+        raise Exception('No item found matching the ' + parameterType + ' ' + 
+                        str(parameter))
         
     def NumberOfItems(self):
         return len(self)
