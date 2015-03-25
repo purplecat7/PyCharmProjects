@@ -1,18 +1,22 @@
-class User():
+import itemList.UserItemList as user_item_list
+
+
+class User(object):
     """
     Class to create user for
     the library application
     """
 
     def __init__(self):
-        self._identification = str()
-        self._first_name = str()
-        self._last_name = str()
-        self._total_items = int()
-        self._items = list()
+        self._identification = int()
+        self._user_items = user_item_list
 
     def __del__():
         pass
+
+    # Set up the getter and the setter
+    # for defining the user ID when the
+    # user is created or searched for
 
     @property
     def identification(self):
@@ -26,60 +30,29 @@ class User():
         """
         Sets the user id
         """
-        self._identification(value)
+        self._identification = value
 
-    @property
-    def first_name(self):
-        """
-        Gets the user first name
-        """
-        return self._first_name
+    # Method to decide whether or not the
+    # user can borrow an item based on whether
+    # the maximum number of loanable items is
+    # exceeded or maximum total fine is exceeded
 
-    @first_name.setter
-    def first_name(self, value):
-        """
-        Sets the user first name
-        """
-        self._first_name(value)
+    def able_to_borrow(self, max_number_loans, max_total_fine):
+        current_loans = self._user_items.GetFines()
+        current_fines = self._user_items.NumberOfItems()
 
-    @property
-    def last_name(self):
-        """
-        Gets the user last name
-        """
-        return self._last_name
+        # assess whether user can borrow
+        too_many_loans = current_loans >= max_number_loans
+        too_much_fine = current_fines >= max_total_fine
+        if too_many_loans or too_much_fine:
+            return False  # cannot borrow
+        else:
+            return True  # can borrow
 
-    @last_name.setter
-    def last_name(self, value):
-        """
-        Sets the user last name
-        """
-        self._last_name(value)
+    # Method to loan an item to the user.
 
-    @property
-    def total_items(self):
-        """
-        Gets the total user items
-        """
-        return self._total_items
+    def loan_item(self, item_id):
+        self._user_items.add_item(item_id)
 
-    @total_items.setter
-    def _total_items(self):
-        """
-        Sets the total user items
-        """
-        self._total_items(len(self._items)
-
-    @property
-    def items(self):
-        """
-        Gets the user associated items
-        """
-        pass
-
-    @items.setter
-    def items(self, value):
-        """
-        Sets the user items
-        """
-        pass
+if __name__ == "__main__":
+    pass
