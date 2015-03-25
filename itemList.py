@@ -35,7 +35,10 @@ class ItemList(list):
                 # Yes - Return the item matching the ID
                 return item
         # If no item is found raise an exception
-        raise ItemNotFoundException()
+        #raise ItemNotFoundException()
+        
+    def NumberOfItems(self):
+        return len(self)
         
 class UserItemList(ItemList):
     '''
@@ -46,9 +49,20 @@ class UserItemList(ItemList):
     def GetFines(self):
         '''
         Calculates the fines from each item in the list
+        
+        ARGS:
+            date
+            
+        RETURNS:
+            fine:
+                Float of the total fine in pounds
         '''
-        #
+        # Intitialise the fine
+        fine = 0.0
         for item in self:
+            fine += item.Fine()
+            
+        return fine
             
 
 
