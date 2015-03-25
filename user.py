@@ -1,4 +1,4 @@
-import itemList.UserItemList as user_item_list
+from itemList import UserItemList as user_item_list
 
 
 class User(object):
@@ -11,7 +11,7 @@ class User(object):
         self._identification = int()
         self._user_items = user_item_list
 
-    def __del__():
+    def __del__(self):
         pass
 
     # Set up the getter and the setter
