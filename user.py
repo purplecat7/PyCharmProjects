@@ -18,15 +18,13 @@ class User(object):
     # for defining the user ID when the
     # user is created or searched for
 
-    @property
-    def identification(self):
+    def get_identification(self):
         """
         Gets the user id
         """
         return self._identification
 
-    @identification.setter
-    def identification(self, value):
+    def set_identification(self, value):
         """
         Sets the user id
         """
