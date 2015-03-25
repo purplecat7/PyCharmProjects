@@ -31,21 +31,21 @@ def startup():
 def exercise1(userid, title, libcon):
     libcon.user_checkout(userid, title)
 
-
-if __name__ == "__main__":
-    print
-    "Startup..."
+def main():
+    print "Startup..."
     try:
         libcon = startup()
     except:
         print
         "Startup failed"
         raise
-    print
-    "Exercise 1..."
+    print "Exercise 1..."
     try:
         exercise1(1000, 'Beef Recipes', libcon)
     except:
         print
         "Exercise 1 failed"
         raise
+
+if __name__ == '__main__':
+   main()
