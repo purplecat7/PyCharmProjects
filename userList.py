@@ -12,6 +12,4 @@ class UserList(object):
             raise ValueError('User Not Found')
 
     def add_user(self, new_user):
-        assert isinstance(new_user.identification, object)
-        assert isinstance(new_user, object)
-        self.users[new_user.identification] = new_user
+        self.users[new_user.get_identification] = new_user

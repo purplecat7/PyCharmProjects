@@ -1,24 +1,51 @@
 import library
+import ItemManager
+import UserManager
 
-
-#+
+# +
 # NAME: Main.py
 # PURPOSE: Main (top level) routine for library exercise
 # AUTHOR: seg
 #-
 
 def startup():
-  libcon=LibraryController()
+    # Nomenclature
+    #   Item ID from #0
+    #   User ID from #1000
 
-  itemmanager=ItemManager()
-  itemmanager.setLibraryController(libcon)
-  itemmanager.create_book('Cheese Recipes',0)
-  itemmanager.create_book('Beef Recipes',1)
+    libcon = library.LibraryController()
 
-  usermanager=UserManager()
-  usermanager.SetLibraryController(libcon)
-  usermanager.AddUser()
+    itemmanager = ItemManager.ItemManager()
+    itemmanager.set_library_controller(libcon)
+    itemmanager.create_book('Cheese Recipes', 0)
+    itemmanager.create_book('Beef Recipes', 1)
 
-def main():
-  startup()
-  exercise1()
+    usermanager = UserManager.UserManager()
+    usermanager.SetLibraryController(libcon)
+    usermanager.CreateUser(1000)
+    usermanager.CreateUser(1001)
+
+    return libcon
+
+
+def exercise1(userid, title, libcon):
+    libcon.user_checkout(userid, title)
+
+
+if __name__ == "__main__":
+    print
+    "Startup..."
+    try:
+        libcon = startup()
+    except:
+        print
+        "Startup failed"
+        raise
+    print
+    "Exercise 1..."
+    try:
+        exercise1(1000, 'Beef Recipes', libcon)
+    except:
+        print
+        "Excercise 1 failed"
+        raise
