@@ -9,7 +9,7 @@ class User(object):
 
     def __init__(self):
         self._identification = int()
-        self._user_items = user_item_list
+        self._user_items = user_item_list()
 
     def __del__(self):
         pass
