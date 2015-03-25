@@ -34,14 +34,14 @@ class LibraryController:
         :param item_title: (str) title of item user wishes to check out"""
 
         # get user object corresponding to given user_id
-        user = self.user_list.lookup_details(user_id)
+        user = self.user_list.find_user(user_id)
 
         # check whether user is allowed to borrow item
         if not user.able_to_borrow(LibraryController.max_loans, LibraryController.max_fine):
             raise CannotBorrowException()
 
         # get requested item from item_list
-        item_requested = self.item_list.find_item(item_title)
+        item_requested = self.item_list.GetItem(item_title)
 
         # add item to user's list
         user.add_item(item_requested)
@@ -52,7 +52,7 @@ class LibraryController:
 
         :param item_to_add: Item object to be added to self.item_list"""
 
-        self.item_list.add_item(item_to_add)
+        self.item_list.AddItem(item_to_add)
 
     def add_user(self, user_to_add):
         """
