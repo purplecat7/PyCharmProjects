@@ -1,5 +1,3 @@
-import numpy as np
-
 class Item():
     """An Item class for use in LibrarySystem.
     """
@@ -8,7 +6,7 @@ class Item():
         self.identity = ident
         self.checkout_date = float('NaN')
         
-    def SetCheckoutDate(self, date):
+    def SetCheckOut(self, date):
         """Given a date sets the checkout date of item.
         """
         self.checkout_date = date
@@ -32,10 +30,10 @@ class Book(Item):
         """Given a date as a float (0-N), returns the amount of money due in 
         fines on item.
         """
-        if date - self.checkout_date <= 4:
+        if date - self.checkout_date <= self.loantime:
             return 0.
-        elif date - self.checkout_date > 4:
-            return self.finerate * (date - self.checkout_date - 4)
+        elif date - self.checkout_date > self.loantime:
+            return self.finerate * (date - self.checkout_date - self.loantime)
         else:
             raise Exception('Item aint in Itemlist fool!')
 
