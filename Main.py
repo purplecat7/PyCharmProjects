@@ -28,5 +28,15 @@ def exercise1(userid,title):
  libcon.user_checkout(userid,title)
 
 if __name__ == "__main__":
-  startup()
-  exercise1(1000,'Beef Recipes')
+  print "Startup..."
+  try:
+    startup()
+  except:
+    print "Startup failed"
+    raise
+  print "Exercise 1..."
+  try:
+    exercise1(1000,'Beef Recipes')
+  except:
+    print "Excercise 1 failed"
+    raise
