@@ -26,16 +26,17 @@ class Book(Item):
     Item.finerate = 0.50 #50p/day
     Item.loantime = 4 # 4weeks
     
-    def Fine(self, date):
+    def Fine(self): #, date):
         """Given a date as a float (0-N), returns the amount of money due in 
         fines on item.
         """
-        if date - self.checkout_date <= self.loantime:
-            return 0.
-        elif date - self.checkout_date > self.loantime:
-            return self.finerate * (date - self.checkout_date - self.loantime)
-        else:
-            raise Exception('Item aint in Itemlist fool!')
+        return 0.
+        #if date - self.checkout_date <= self.loantime:
+        #    return 0.
+        #elif date - self.checkout_date > self.loantime:
+        #    return self.finerate * (date - self.checkout_date - self.loantime)
+        #else:
+        #    raise Exception('Item aint in Itemlist fool!')
 
         
     
