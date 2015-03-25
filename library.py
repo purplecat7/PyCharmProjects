@@ -4,6 +4,9 @@ Definition of LibraryController class.
 Author: SimonPeatman"""
 __author__ = 'SimonPeatman'
 
+import itemList
+import userList
+
 
 class LibraryController:
     """
@@ -16,15 +19,12 @@ class LibraryController:
     max_loans = 5     # maximum number of loans
     max_fine = 50.0   # maximum fine (pounds)
 
-    def __init__(self, item_list, user_list):
+    def __init__(self):
         """
-        Constructor method of LibraryController class.
+        Constructor method of LibraryController class."""
 
-        :param item_list: ItemList object
-        :param user_list: UserList object"""
-
-        self.item_list = item_list
-        self.user_list = user_list
+        self.item_list = itemList.ItemList()
+        self.user_list = userList.UserList()
 
     def user_checkout(self, user_id, item_title):
         """
