@@ -27,6 +27,6 @@ def startup():
 def exercise1(userid,title):
  libcon.user_checkout(userid,title)
 
-def main():
+if __name__ == "__main__":
   startup()
   exercise1(1000,'Beef Recipes')
