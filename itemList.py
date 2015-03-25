@@ -52,7 +52,7 @@ class ItemList(list):
 
         # Loop over items
         for item in self:
-            itemParameter = item.getParameter(parameterType)
+            itemParameter = item.GetParameter(parameterType)
             # Check whether the item is the requested item
             if parameter == itemParameter:
                 # Yes - Return the item matching the ID
