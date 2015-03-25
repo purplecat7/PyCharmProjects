@@ -47,5 +47,5 @@ if __name__ == "__main__":
         exercise1(1000, 'Beef Recipes', libcon)
     except:
         print
-        "Excercise 1 failed"
+        "Exercise 1 failed"
         raise
