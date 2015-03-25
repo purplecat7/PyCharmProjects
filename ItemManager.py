@@ -34,6 +34,6 @@ class ItemManager:
 
         new_book = Item.Book(title, ident)
 
-        self.library_controller.additem(new_book)
+        self.library_controller.add_item(new_book)
 
 
