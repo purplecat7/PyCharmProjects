@@ -39,7 +39,7 @@ class User(object):
 
     def able_to_borrow(self, max_number_loans, max_total_fine):
         current_loans = self._user_items.GetFines()
-        current_fines = self._user_items.Count()
+        current_fines = self._user_items.NumberOfItems()
 
         # assess whether user can borrow
         too_many_loans = current_loans >= max_number_loans
@@ -49,7 +49,10 @@ class User(object):
         else:
             return True  # can borrow
 
-    def loan_item(self):
+    # Method to loan an item to the user.
+
+    def loan_item(self, item_id):
+        self._user_items.add_item(item_id)
 
 if __name__ == "__main__":
     pass
