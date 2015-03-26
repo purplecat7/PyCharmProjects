@@ -31,7 +31,7 @@ class ItemList(list):
     
         ARGS:
             parameter:
-                A value to match against the item can be
+                A value to match against the item, can be
                     Int: Unique ID of the item
                     String: The title of the item
                 
@@ -58,6 +58,7 @@ class ItemList(list):
                 # Yes - Return the item matching the ID
                 return item
         #If no item is found raise an exception
+        # TODO - make this an ItemNotFoundException class
         raise Exception('No item found matching the ' + parameterType + ' ' + 
                         str(parameter))
         
@@ -73,9 +74,6 @@ class UserItemList(ItemList):
     def GetFines(self):
         '''
         Calculates the fines from each item in the list
-        
-        ARGS:
-            date
             
         RETURNS:
             fine:
@@ -87,6 +85,41 @@ class UserItemList(ItemList):
             fine += item.Fine()
             
         return fine
+        
+    def CheckoutItem(self,item):
+        '''
+        Adds an item to be checked out to the item list
+        
+        ARGS:
+            item:
+                The item to be checked out
+        '''
+        # Set the checkout on the item
+        item.SetCheckout()        
+        # Add the item to the list
+        self.AddItem(item)
+        
+        return
+        
+    def ReturnItem(self,parameter):
+        '''
+        Removes an item being checked in from the UserList and resets the 
+        checkout
+        
+        ARGS:
+            parameter:
+                A value to match against the item, can be
+                    Int: Unique ID of the item
+                    String: The title of the item
+        '''
+        # Find the item in this itemlist
+        item = self.GetItem(parameter)
+        # Reset the checkout on the item
+        item.ResetCheckout()
+        # Remove the item from the list
+        self.RemoveItem(item)
+        
+        return
             
 
 
