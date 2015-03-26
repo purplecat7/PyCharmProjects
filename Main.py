@@ -45,6 +45,8 @@ def exercise1(userid, title, libcon):
 def exercise2(userid, title, libcon):
 
     fine = libcon.add_item(userid,libcon)
+    print "User: ",userid
+    print "Total Fine: ",fine
 
 def main():
     print "Initialising library controller..."
@@ -52,13 +54,13 @@ def main():
     print "Populating library catalogue..."
     infile='top100t.txt'
     try:
-        librarycatalogue(libcon,infile)
+        library_catalogue(libcon,infile)
     except:
         print "Catalogue populating failed"
         raise
     print "Populating library members..."
     try:
-        librarymembers(libcon)
+        library_members(libcon)
     except:
         print "Catalogue populating failed"
         raise
