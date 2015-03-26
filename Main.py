@@ -43,7 +43,7 @@ def exercise1(userid, title, libcon):
     libcon.user_checkout(userid, title)
 
 def exercise2(userid, retid, title, libcon):
-    fine = libcon.user_fine(userid,libcon)
+    fine = libcon.user_fine(userid)
     print "User: ",userid
     print "Total Fine: ",fine
     
