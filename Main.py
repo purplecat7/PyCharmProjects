@@ -74,7 +74,7 @@ def main():
         raise
     print "Exercise 2..."
     try:
-        exercise2(100, 50,'The Kite Runner', libcon)
+        exercise2(100 ,18,'The Kite Runner', libcon)
     except:
         print "Exercise 2 failed"
         raise

@@ -1,6 +1,6 @@
 __author__ = 'rsmith31'
 
-import Item
+import item
 
 
 class ItemManager:
@@ -32,7 +32,7 @@ class ItemManager:
         :return none:
         """
 
-        new_book = Item.Book(title, ident)
+        new_book = item.Book(title, ident)
 
         self.library_controller.add_item(new_book)
 
