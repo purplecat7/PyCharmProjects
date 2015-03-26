@@ -41,10 +41,20 @@ class LibraryController:
             raise CannotBorrowException()
 
         # get requested item from item_list
-        item_requested = self.item_list.GetItem(item_title)
+        item_requested = self.item_list.get_item(item_title)
 
         # add item to user's list
-        user.add_item(item_requested)
+        user.loan_item(item_requested)
+
+    def user_fine(self, user_id):
+
+        # get user object corresponding to given user_id
+        user = self.user_list.find_user(user_id)
+
+        fine = user.get_fine_total()
+        
+        return fine
+                
 
     def add_item(self, item_to_add):
         """
@@ -52,7 +62,7 @@ class LibraryController:
 
         :param item_to_add: Item object to be added to self.item_list"""
 
-        self.item_list.AddItem(item_to_add)
+        self.item_list.add_item(item_to_add)
 
     def add_user(self, user_to_add):
         """
