@@ -19,6 +19,7 @@ class Item():
     def reset_checkout(self):
         """Resets checkout date.
         """
+        self.checkout_date = float('NaN')
         
     def get_parameter(self, ptype):
         """Given a ptype string of 'ID' or 'Title' returns title or id of item.
