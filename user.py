@@ -49,8 +49,20 @@ class User(object):
 
     # Method to loan an item to the user.
 
-    def loan_item(self, item_id):
-        self._user_items.AddItem(item_id)
+    def checkout_item(self, item_id):
+        self._user_items.checkout_item(item_id)
+
+    # Method to return and item to the library
+    # that iss remove it from the user item list
+
+    def return_item(self, item_id):
+        self._user_items.return_item(item_id)
+
+    # Method  to get the total fines for
+    # the user
+
+    def get_fine_total(self):
+        self._user_items.get_fines()
 
 if __name__ == "__main__":
     pass
