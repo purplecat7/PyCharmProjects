@@ -46,6 +46,16 @@ class LibraryController:
         # add item to user's list
         user.loan_item(item_requested)
 
+    def user_fine(self, user_id):
+
+        # get user object corresponding to given user_id
+        user = self.user_list.find_user(user_id)
+
+        fine = user.get_fine_total()
+        
+        return fine
+                
+
     def add_item(self, item_to_add):
         """
         Add a new library item to self.item_list.
