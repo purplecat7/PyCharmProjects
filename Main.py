@@ -42,12 +42,13 @@ def library_members(libcon):
 def exercise1(userid, title, libcon):
     libcon.user_checkout(userid, title)
 
-def exercise2(userid, title, libcon):
+def exercise2(userid, retid, title, libcon):
     fine = libcon.add_item(userid,libcon)
     print "User: ",userid
     print "Total Fine: ",fine
     
-     
+    libcon.user_return(userid, retid)
+    libcon.user_checkout(userid, title)
 
 def main():
     print "Initialising library controller..."

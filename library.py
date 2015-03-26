@@ -46,6 +46,16 @@ class LibraryController:
         # add item to user's list
         user.loan_item(item_requested)
 
+    def user_return(self, user_id, item_id):
+        """
+        Handles returning item by a user."""
+
+        # get user object corresponding to given user_id
+        user = self.user_list.find_user(user_id)
+        
+        user.return_item(self,user_id, item_id)
+
+
     def user_fine(self, user_id):
 
         # get user object corresponding to given user_id
