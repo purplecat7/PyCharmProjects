@@ -36,8 +36,8 @@ class User(object):
     # exceeded or maximum total fine is exceeded
 
     def able_to_borrow(self, max_number_loans, max_total_fine):
-        current_loans = self._user_items.GetFines()
-        current_fines = self._user_items.NumberOfItems()
+        current_loans = self._user_items.get_fines()
+        current_fines = self._user_items.number_of_items()
 
         # assess whether user can borrow
         too_many_loans = current_loans >= max_number_loans
