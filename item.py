@@ -36,6 +36,10 @@ class Item():
         d2 = self.checkout_date
         daysout = (d1 - d2).days #days book has been out
         fine = (daysout - self.loantime)*self.finerate #fine in pounds
+        if fine < 0.:
+            fine = 0.
+        else:
+            fine = fine
         return fine
         
             
