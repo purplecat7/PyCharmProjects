@@ -27,14 +27,7 @@ class Item():
             return self.identity
         elif ptype=='Title':
             return self.title
-            
-            
-class Book(Item):
-    """Subclass of Item.
-    """
-    finerate = 0.50 #50p/day
-    loantime = 4*7 # 4weeks
-    
+                        
     def fine(self): #, date):
         """Returns the amount of money due in fines on item.
         """
@@ -43,6 +36,13 @@ class Book(Item):
         daysout = (d1 - d2).days #days book has been out
         fine = (daysout - self.loantime)*self.finerate #fine in pounds
         return fine
+        
+            
+class Book(Item):
+    """Subclass of Item.
+    """
+    finerate = 0.50 #50p/day
+    loantime = 4*7 # 4weeks
         
 
 class Journal(Item):
@@ -50,15 +50,6 @@ class Journal(Item):
     """
     finerate = 1.0 #50p/day
     loantime = 2*7 # 4weeks
-    
-    def fine(self): #, date):
-        """Returns the amount of money due in fines on item.
-        """
-        d1 = datetime.datetime.now()
-        d2 = self.checkout_date
-        daysout = (d1 - d2).days #days book has been out
-        fine = (daysout - self.loantime)*self.finerate #fine in pounds
-        return fine
         
         
 class Dvd(Item):
@@ -66,15 +57,6 @@ class Dvd(Item):
     """
     finerate = 2.0 #50p/day
     loantime = 1*7 # 4weeks
-    
-    def fine(self): #, date):
-        """Returns the amount of money due in fines on item.
-        """
-        d1 = datetime.datetime.now()
-        d2 = self.checkout_date
-        daysout = (d1 - d2).days #days book has been out
-        fine = (daysout - self.loantime)*self.finerate #fine in punds
-        return fine
 
         
     
