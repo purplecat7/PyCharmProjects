@@ -43,7 +43,7 @@ def exercise1(userid, title, libcon):
     libcon.user_checkout(userid, title)
 
 def exercise2(userid, retid, title, libcon):
-    fine = libcon.add_item(userid,libcon)
+    fine = libcon.user_fine(userid,libcon)
     print "User: ",userid
     print "Total Fine: ",fine
     
@@ -71,6 +71,12 @@ def main():
         exercise1(100, 'The Kite Runner', libcon)
     except:
         print "Exercise 1 failed"
+        raise
+    print "Exercise 2..."
+    try:
+        exercise2(100, 50,'The Kite Runner', libcon)
+    except:
+        print "Exercise 2 failed"
         raise
 
 if __name__ == '__main__':
