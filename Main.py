@@ -8,20 +8,20 @@ import UserManager
 # AUTHOR: seg
 #-
 
-class numbID:
+class NumbID:
    idnumber = 0
 
    def __init__(self):
       pass
 
    def new_id(self):
-      numbID.idnumber += 1
-      return numbID.idnumber 
+      NumbID.idnumber += 1
+      return NumbID.idnumber 
 
 
 def library_catalogue(libcon,infile):
 
-    idnumb = numbID()
+    idnumb = NumbID()
     itemmanager = ItemManager.ItemManager()
     itemmanager.set_library_controller(libcon)
     file=open(infile,'r')
@@ -31,7 +31,7 @@ def library_catalogue(libcon,infile):
 
 def library_members(libcon):
 
-    idnumb = numbID()
+    idnumb = NumbID()
     usermanager = UserManager.UserManager()
     usermanager.SetLibraryController(libcon)
     usermanager.CreateUser(idnumb.new_id())
