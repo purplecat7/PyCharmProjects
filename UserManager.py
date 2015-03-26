@@ -7,10 +7,10 @@ Created on Wed Mar 25 10:41:12 2015
 import user
 class UserManager():
     
-    def SetLibraryController(self, library_controller):
+    def set_library_controller(self, library_controller):
         self.library_controller = library_controller    
     
-    def CreateUser(self,user_id):
+    def create_user(self,user_id):
 
         NewUser=user.User()
         NewUser.set_identification(user_id)

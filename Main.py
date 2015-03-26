@@ -33,20 +33,21 @@ def library_members(libcon):
 
     idnumb = NumbID()
     usermanager = UserManager.UserManager()
-    usermanager.SetLibraryController(libcon)
-    usermanager.CreateUser(idnumb.new_id())
+    usermanager.set_library_controller(libcon)
+    usermanager.create_user(idnumb.new_id())
     print 'User ID created: ',idnumb.idnumber
-    usermanager.CreateUser(idnumb.new_id())
+    usermanager.create_user(idnumb.new_id())
     print 'User ID created: ',idnumb.idnumber
 
 def exercise1(userid, title, libcon):
     libcon.user_checkout(userid, title)
 
 def exercise2(userid, title, libcon):
-
     fine = libcon.add_item(userid,libcon)
     print "User: ",userid
     print "Total Fine: ",fine
+    
+     
 
 def main():
     print "Initialising library controller..."
