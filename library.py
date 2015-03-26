@@ -53,7 +53,7 @@ class LibraryController:
         # get user object corresponding to given user_id
         user = self.user_list.find_user(user_id)
         
-        user.return_item(self,user_id, item_id)
+        user.return_item(item_id)
 
 
     def user_fine(self, user_id):
