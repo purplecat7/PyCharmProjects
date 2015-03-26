@@ -44,7 +44,7 @@ class LibraryController:
         item_requested = self.item_list.get_item(item_title)
 
         # add item to user's list
-        user.loan_item(item_requested)
+        user.checkout_item(item_requested)
 
     def user_return(self, user_id, item_id):
         """
