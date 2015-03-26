@@ -62,7 +62,8 @@ class User(object):
     # the user
 
     def get_fine_total(self):
-        self._user_items.get_fines()
+        fine = self._user_items.get_fines()
+        return fine
 
 if __name__ == "__main__":
     pass
