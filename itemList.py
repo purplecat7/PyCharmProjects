@@ -1,13 +1,25 @@
 class ItemList(list):
     '''
-    FUNCTIONS:
-        add_item: Adds an item to the list
+    FUNCTIONS:            
+        return_item:
+            Removes an item being checked in to the item list
+            
+        add_item: 
+            Adds an item to the list
         
-        remove_item: Removes an item from the list
+        remove_item: 
+            Removes an item from the list
         
-        get_item: Return a single item object from the list
+        get_item: 
+            Return a single item object from the list
         
         number_of_items:
+        
+        get_fines:
+            Accumulates the fines from each overdue item
+            
+        checkout_item:
+            Adds an item being checked out to the item list
     '''
     def __init__(self):
         pass
@@ -64,17 +76,7 @@ class ItemList(list):
         
     def number_of_items(self):
         return len(self)
-        
-class UserItemList(ItemList):
-    '''
-    FUNCTIONS:
-        get_fines:
-            Accumulates the fines from each overdue item
-        checkout_item:
-            Adds an item being checked out to the item list
-        return_item:
-            Removes an item being checked in to the item list
-    '''
+
     def get_fines(self):
         '''
         Calculates the fines from each item in the list
