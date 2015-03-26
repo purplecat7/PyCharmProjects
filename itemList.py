@@ -103,7 +103,7 @@ class ItemList(list):
         # Set the checkout on the item
         item.set_checkout()        
         # Add the item to the list
-        self.addItem(item)
+        self.add_item(item)
         
         return
         
