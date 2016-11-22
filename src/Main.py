@@ -1,6 +1,7 @@
-import library
 import ItemManager
 import UserManager
+import library
+
 
 # +
 # NAME: Main.py

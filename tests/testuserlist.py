@@ -1,8 +1,8 @@
 __author__ = 'rsmith31'
 
-from LibrarySystem import userList
-from LibrarySystem import UserIdError
-from LibrarySystem import user
+from src import userList
+from src import UserIdError
+from src import user
 
 from nose.tools import *
 

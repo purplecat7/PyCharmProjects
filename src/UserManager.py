@@ -12,7 +12,7 @@ class UserManager():
     
     def create_user(self,user_id):
 
-        NewUser=user.User()
+        NewUser= user.User()
         NewUser.set_identification(user_id)
         self.library_controller.add_user(NewUser)
  #       NewUser._identification = str()
