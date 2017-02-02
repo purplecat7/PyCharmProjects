@@ -1,0 +1,28 @@
+Statement of work
+Write simple sorting program which will sort user input.
+
+Limitations
+always ascending order;
+up to 100 numbers;
+
+Constraints
+depending on algorithm, check whether already sorted;
+can run on really slow machine;
+
+Assumptions
+input via keyboard (not file);
+integer or float, including -ve or char;
+value of number limited;
+comma separated list as input, return to complete and instigate sort
+    OR
+separate entries - allows validity checking;
+output to screen;
+produce user friendly error message;
+
+
+Requirements
+accept k/b input;
+sort ascending;
+accept numbers (int/-ve);
+o/p to screen;
+meaningful error messages;

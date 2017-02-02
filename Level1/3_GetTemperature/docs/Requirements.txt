@@ -1,0 +1,26 @@
+Requirements
+Data is provided
+The s/w shall either: only provide height if spot on, or provide nearest height, or interpolate, or... let the user decide what they'd like
+Plotting shall be done in mercator projection
+The s/w shall either ignore, or interpolate missing data
+The s/w shall sanity check the data!
+The s/w will only handle single co-ord requests, manually input by user.
+The s/w shall present an uncertainty associated with temperature
+
+Assumptions
+Data format, resolution, availabilty, location, permissions,
+Height is sfc height, or pressure, or amsl
+Units, precision
+
+Limitations
+Good metadata available
+Data volume
+
+Questions
+Repetitive data access?
+Output format required?
+Do we need to worry about this thing lasting till 3000AD?
+Do we need to use something from the stone age?
+When do you want this done by?
+Am I to be all by myself :(
+What's the interface to other code/libraries?

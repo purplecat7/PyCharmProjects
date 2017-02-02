@@ -1,0 +1,10 @@
+<rootNode>
+    <childNode1> 3 </childNode1>
+    <childNode2>
+        <grandchildNode2>
+        'bob'
+        </grandchildNode2>
+    </childNode2>
+    <childNode3 attr1='15' attr2='foo'>
+    </childNode3>
+</rootNode>
