@@ -7,6 +7,9 @@ FILE
 CLASSES
     NumID
 """
+# note that print statements should not normally be in functions - they are
+# in some here for clarity in interpreting the behaviour.
+
 import item_manager as im
 import user_manager as um
 import library
