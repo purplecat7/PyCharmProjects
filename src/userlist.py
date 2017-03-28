@@ -9,7 +9,9 @@ class UserList:
 
     def _find_user(self, user_id):
         # searches user list
-        return
+        for user in self.users_list:
+            if user.user_id == user_id:
+                return user
 
     def able_to_borrow(self):
         # checks if user is able to borrow
