@@ -1,3 +1,5 @@
+import datetime as dt
+
 class Item:
     """An object representing an item available for lending/borrowing within the library."""
     def __init__(self, title, ident):
@@ -23,8 +25,15 @@ class Item:
     def get_fine_due(self):
         """Calculates the fine due for this item. Fine is calculated based on the number of
         days since the due date, multiplied by the fine rate (per day)."""
+        fine = 0
+        ndays = (dt.now() - self._checkout_date).days
+        ndays_over = ndays - self.loantime
+        if ndays_over > 0:
+            fine += (ndays_over * self.finerate)
+        return fine
     def get_identifier(self, identifier_type):
-        """"""
+        """Finds the type of Item which is being dealt with."""
+        return self.identifier_type
     def is_checked_out(self):
         """Returns True if checked out, returns False otherwise."""
         return self._checkout_date is not None
@@ -33,4 +42,5 @@ class Item:
         self._checkout_date = None
     def set_checkout(self, date):
         """Sets the current date as the checkout date"""
+        # insert some check that date is a datetime object
         self._checkout_date = date # I'd like it if the checkout date could be set to datetime.now()
