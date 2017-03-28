@@ -3,8 +3,9 @@ from ItemManager import ItemManager
 from usermanager import UserManager
 
 if __name__ == "__main__":
+
     """
-    This is main. More to follow.
+    Script to run the manage the library users and their accounts
     """
     # here we call the library controller class.
     libraryController = LibraryController()
