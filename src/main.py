@@ -26,7 +26,10 @@ if __name__ == "__main__":
     elif user_present == 'no':
         user_ID_choice = input('Please tell us your user ID name? ')
         print ('What would you like to do out of these options? ')
-        operation_choice = input('1) Take out book, 2) Return book, 3) Pay Fine, 4) Check whether a book is on loan? '+\
+        operation_choice = input('1) Take out book, \n'
+                                 '2) Return book, \n'
+                                 '3) Pay Fine, \n'
+                                 '4) Check whether a book is on loan? \n'
                                  '5) Check how much you owe due to fines?')
         while operation_choice>5:
             operation_choice = input('You chose unwisely, try again please?')
