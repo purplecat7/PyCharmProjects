@@ -39,7 +39,7 @@ class LibraryController(object):
 
     def pay_fine(self, user_id, amount):
         """Pay a find for a user."""
-        self._log('Paying fine: {} - £{}'.format(user_id, amount))
+        self._log('Paying fine: {} - {}'.format(user_id, amount))
         self._user_list.pay_fine(user_id, amount)
 
     def user_checkout(self, user_id, item_title):
