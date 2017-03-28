@@ -11,11 +11,18 @@ if __name__ == "__main__":
     itemManager = ItemManager()
     userManager = UserManager()
 
-    itemManager.setLibraryController(libraryController)
+    itemManager.set_library_controller(libraryController)
+    userManager.set_library_controller(libraryController)
     # initiating the item database.
     itemManager.createDatabase('top100.txt')
 
-    # initiate the user database
 
-    # Johnny Codewarrior
-    libraryController.user_checkout(self,user_id,item_title)
+    # code to checkout book
+    libraryController.user_checkout(user_id,item_title)
+    # code to find user
+    libraryController.user_find(user_id)
+    libraryController.user_return(user_id,item_title)
+    libraryController.add_item(item)
+    libraryController.add_user(user_id)
+    libraryController.pay_fine(user_id,amount)
+    libraryController.is_on_loan(item_title)
