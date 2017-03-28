@@ -97,11 +97,8 @@ class Item:
         d2 = self._checkout_date
         days_out = (d1 - d2).days # days book has been out
         fine = (days_out - self.loantime)* self.finerate # fine in pounds
-self.get_fine_rate()
         if fine < 0.:
             fine = 0.
-        else:
-            fine = fine
         return fine
 
     def is_checked_out(self):
@@ -129,9 +126,9 @@ class Book(Item):
     """
 
     def __init__(self, title, ident):
-        super.__init__(self,title,ident, 0.5, 4*7)
-    #finerate = 0.50  # 50p/day
-    #loantime = 4*7  # 4 weeks
+        super.__init__(self, title,ident, 0.5, 4*7)
+    # finerate = 0.50  # 50p/day
+    # loantime = 4*7  # 4 weeks
         
 
 class Journal(Item):
@@ -147,7 +144,7 @@ class Journal(Item):
             Limit of loan before fines apply
     """
     def __init__(self, title, ident):
-        super.__init__(self,title,ident, 1.0, 2*7)
+        super.__init__(self, title, ident, 1.0, 2*7)
     # finerate = 1.0  # £1/day
     # loantime = 2*7  # 4 weeks
         
@@ -164,9 +161,9 @@ class Dvd(Item):
         loantime
             Limit of loan before fines apply
     """
-    finerate = 2.0  # £2/day
-    loantime = 1*7  # 4 weeks
+    def __init__(self, title, ident):
+        super.__init__(self, title, ident, 1.0, 2*7)
+    # finerate = 2.0  # £2/day
+    # loantime = 1*7  # 4 weeks
 
-    def get_finerate(self):
-        return Dvd.finerate
 

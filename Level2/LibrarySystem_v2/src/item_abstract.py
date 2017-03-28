@@ -85,6 +85,9 @@ class Item:
 
     def get_fine_rate(self):
         raise NotImplementedError
+
+    def get_loan_time(self):
+        raise NotImplementedError
                         
     def get_fine_due(self):
         """
@@ -96,12 +99,10 @@ class Item:
         d1 = datetime.datetime.now()
         d2 = self._checkout_date
         days_out = (d1 - d2).days # days book has been out
-        fine = (days_out - self.loantime)* self.finerate # fine in pounds
-self.get_fine_rate()
+        fine = (days_out - self.get_loan_time)* self.get_fine_rate() # fine in pounds
+
         if fine < 0.:
             fine = 0.
-        else:
-            fine = fine
         return fine
 
     def is_checked_out(self):
@@ -127,12 +128,15 @@ class Book(Item):
         loantime:
             Limit of loan before fines apply
     """
+    finerate = 0.50  # 50p/day
+    loantime = 4*7  # 4 weeks
 
-    def __init__(self, title, ident):
-        super.__init__(self,title,ident, 0.5, 4*7)
-    #finerate = 0.50  # 50p/day
-    #loantime = 4*7  # 4 weeks
-        
+    def get_fine_rate(self):
+        return Book.finerate
+
+    def get_loan_time(self):
+        return Book.loantime
+
 
 class Journal(Item):
     """
@@ -146,12 +150,16 @@ class Journal(Item):
         loantime
             Limit of loan before fines apply
     """
-    def __init__(self, title, ident):
-        super.__init__(self,title,ident, 1.0, 2*7)
-    # finerate = 1.0  # £1/day
-    # loantime = 2*7  # 4 weeks
-        
-        
+    finerate = 1.0  # £1/day
+    loantime = 2*7  # 4 weeks
+
+    def get_fine_rate(self):
+        return Journal.finerate
+
+    def get_loan_time(self):
+        return Journal.loantime
+
+
 class Dvd(Item):
     """
     Dvd class: derived from Item.
@@ -167,6 +175,10 @@ class Dvd(Item):
     finerate = 2.0  # £2/day
     loantime = 1*7  # 4 weeks
 
-    def get_finerate(self):
+    def get_fine_rate(self):
         return Dvd.finerate
+
+    def get_loan_time(self):
+        return Dvd.loantime
+
 

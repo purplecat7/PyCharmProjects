@@ -97,8 +97,6 @@ class Item:
         fine = (days_out - self.loantime)* self.finerate # fine in pounds
         if fine < 0.:
             fine = 0.
-        else:
-            fine = fine
         return fine
 
     def is_checked_out(self):
