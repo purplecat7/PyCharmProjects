@@ -36,13 +36,22 @@ class ItemList(list):
         fined_item = self.get_item(item)
         fined_item.get_fine_due()
 
-    def get_item(self, item):
+    def get_item(self, ID):
         """
         Finds the requested item
         :param item: the requested item
         :return:
         """
-        return next((x for x in self if x.identity == item), None)
+        if type(ID) is int:
+            identifier_type = 'ID'
+        elif type(ID) is str:
+            identifier_type = 'Title'
+        else:
+            print "ID is neither integer nor string."
+
+        for item in self:
+            if ID == item.get_identifier(identifier_type):
+                return item
 
     def is_on_loan(self, item):
         """
