@@ -24,7 +24,6 @@ class LibraryController(object):
 
     def is_on_loan(self, item_title):
         """Find out if an item is on load."""
-        print(item_title)
         return self._item_list.is_on_loan(item_title)
 
     def pay_fine(self, user_id, amount):
@@ -35,11 +34,13 @@ class LibraryController(object):
         """Checkout an item for a user."""
         if self._user_list.able_to_borrow(user_id, self.MAX_LOANS, self.MAX_FINE):
             return self._item_list.checkout_item(item_title)
+        return None
 
     def user_fine(self, user_id):
-        """Find a user from their ID."""
-        print(user_id)
+        """Apply a fine to a user."""
+        return self._user_list.get_fine_total(user_id)
 
     def user_return(self, user_id, item_title):
         """Return an item for a user."""
-        self._user_list.return_item(user_id)
+        self._user_list.return_item(user_id, item_title)
+        self._item_list.return_item(item_title)

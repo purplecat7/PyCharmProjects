@@ -16,13 +16,34 @@ if __name__ == "__main__":
     # initiating the item database.
     itemManager.createDatabase('top100.txt')
 
+    # code to add user.
+    # first need to ask, are you a user
+    user_present = input('Are you a new user (yes/no) ? ')
+    if user_present =='yes':
+        user_ID_choice = input('Please choose an ID name? ')
+        libraryController.add_user(user_ID_choice)
+        print 'thank you ' + user_ID_choice +'. You are now a library user.'
+    else user_present == 'no':
+        user_ID_choice = input('Please tell us your user ID name? ')
+        print ('What would you like to do out of these options? ')
+        operation_choice = input('1) Take out book, 2) Return book, 3) Pay Fine, 4) Check whether a book is on loan? '+\
+                                 '5) Check how much you owe due to fines?')
 
-    # code to checkout book
-    libraryController.user_checkout(user_id,item_title)
+        if operation_choice== 1:
+            # code to checkout book
+            item_title = input('What is the item title you would like to take out?')
+            libraryController.user_checkout(user_ID_choice,item_title)
+        elif operation_choice== 2:
+            item_title = input('What item would you like to return?')
+            libraryController.user_return(user_id,item_title)
+        elif operation_choice==3:
+
+            libraryController.pay_fine(user_id,amount)
+
+
     # code to find user
     libraryController.user_find(user_id)
-    libraryController.user_return(user_id,item_title)
+
     libraryController.add_item(item)
-    libraryController.add_user(user_id)
-    libraryController.pay_fine(user_id,amount)
+
     libraryController.is_on_loan(item_title)
