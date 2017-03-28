@@ -38,8 +38,9 @@ class LibraryController(object):
 
     def user_fine(self, user_id):
         """Apply a fine to a user."""
-        print(user_id)
+        return self._user_list.get_fine_total(user_id)
 
     def user_return(self, user_id, item_title):
         """Return an item for a user."""
-        self._user_list.return_item(user_id)
+        self._user_list.return_item(user_id, item_title)
+        self._item_list.return_item(item_title)
