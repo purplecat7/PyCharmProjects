@@ -1,8 +1,19 @@
 from library import LibraryController
+from ItemManager import ItemManager
+from ListManager import ListManager
 
 if __name__ == "__main__":
-    print ('hello')
+    """
+    This is main. More to follow.
+    """
     libraryController = LibraryController()
-    print (libraryController)
+    # item manager
+    # will call the item manager and give it a text file.
+    itemManager = ItemManager()
+    listManager = ListManager()
 
-    libraryController.add_item('jingle bells')
+    itemManager.setLibraryController(libraryController)
+    # will give txt file to item manager
+    itemManager.createDatabase('top100.txt')
+
+    # user managerr
