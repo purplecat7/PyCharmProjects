@@ -1,6 +1,7 @@
 from itemlist import ItemList
 from userlist import UserList
 
+
 class LibraryController(object):
     MAX_LOANS = 5
     MAX_FINE = 50
@@ -11,12 +12,12 @@ class LibraryController(object):
 
     def user_checkout(self, user_id, item_title):
         """Checkout an item for a user."""
-        if self._userList.able_to_borrow(user_id, self.MAX_LOANS, self.MAX_FINE):
+        if self._user_list.able_to_borrow(user_id, self.MAX_LOANS, self.MAX_FINE):
             return self._item_list.checkout_item(item_title)
 
     def user_return(self, user_id, item_title):
         """Return an item for a user."""
-        self._userList.return_item(user_id)
+        self._user_list.return_item(user_id)
 
     def is_on_loan(self, item_title):
         """Find out if an item is on load."""
