@@ -33,11 +33,13 @@ class LibraryController(object):
     def user_checkout(self, user_id, item_title):
         """Checkout an item for a user."""
         if self._user_list.able_to_borrow(user_id, self.MAX_LOANS, self.MAX_FINE):
-            return self._item_list.checkout_item(item_title)
-        return None
+            self._user_list.checkout_item(user_id, item_title)
+            self._item_list.checkout_item(item_title)
+            return True
+        return False
 
-    def user_fine(self, user_id):
-        """Apply a fine to a user."""
+    def get_user_fine(self, user_id):
+        """Get fines that apply to a user."""
         return self._user_list.get_fine_total(user_id)
 
     def user_return(self, user_id, item_title):
