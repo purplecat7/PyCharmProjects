@@ -39,10 +39,12 @@ class Item:
     No data or other attributes defined here.
 
     """
-    def __init__(self, title, ident):
+    def __init__(self, title, ident, loantime, finerate):
         self._title = title
         self._identity = ident
         self._checkout_date = None
+        self.loantime = loantime
+        self.finerate = finerate
 
     def __del__(self):
         pass
@@ -95,6 +97,7 @@ class Item:
         d2 = self._checkout_date
         days_out = (d1 - d2).days # days book has been out
         fine = (days_out - self.loantime)* self.finerate # fine in pounds
+self.get_fine_rate()
         if fine < 0.:
             fine = 0.
         else:
@@ -124,8 +127,11 @@ class Book(Item):
         loantime:
             Limit of loan before fines apply
     """
-    finerate = 0.50  # 50p/day
-    loantime = 4*7  # 4 weeks
+
+    def __init__(self, title, ident):
+        super.__init__(self,title,ident, 0.5, 4*7)
+    #finerate = 0.50  # 50p/day
+    #loantime = 4*7  # 4 weeks
         
 
 class Journal(Item):
@@ -140,8 +146,10 @@ class Journal(Item):
         loantime
             Limit of loan before fines apply
     """
-    finerate = 1.0  # £1/day
-    loantime = 2*7  # 2 weeks
+    def __init__(self, title, ident):
+        super.__init__(self,title,ident, 1.0, 2*7)
+    # finerate = 1.0  # £1/day
+    # loantime = 2*7  # 4 weeks
         
         
 class Dvd(Item):
@@ -157,6 +165,8 @@ class Dvd(Item):
             Limit of loan before fines apply
     """
     finerate = 2.0  # £2/day
-    loantime = 1*7  # 1 week
+    loantime = 1*7  # 4 weeks
 
+    def get_finerate(self):
+        return Dvd.finerate
 
