@@ -24,7 +24,7 @@ class LibraryController(object):
         pass
 
     def add_item(self, item_title):
-        pass
+        print(item_title)
 
     def add_user(self, user_id):
         pass
