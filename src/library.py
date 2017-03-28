@@ -9,17 +9,27 @@ class LibraryController(object):
     MAX_LOANS = 5
     MAX_FINE = 50
 
-    def __init__(self):
+    def _log(self, message):
+        """Poor man's 'logging'!"""
+        if self._verbose:
+            print(message)
+
+    def __init__(self, verbose=False):
+        """Initialize library, optionally setting verbose mode."""
+        self._verbose = verbose
+        self._log('Initializing {}'.format(self))
         # Initialize internal lists.
         self._item_list = ItemList()
         self._user_list = UserList()
 
     def add_item(self, item):
         """Add an item to the library."""
+        self._log('Adding item: {}'.format(item))
         self._item_list.addItem(item)
 
     def add_user(self, user):
         """Add an user to the library."""
+        self._log('Adding user: {}'.format(user))
         self._user_list.add_user(user)
 
     def is_on_loan(self, item_title):
@@ -28,15 +38,20 @@ class LibraryController(object):
 
     def pay_fine(self, user_id, amount):
         """Pay a find for a user."""
+        self._log('Paying fine: {} - £{}'.format(user_id, amount))
         self._user_list.pay_fine(user_id, amount)
 
     def user_checkout(self, user_id, item_title):
         """Checkout an item for a user."""
+        self._log('User checkout: {} - {}'.format(user_id, item_title))
         if self._user_list.able_to_borrow(user_id, self.MAX_LOANS, self.MAX_FINE):
+            self._log('User {} able to borrow.'.format(user_id))
             self._user_list.checkout_item(user_id, item_title)
             self._item_list.checkout_item(item_title)
             return True
-        return False
+        else:
+            self._log('User {} not able to borrow'.format(user_id))
+            return False
 
     def get_user_fine(self, user_id):
         """Get fines that apply to a user."""
@@ -44,5 +59,6 @@ class LibraryController(object):
 
     def user_return(self, user_id, item_title):
         """Return an item for a user."""
+        self._log('User returning: {} - {}'.format(user_id, item_title))
         self._user_list.return_item(user_id, item_title)
         self._item_list.return_item(item_title)
