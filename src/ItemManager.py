@@ -22,7 +22,7 @@ class ItemManager:
         list_of_items = []
 
         # Loop through each line and append to a list
-        for i in range(0,99):
+        for i in range(0,len(textfile)):
             list_of_titles.append(f.next().strip())
         f.close()
 
