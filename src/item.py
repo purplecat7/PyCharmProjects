@@ -26,7 +26,7 @@ class Item:
         """Calculates the fine due for this item. Fine is calculated based on the number of
         days since the due date, multiplied by the fine rate (per day)."""
         fine = 0
-        ndays = (dt.now() - self._checkout_date).days
+        ndays = (dt.datetime.now() - self._checkout_date).days
         ndays_over = ndays - self.loantime
         if ndays_over > 0:
             fine += (ndays_over * self.finerate)
@@ -42,5 +42,8 @@ class Item:
         self._checkout_date = None
     def set_checkout(self, date):
         """Sets the current date as the checkout date"""
-        # insert some check that date is a datetime object
+        if type(date) != dt.datetime:
+            raise TypeError('date must be a datetime.datetime object')
+        else:
+            pass
         self._checkout_date = date # I'd like it if the checkout date could be set to datetime.now()
