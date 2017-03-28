@@ -11,6 +11,8 @@ class Item:
         _title is set as the title argument passed in the constructor,
         _identity is set as the indent argument passed in the constructor."""
         self._checkout_date = None
+        self.loantime = None
+        self.finerate = None
         if type(title) == str:
             self._title = title
         else:
@@ -33,7 +35,13 @@ class Item:
         return fine
     def get_identifier(self, identifier_type):
         """Finds the type of Item which is being dealt with."""
-        return self.identifier_type
+        if identifier_type == 'ID':
+            retval = self._identity
+        elif identifier_type == 'Title':
+            retval = self._title
+        else:
+            raise ValueError('identifier_type is neither \'ID\' nor \'Title\'')
+        return retval
     def is_checked_out(self):
         """Returns True if checked out, returns False otherwise."""
         return self._checkout_date is not None
@@ -46,4 +54,4 @@ class Item:
             raise TypeError('date must be a datetime.datetime object')
         else:
             pass
-        self._checkout_date = date # I'd like it if the checkout date could be set to datetime.now()
+        self._checkout_date = date
