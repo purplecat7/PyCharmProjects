@@ -22,32 +22,24 @@ class ItemManager:
     def createDatabase(self,textfile):
         # Open the text files and extract titles
         title_list = extractTitles(textfile)
-        for ind_title, title in enumerate(title_list):
+        for ind_title, title in enumerate(len(title_list)):
             if ind_title <30:
                 book_instance = Book(title, 'Book_%3i'%(ind_title))
                 LibraryController.add_item(book_instance)
-
-
+            elif ind_title >=30 && ind_title < 60:
+                DVD_instance = DVD(title, 'DVD_%3i'%(ind_title))
+                LibraryController.add_item(DVD_instance)
+            elif ind_title >=60 && ind_title < len(title_list):
+                Journal_instance = Journal(title, 'Journal_%3i'%(ind_title))
+                LibraryController.add_item(Journal_instance)
 
     def createItem(self, title, itemType):
         pass
     def createBook(self, title):
-        f = open(top100)
-        for i in range(0,29):
-            title = f.next().strip()
-        f.close()
-        return title
+        pass
     def createDVD(self,title):
-        f = open(top100)
-        for i in range(30,59):
-            title = f.next().strip()
-        f.close()
-        return title
+        pass
     def createJournal(self, title):
-        f = open(top100)
-        for i in range(60,99):
-            title = f.next().strip()
-        f.close()
-        return title
+        pass
     def set_library_controller(self, libraryController):
         self._libraryController = libraryController
