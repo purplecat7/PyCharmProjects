@@ -10,25 +10,26 @@ class LibraryController(object):
     MAX_FINE = 50
 
     def __init__(self):
-        self._item_list = ItemList(self)
-        self._user_list = UserList(self)
+        # Initialize internal lists.
+        self._item_list = ItemList()
+        self._user_list = UserList()
 
     def add_item(self, item):
         """Add an item to the library."""
-        print(item)
+        self._item_list.addItem(item)
 
-    def add_user(self, user_id):
+    def add_user(self, user):
         """Add an user to the library."""
-        print(user_id)
+        self._user_list.add_user(user)
 
     def is_on_loan(self, item_title):
         """Find out if an item is on load."""
         print(item_title)
+        return self._item_list.is_on_loan(item_title)
 
     def pay_fine(self, user_id, amount):
         """Pay a find for a user."""
-        print(user_id)
-        print(amount)
+        self._user_list.pay_fine(user_id, amount)
 
     def user_checkout(self, user_id, item_title):
         """Checkout an item for a user."""
