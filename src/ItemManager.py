@@ -10,44 +10,36 @@ class ItemManager:
     def __del__(self):
         pass
 
-    def extractTitles(self,textfile):
+    def _extract_titles(self,textfile):
         # Open the text files and extract titles
         f             = open(textfile)
-        list_of_items = []
+        list_of_titles = []
         for i in range(0,99):
-            list_of_items.append(f.next().strip())
+            list_of_titles.append(f.next().strip())
         f.close()
-        return list_of_items
+        return list_of_titles
 
-    def createDatabase(self,textfile):
+    def create_database(self,textfile):
         # Open the text files and extract titles
-        title_list = extractTitles(textfile)
-        for ind_title, title in enumerate(title_list):
+        title_list = self._extract_titles(textfile)
+        for ind_title, title in enumerate(len(title_list)):
             if ind_title <30:
-                book_instance = Book(title, 'Book_%3i'%(ind_title))
-                LibraryController.add_item(book_instance)
-
-
+                book_instance = Book(title, ind_title)
+                self._libraryController.add_item(book_instance)
+            elif ind_title >=30 and ind_title < 60:
+                DVD_instance = DVD(title, ind_title)
+                self._libraryController.add_item(DVD_instance)
+            elif ind_title >=60 and ind_title < len(title_list):
+                Journal_instance = Journal(title, ind_title)
+                self._libraryController.add_item(Journal_instance)
 
     def createItem(self, title, itemType):
         pass
     def createBook(self, title):
-        f = open(top100)
-        for i in range(0,29):
-            title = f.next().strip()
-        f.close()
-        return title
+        pass
     def createDVD(self,title):
-        f = open(top100)
-        for i in range(30,59):
-            title = f.next().strip()
-        f.close()
-        return title
+        pass
     def createJournal(self, title):
-        f = open(top100)
-        for i in range(60,99):
-            title = f.next().strip()
-        f.close()
-        return title
+        pass
     def set_library_controller(self, libraryController):
         self._libraryController = libraryController
