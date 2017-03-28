@@ -1,3 +1,4 @@
+"""LibraryController: provide a public facing interface to the library."""
 from itemlist import ItemList
 from userlist import UserList
 
