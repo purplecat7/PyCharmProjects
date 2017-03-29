@@ -1,11 +1,12 @@
 from itemlist import ItemList
-from userlist import UserList
 
 class User:
-    def __init__(self):
+    def __init__(self, user_id):
         self._fines = float()
         self._identification = int()
         self._item_list = ItemList()
+        self.user_id = user_id
+
     def __del__(self):
         pass
 

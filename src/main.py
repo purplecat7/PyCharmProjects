@@ -10,7 +10,7 @@ from library import LibraryController
 from ItemManager import ItemManager
 from usermanager import UserManager
 
-def perform_library_operation():
+def perform_library_operation(libraryController):
     '''
     This function allows  all library operations.
     :return:
@@ -19,7 +19,7 @@ def perform_library_operation():
     user_ID_choice = raw_input('Please tell us your user ID name? ')
     print ('What would you like to do out of these options? ')
     # find out the operation choice requested. Needs to be an integer between 1 and 6.
-    operation_choice = raw_input('1) Take out book, \n'
+    operation_choice = input('1) Take out book, \n'
                                  '2) Return book, \n'
                                  '3) Pay Fine, \n'
                                  '4) Check whether a book is on loan? \n'
@@ -27,7 +27,7 @@ def perform_library_operation():
                                     '6) Add a new user?')
     # while loop - take operation raw_input and ask for new number if above 6.
     while operation_choice>6:
-            operation_choice = raw_input('You chose unwisely, try again please?')
+            operation_choice = input('You chose unwisely, try again please?')
     if operation_choice== 1:
         # code to checkout book
         item_title = raw_input('What is the item title you would like to take out?')
@@ -53,14 +53,14 @@ def perform_library_operation():
         item_type = raw_input('What type of item is it? (DVD, book, journal)')
         itemManager.createItem(item,item_type)
 
-def new_user_query():
+def new_user_query(userManager):
     '''
     Functin to add a new user
     :return:
     '''
     # Allowing own user ID name
     user_ID_choice = raw_input('Please choose an ID name? ')
-    libraryController.add_user(user_ID_choice)
+    userManager.create_user(user_ID_choice)
     print 'thank you ' + user_ID_choice +'. You are now a library user.'
 
 
@@ -81,10 +81,11 @@ if __name__ == "__main__":
 
     # code to add user.
     # first need to ask, are you a user
-    user_present = raw_input('Are you a new user (yes/no) ? ')
-    if user_present =='yes':
+
+    while raw_input('Create new user (yes/no) ? ') == 'yes':
         # will generate a new user
-        new_user_query()
-    elif user_present == 'no':
-        # function to perform operation
-        perform_library_operation()
+        new_user_query(userManager)
+    userManager.create_user('jt')
+
+    # function to perform operation
+    perform_library_operation(libraryController)

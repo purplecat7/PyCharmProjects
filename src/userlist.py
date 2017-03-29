@@ -14,10 +14,10 @@ class UserList:
             if user.user_id == user_id:
                 return user
 
-    def able_to_borrow(self, max_number_loans, max_total_fine):
-        User.able_to_borrow(self, max_number_loans, max_total_fine)
-        # checks if user is able to borrow .
-        pass
+    def able_to_borrow(self, user_id, max_number_loans, max_total_fine):
+        # checks if user is able to borrow
+        user = self._find_user(user_id)
+        user.able_to_borrow(self, max_number_loans, max_total_fine)
 
     def add_user(self, new_user):
         # adds a user to the users_list
