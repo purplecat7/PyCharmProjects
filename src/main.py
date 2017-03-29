@@ -73,6 +73,7 @@ if __name__ == "__main__":
     itemManager = ItemManager()
     userManager = UserManager()
 
+    # set library controller
     itemManager.set_library_controller(libraryController)
     userManager.set_library_controller(libraryController)
     # initiating the item database.
