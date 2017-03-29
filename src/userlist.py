@@ -1,5 +1,5 @@
 import datetime as dt
-from exceptions import UserNotExist
+from library_exceptions import UserNotExist
 
 class UserList:
     def __init__(self):

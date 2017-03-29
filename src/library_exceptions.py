@@ -1,6 +1,4 @@
 """ Class exceptions for the library system """
-
-
 class LibraryException(Exception):
     def __init__(self):
         self.err = 'LibraryException'

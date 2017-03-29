@@ -1,7 +1,7 @@
 """LibraryController: provide a public facing interface to the library."""
 from itemlist import ItemList
 from userlist import UserList
-import exceptions
+import library_exceptions
 
 
 class LibraryController(object):
@@ -52,13 +52,13 @@ class LibraryController(object):
             item = self._item_list.checkout_item(item_title)
             self._user_list.checkout_item(user_id, item)
             return True
-        except exceptions.UserNotExist:
+        except library_exceptions.UserNotExist:
             self._log('User {} does not exist'.format(user_id))
             return False
-        except exceptions.FineHighError:
+        except library_exceptions.FineHighError:
             self._log('User {} not able to borrow due to fine over max fine limit'.format(user_id))
             return False
-        except exceptions.TooManyItems:
+        except library_exceptions.TooManyItems:
             self._log('User {} not able to borrow due to many items on borrow'.format(user_id))
             return False
 
