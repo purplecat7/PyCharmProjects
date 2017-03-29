@@ -59,7 +59,7 @@ class ItemList(list):
 
     def is_on_loan(self, item_id):
         """
-        Finds item from ID and checks if an item is on loan
+        Finds item from ID and checks if item is on loan
         :param item_id: ID of item to be removed
         :return:
         """
