@@ -18,3 +18,4 @@ class UserManager:
 
     def open_user_list(self):
         # opens user list
+        pass
