@@ -1,4 +1,6 @@
 from itemlist import ItemList
+from library_exceptions import FineHighError, TooManyItems
+
 
 class User:
     def __init__(self, user_id):
@@ -12,10 +14,12 @@ class User:
 
     def able_to_borrow(self, max_number_loans, max_total_fine):
         # checks if user is able to borrow
-        if self.get_fine_total() > max_total_fine or self._item_list.number_of_items() > max_number_loans:
-            return False
-        else:
-            return True
+        fine_total = self.get_fine_total()
+        num_items = self._item_list.number_of_items()
+        if fine_total > max_total_fine:
+            raise FineHigh(fine_total, max_total_fine - fine_total)
+        elif num_items > max_number_loans:
+            raise TooManyItems(num_items, max_number_loans)
 
     def checkout_item(self, item_requested, date):
         # checks out item
