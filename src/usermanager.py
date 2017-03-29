@@ -15,3 +15,7 @@ class UserManager:
     def set_library_controller(self, library_controller):
         # sets the library controller
         self._library_controller = library_controller
+
+    def open_user_list(self):
+        # opens user list
+        pass

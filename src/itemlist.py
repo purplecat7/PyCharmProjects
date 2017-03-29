@@ -23,15 +23,19 @@ class ItemList(list):
         """
         to_checkout = self.get_item(item_id)
         to_checkout.set_checkout(datetime.now())
+        return to_checkout
 
-    def get_fines(self, item_id):
+    def get_fines(self):
         """
         Finds the item from its ID and returns the fines incurred on item.
         :param item_id: ID of item to be returned
         :return:
         """
-        fined_item = self.get_item(item_id)
-        fined_item.get_fine_due()
+        fine_total = 0
+        for item in self:
+            fine_total += item.get_fine_due()
+        return fine_total
+
 
     def get_item(self, ID):
         """

@@ -1,3 +1,4 @@
+import datetime as dt
 from user import User
 
 class UserList:
@@ -17,18 +18,20 @@ class UserList:
     def able_to_borrow(self, user_id, max_number_loans, max_total_fine):
         # checks if user is able to borrow
         user = self._find_user(user_id)
-        user.able_to_borrow(self, max_number_loans, max_total_fine)
+        return user.able_to_borrow(max_number_loans, max_total_fine)
 
     def add_user(self, new_user):
         # adds a user to the users_list
+        # open txt file containing users
+        f = open('../data/users.txt', 'w')
         self.users_list.append(new_user)
+        f.append(new_user)
         return
 
-    def checkout_item(self,user_id):
+    def checkout_item(self,user_id, item):
         # checks out item
-        user = self._find_user(self, user_id)
-
-        return
+        user = self._find_user(user_id)
+        user.checkout_item(item, dt.datetime.now())
 
     def get_fine_total(self, user_id):
         # returns the total amount of fines for the user
