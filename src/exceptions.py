@@ -7,13 +7,16 @@ Class exceptions for the library system
 class LibraryException(Exception):
 
     def __init__(self):
-        pass
+        self.err = 'LibraryException'
+
+    def __str__(self):
+        print self.err
 
 
-class FineHigh(LibraryException):
+class FineHighError(LibraryException):
 
     """
-    Exception when fine is too high!
+    You have surpassed the maximum fine limit.
     """
 
     def __init__(self, fine, fine_remaining):
@@ -116,6 +119,20 @@ class DontLikePerson(LibraryException):
 
     def __str__(self):
         return 'We just don''t like you ' + str(self.user_id) + '...'
+        print super(DontLikePerson, self).__str__()
 
 
+# try:
+#     print 'testing...'
+#     raise DontLikePerson(124523)
+#     print 'after first except'
+# except:
+#     print 'testing2'
+#     raise UserNotExist(234234)
 
+try:
+    print '234234'
+    raise ValueError
+except:
+    print '234234234'
+    raise DontLikePerson(34534534)
