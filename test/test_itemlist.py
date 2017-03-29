@@ -1,7 +1,5 @@
 from src.itemlist import ItemList
 from src.itemSubclasses import Book
-from src.item import Item
-from datetime import datetime
 
 import nose.tools as ns
 
@@ -35,9 +33,3 @@ def test_get_item_str():
 def test_get_item_ID():
     item = ItemList().get_item(1)
     ns.assert_equals(item, ItemList().add_item(Book('Great Expectations', 1)))
-
-
-def test_checkout_date():
-    date = datetime.now()
-    checkout_date = Item().set_checkout(date)
-    ns.assert_equals(checkout_date, date)
