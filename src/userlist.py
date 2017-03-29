@@ -23,9 +23,7 @@ class UserList:
     def add_user(self, new_user):
         # adds a user to the users_list
         # open txt file containing users
-        f = open('../data/users.txt', 'w')
         self.users_list.append(new_user)
-        f.append(new_user)
         return
 
     def checkout_item(self,user_id, item):
