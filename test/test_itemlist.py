@@ -19,3 +19,5 @@ def test_get_identifier_title():
     book = Book('Great Expectations', 1)
     ns.assert_equals(book.get_identifier('Title'), 'Great Expectations')
 
+
+
