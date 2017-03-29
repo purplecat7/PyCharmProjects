@@ -18,12 +18,12 @@ class ItemManager:
         Only the first 100 lines are used"""
 
         # Open the text file
-        f             = open('../data/' + textfile)
+        f             = open('../data/' + textfile, 'r')
         list_of_items = []
 
         # Loop through each line and append to a list
-        for i in range(0,len(textfile)):
-            list_of_items.append(f.next().strip())
+        for line in f.readlines():
+            list_of_items.append(line.strip())
         f.close()
 
         return list_of_items
