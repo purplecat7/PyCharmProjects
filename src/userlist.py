@@ -1,3 +1,4 @@
+from user import User
 
 class UserList:
     def __init__(self):
@@ -13,21 +14,27 @@ class UserList:
             if user.user_id == user_id:
                 return user
 
-    def able_to_borrow(self):
+    def able_to_borrow(self, max_number_loans, max_total_fine):
+        User.able_to_borrow(self, max_number_loans, max_total_fine)
         # checks if user is able to borrow
-        return
+        pass
 
-    def add_user(self, user):
+    def add_user(self, new_user):
         # adds a user to the users_list
+        self.users_list.append(new_user)
         return
 
     def checkout_item(self):
         # checks out item
+        user = self._find_user(self, user_id)
+
         return
 
-    def get_fine_total(self):
+    def get_fine_total(self, user_id):
         # returns the total amount of fines for the user
-        return
+        user = self._find_user(self, user_id)
+        user.get_fine_total(self)
+        pass
 
     def pay_fine(self):
         # updates whether or not a user has paid a fine

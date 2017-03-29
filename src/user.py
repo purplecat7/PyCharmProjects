@@ -33,6 +33,7 @@ class User:
     def pay_fine(self, amount):
         # subtracts amount from user's total fines
         self._fines = ItemList.get_fines(self._item_list) - amount
+        pass
 
     def return_item(self):
         # updates user's returned item list
