@@ -23,6 +23,7 @@ class ItemList(list):
         """
         to_checkout = self.get_item(item_id)
         to_checkout.set_checkout(datetime.now())
+        return to_checkout
 
     def get_fines(self):
         """

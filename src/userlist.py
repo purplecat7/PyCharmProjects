@@ -1,3 +1,4 @@
+import datetime as dt
 from user import User
 
 class UserList:
@@ -24,11 +25,10 @@ class UserList:
         self.users_list.append(new_user)
         return
 
-    def checkout_item(self,user_id):
+    def checkout_item(self,user_id, item):
         # checks out item
-        user = self._find_user(self, user_id)
-
-        return
+        user = self._find_user(user_id)
+        user.checkout_item(item, dt.datetime.now())
 
     def get_fine_total(self, user_id):
         # returns the total amount of fines for the user

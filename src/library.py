@@ -47,8 +47,8 @@ class LibraryController(object):
         self._log('User checkout: {} - {}'.format(user_id, item_title))
         if self._user_list.able_to_borrow(user_id, self.MAX_LOANS, self.MAX_FINE):
             self._log('User {} able to borrow.'.format(user_id))
-            self._user_list.checkout_item(user_id, item_title)
-            self._item_list.checkout_item(item_title)
+            item = self._item_list.checkout_item(item_title)
+            self._user_list.checkout_item(user_id, item)
             return True
         else:
             self._log('User {} not able to borrow'.format(user_id))
