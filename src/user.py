@@ -1,11 +1,12 @@
 from itemlist import ItemList
-from userlist import UserList
 
 class User:
-    def __init__(self):
+    def __init__(self, user_id):
         self._fines = float()
         self._identification = int()
         self._item_list = ItemList()
+        self.user_id = user_id
+
     def __del__(self):
         pass
 
@@ -33,6 +34,7 @@ class User:
     def pay_fine(self, amount):
         # subtracts amount from user's total fines
         self._fines = ItemList.get_fines(self._item_list) - amount
+        pass
 
     def return_item(self):
         # updates user's returned item list

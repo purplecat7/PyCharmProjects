@@ -11,19 +11,19 @@ class ItemManager:
         pass
 
 
-    def extract_titles(self,textfile):
+    def _extract_titles(self,textfile):
         """ This function opens a text file, iterates through each line
         each title is then added to a list
         The list is then returned
         Only the first 100 lines are used"""
 
         # Open the text file
-        f             = open(textfile)
+        f             = open('../data/' + textfile, 'r')
         list_of_items = []
 
         # Loop through each line and append to a list
-        for i in range(0,len(textfile)):
-            list_of_titles.append(f.next().strip())
+        for line in f.readlines():
+            list_of_items.append(line.strip())
         f.close()
 
         return list_of_items
@@ -41,7 +41,7 @@ class ItemManager:
         title_list = self._extract_titles(textfile)
 
         # Loop through the list of titles
-        for ind_title, title in enumerate(len(title_list)):
+        for ind_title, title in enumerate(title_list):
             if ind_title <30:
                 book_instance = Book(title, ind_title)
                 self._libraryController.add_item(book_instance)
