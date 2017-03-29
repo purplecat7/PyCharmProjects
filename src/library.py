@@ -1,6 +1,7 @@
 """LibraryController: provide a public facing interface to the library."""
 from itemlist import ItemList
 from userlist import UserList
+import exceptions
 
 
 class LibraryController(object):
@@ -45,13 +46,17 @@ class LibraryController(object):
     def user_checkout(self, user_id, item_title):
         """Checkout an item for a user."""
         self._log('User checkout: {} - {}'.format(user_id, item_title))
-        if self._user_list.able_to_borrow(user_id, self.MAX_LOANS, self.MAX_FINE):
+        try:
+            self._user_list.able_to_borrow(user_id, self.MAX_LOANS, self.MAX_FINE)
             self._log('User {} able to borrow.'.format(user_id))
             item = self._item_list.checkout_item(item_title)
             self._user_list.checkout_item(user_id, item)
             return True
-        else:
-            self._log('User {} not able to borrow'.format(user_id))
+        except exceptions.FineHighError:
+            self._log('User {} not able to borrow due to fine over max fine limit'.format(user_id))
+            return False
+        except exceptions.TooManyItems:
+            self._log('User {} not able to borrow due to many items on borrow'.format(user_id))
             return False
 
     def get_user_fine(self, user_id):

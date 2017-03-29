@@ -70,7 +70,7 @@ if __name__ == "__main__":
     Script to run the manage the library users and their accounts.
     '''
     # here we call the library controller class.
-    libraryController = LibraryController()
+    libraryController = LibraryController(verbose=True)
     itemManager = ItemManager()
     userManager = UserManager()
 

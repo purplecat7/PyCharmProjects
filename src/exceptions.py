@@ -10,10 +10,10 @@ class LibraryException(Exception):
         pass
 
 
-class FineHigh(LibraryException):
+class FineHighError(LibraryException):
 
     """
-    Exception when fine is too high!
+    You have surpassed the maximum fine limit.
     """
 
     def __init__(self, fine, fine_remaining):
