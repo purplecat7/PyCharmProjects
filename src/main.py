@@ -77,7 +77,7 @@ if __name__ == "__main__":
     itemManager.set_library_controller(libraryController)
     userManager.set_library_controller(libraryController)
     # initiating the item database.
-    itemManager.createDatabase('top100t.txt')
+    itemManager.create_database('top100t.txt')
 
     # code to add user.
     # first need to ask, are you a user

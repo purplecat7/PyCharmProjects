@@ -23,7 +23,7 @@ class ItemManager:
 
         # Loop through each line and append to a list
         for i in range(0,len(textfile)):
-            list_of_titles.append(f.next().strip())
+            list_of_items.append(f.next().strip())
         f.close()
 
         return list_of_items
@@ -38,7 +38,7 @@ class ItemManager:
         It also uses add_item from _libraryController"""
 
         # Open the text files and extract titles
-        title_list = self._extract_titles(textfile)
+        title_list = self.extract_titles(textfile)
 
         # Loop through the list of titles
         for ind_title, title in enumerate(len(title_list)):
