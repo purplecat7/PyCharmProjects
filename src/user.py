@@ -19,7 +19,7 @@ class User:
         if num_items <= max_number_loans and fine_total <= max_total_fine:
             return True
         elif fine_total > max_total_fine:
-            raise FineHigh(fine_total, max_total_fine - fine_total)
+            raise FineHighError(fine_total, max_total_fine - fine_total)
         elif num_items > max_number_loans:
             raise TooManyItems(num_items, max_number_loans)
 
