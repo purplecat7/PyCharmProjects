@@ -1,5 +1,5 @@
 __author__ = 'nerc'
-from datetime import datetime
+import datetime as dt
 
 
 class ItemList(list):
@@ -14,7 +14,7 @@ class ItemList(list):
         """
         self.append(new_item)
 
-    def checkout_item(self, item_id):
+    def checkout_item(self, item_id, date):
         """
         Finds the requested item and changes the check out date to
         today's date.
@@ -22,7 +22,7 @@ class ItemList(list):
         :return:
         """
         to_checkout = self.get_item(item_id)
-        to_checkout.set_checkout(datetime.now())
+        to_checkout.set_checkout(dt.datetime.now())
         return to_checkout
 
     def get_fines(self):
