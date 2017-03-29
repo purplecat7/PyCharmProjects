@@ -1,3 +1,11 @@
+'''
+Perform library operations and make new user.
+
+Functions used:
+    perform_library_operation(...): Perform a library operation.
+    new_user_query(...): Create a new user query.
+'''
+
 from library import LibraryController
 from ItemManager import ItemManager
 from usermanager import UserManager
@@ -57,10 +65,9 @@ def new_user_query():
 
 
 if __name__ == "__main__":
-
-    """
-    Script to run the manage the library users and their accounts
-    """
+    '''
+    Script to run the manage the library users and their accounts.
+    '''
     # here we call the library controller class.
     libraryController = LibraryController()
     itemManager = ItemManager()
@@ -69,7 +76,7 @@ if __name__ == "__main__":
     itemManager.set_library_controller(libraryController)
     userManager.set_library_controller(libraryController)
     # initiating the item database.
-    itemManager.createDatabase('top100.txt')
+    itemManager.createDatabase('top100t.txt')
 
     # code to add user.
     # first need to ask, are you a user

@@ -10,6 +10,6 @@ class UserManager:
         # creates a user object
         return
 
-    def set_library_controller(self):
+    def set_library_controller(self,):
         # sets the library controller
         return
