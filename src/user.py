@@ -1,5 +1,5 @@
 from itemlist import ItemList
-from library_exceptions import FineHigh, TooManyItems
+from library_exceptions import FineHighError, TooManyItems
 
 
 class User:
