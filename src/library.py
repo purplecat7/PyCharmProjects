@@ -16,7 +16,7 @@ class LibraryController(object):
         if self._verbose:
             print(message)
 
-    def __init__(self, verbose=False):
+    def __init__(self, verbose=True):
         """Initialize library, optionally setting verbose mode."""
         self._verbose = verbose
         self._log('Initializing {}'.format(self))
@@ -57,6 +57,9 @@ class LibraryController(object):
             return False
         except library_exceptions.FineHighError:
             self._log('User {} not able to borrow due to fine over max fine limit'.format(user_id))
+            return False
+        except library_exceptions.ItemDoesNotExist:
+            self._log('Item {} does not exist'.format(item_title))
             return False
         except library_exceptions.TooManyItems:
             self._log('User {} not able to borrow due to many items on borrow'.format(user_id))
