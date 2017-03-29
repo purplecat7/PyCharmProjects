@@ -4,13 +4,7 @@ from datetime import datetime
 
 class ItemList(list):
 
-    def __init__(self):
-        super.__init__()
-        # initialise attributes
-        pass
-
-    def __del__(self):
-        pass
+    # ItemList is derived from list (i.e. []) so no need to override __init__ method here.
 
     def add_item(self, new_item):
         """
