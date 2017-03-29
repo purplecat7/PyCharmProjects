@@ -24,7 +24,7 @@ class UserList:
         self.users_list.append(new_user)
         return
 
-    def checkout_item(self):
+    def checkout_item(self,user_id):
         # checks out item
         user = self._find_user(self, user_id)
 
@@ -36,10 +36,14 @@ class UserList:
         user.get_fine_total(self)
         pass
 
-    def pay_fine(self):
+    def pay_fine(self, user_id, amount):
+        user = self._find_user(self, user_id)
+        user.pay_fine(self, amount)
         # updates whether or not a user has paid a fine
         return
 
-    def return_item(self):
-        # updates user's returned item list
+    def return_item(self, item_id, user_id):
+        # updates user's returned item
+        user = self._find_user(self, user_id)
+        user.return_item(self, item_id)
         return
