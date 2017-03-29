@@ -21,6 +21,8 @@ class Item:
             self._identity = ident
         else:
             raise TypeError('ident (arg2) should be of type int')
+
+
     def __del__(self):
         """Deletes the Item and its associations."""
         pass
@@ -33,6 +35,8 @@ class Item:
         if ndays_over > 0:
             fine += (ndays_over * self.finerate)
         return fine
+
+
     def get_identifier(self, identifier_type):
         """Finds the type of Item which is being dealt with."""
         if identifier_type == 'ID':

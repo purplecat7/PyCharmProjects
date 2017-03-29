@@ -11,6 +11,7 @@ class Shape(object):
         #return eval(type + "()")
         if type == "Circle": return Circle()
         if type == "Square": return Square()
+        if type == "Triangle": return Triangle()
         assert 0, "Bad shape creation: " + type
     factory = staticmethod(factory)
 
@@ -21,6 +22,10 @@ class Circle(Shape):
 class Square(Shape):
     def draw(self): print("Square.draw")
     def erase(self): print("Square.erase")
+
+class Triangle(Shape):
+    def draw(self): print ("Triangle.draw")
+    def erase(self): print ("Triangle.erase")
 
 # Generate shape name strings:
 # the 'yield' keyword determines that this function is a generator and it
@@ -44,7 +49,7 @@ def shapeNameGen(n):
         yield random.choice(types).__name__
 
 # generators are a bit odd! the shapeNameGen(7) is not an initialisation
-shapes = [ Shape.factory(i) for i in shapeNameGen(7)]
+shapes = [ Shape.factory(i) for i in shapeNameGen(9)]
 
 for shape in shapes:
     shape.draw()
