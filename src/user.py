@@ -19,10 +19,7 @@ class User:
 
     def checkout_item(self, item_requested, date):
         # checks out item
-        if self.able_to_borrow():
-            ItemList.checkout_item(item_requested, date)
-        else:
-            return None
+        self._item_list.append(item_requested)
 
     def get_fine_total(self):
         # returns the total amount of fines for the user
