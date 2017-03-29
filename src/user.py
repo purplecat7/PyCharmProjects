@@ -16,7 +16,9 @@ class User:
         # checks if user is able to borrow
         fine_total = self.get_fine_total()
         num_items = self._item_list.number_of_items()
-        if fine_total > max_total_fine:
+        if num_items <= max_number_loans and fine_total <= max_total_fine:
+            return True
+        elif fine_total > max_total_fine:
             raise FineHigh(fine_total, max_total_fine - fine_total)
         elif num_items > max_number_loans:
             raise TooManyItems(num_items, max_number_loans)
