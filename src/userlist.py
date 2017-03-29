@@ -17,7 +17,7 @@ class UserList:
     def able_to_borrow(self, user_id, max_number_loans, max_total_fine):
         # checks if user is able to borrow
         user = self._find_user(user_id)
-        user.able_to_borrow(self, max_number_loans, max_total_fine)
+        user.able_to_borrow(max_number_loans, max_total_fine)
 
     def add_user(self, new_user):
         # adds a user to the users_list
