@@ -85,7 +85,6 @@ if __name__ == "__main__":
     while raw_input('Create new user (yes/no) ? ') == 'yes':
         # will generate a new user
         new_user_query(userManager)
-    userManager.create_user('jt')
 
     # function to perform operation
     perform_library_operation(libraryController)

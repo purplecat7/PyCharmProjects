@@ -9,6 +9,11 @@ class UserManager:
 
     def create_user(self, user_id):
         # creates a user object
+        # adds a user to the users_list
+        # open txt file containing users
+        f = open('../data/users.txt', 'a')
+        #self.users_list.append(user_id)
+        f.write(user_id+'\n')
         user = User(user_id)
         self._library_controller.add_user(user)
 
@@ -18,3 +23,5 @@ class UserManager:
 
     def open_user_list(self):
         # opens user list
+        pass
+
