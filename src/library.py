@@ -26,7 +26,7 @@ class LibraryController(object):
     def add_item(self, item):
         """Add an item to the library."""
         self._log('Adding item: {}'.format(item))
-        self._item_list.addItem(item)
+        self._item_list.add_item(item)
 
     def add_user(self, user):
         """Add an user to the library."""
