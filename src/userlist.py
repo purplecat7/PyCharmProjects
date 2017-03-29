@@ -1,5 +1,5 @@
 import datetime as dt
-from user import User
+from exceptions import UserNotExist
 
 class UserList:
     def __init__(self):
@@ -14,6 +14,7 @@ class UserList:
         for user in self.users_list:
             if user.user_id == user_id:
                 return user
+        raise UserNotExist(user_id)
 
     def able_to_borrow(self, user_id, max_number_loans, max_total_fine):
         # checks if user is able to borrow

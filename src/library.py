@@ -52,6 +52,9 @@ class LibraryController(object):
             item = self._item_list.checkout_item(item_title)
             self._user_list.checkout_item(user_id, item)
             return True
+        except exceptions.UserNotExist:
+            self._log('User {} does not exist'.format(user_id))
+            return False
         except exceptions.FineHighError:
             self._log('User {} not able to borrow due to fine over max fine limit'.format(user_id))
             return False

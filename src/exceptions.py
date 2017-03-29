@@ -1,11 +1,7 @@
-"""
-Class exceptions for the library system
-
-"""
+""" Class exceptions for the library system """
 
 
 class LibraryException(Exception):
-
     def __init__(self):
         self.err = 'LibraryException'
 
@@ -14,11 +10,7 @@ class LibraryException(Exception):
 
 
 class FineHighError(LibraryException):
-
-    """
-    You have surpassed the maximum fine limit.
-    """
-
+    """ You have surpassed the maximum fine limit. """
     def __init__(self, fine, fine_remaining):
         self.fine = fine
         self.fine_remaining = fine_remaining
@@ -28,11 +20,7 @@ class FineHighError(LibraryException):
 
 
 class TooManyItems(LibraryException):
-
-    """
-    Exception for having borrowed too many items
-    """
-
+    """ Exception for having borrowed too many items """
     def __init__(self, user_items, max_items):
         self.user_items = user_items
         self.max_items = max_items
@@ -43,11 +31,7 @@ class TooManyItems(LibraryException):
 
 
 class ItemDoesNotExist(LibraryException):
-
-    """
-    Item id does not exist
-    """
-
+    """ Item id does not exist """
     def __init__(self, item_id):
         self.item_id = item_id
 
@@ -56,11 +40,7 @@ class ItemDoesNotExist(LibraryException):
 
 
 class ItemAlreadyOnLoan(LibraryException):
-
-    """
-    Item is already on load
-    """
-
+    """ Item is already on load """
     def __init__(self, item_id):
         self.item_id = item_id
 
@@ -69,11 +49,7 @@ class ItemAlreadyOnLoan(LibraryException):
 
 
 class PayTooMuchForFine(LibraryException):
-
-    """
-    Paying too much for their fine.
-    """
-
+    """ Paying too much for their fine. """
     def __init__(self, fine):
         self.fine = fine
 
@@ -83,11 +59,7 @@ class PayTooMuchForFine(LibraryException):
 
 
 class AlreadyOverdueItems(LibraryException):
-
-    """
-    You already have overdue items and cannot take out more
-    """
-
+    """ You already have overdue items and cannot take out more """
     def __init__(self, user_items):
         self.user_items = user_items
 
@@ -96,11 +68,16 @@ class AlreadyOverdueItems(LibraryException):
 
 
 class UserNotExist(LibraryException):
+    """ User does not exist """
+    def __init__(self, user_id):
+        self.user_id = user_id
 
-    """
-    User does not exist
-    """
+    def __str__(self):
+        return 'I see dead people... user does not exist! Please try again.'
 
+
+class UserIdNotUnique(LibraryException):
+    """ User id not unique """
     def __init__(self, user_id):
         self.user_id = user_id
 
@@ -109,30 +86,10 @@ class UserNotExist(LibraryException):
 
 
 class DontLikePerson(LibraryException):
-
-    """
-    Just don't like the person
-    """
-
+    """ Just don't like the person """
     def __init__(self, user_id):
         self.user_id = user_id
 
     def __str__(self):
         return 'We just don''t like you ' + str(self.user_id) + '...'
         print super(DontLikePerson, self).__str__()
-
-
-# try:
-#     print 'testing...'
-#     raise DontLikePerson(124523)
-#     print 'after first except'
-# except:
-#     print 'testing2'
-#     raise UserNotExist(234234)
-
-try:
-    print '234234'
-    raise ValueError
-except:
-    print '234234234'
-    raise DontLikePerson(34534534)
