@@ -28,9 +28,14 @@ print(x)
 y = OnlyOne('eggs')
 print(y)
 z = OnlyOne('spam')
+# these prints show that each of
+# x, y and z point to the same object
+# i.e. each continas the same address
 print(z)
 print(x)
 print(y)
+# however the addresses of x, y & z
+# are themselves different
 print(`x`)
 print(`y`)
 print(`z`)
