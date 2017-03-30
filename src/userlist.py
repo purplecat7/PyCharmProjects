@@ -1,5 +1,6 @@
-import datetime as dt
-from library_exceptions import UserNotExist
+from user import User
+from datetime import datetime as dt
+
 
 class UserList:
     def __init__(self):
@@ -14,7 +15,6 @@ class UserList:
         for user in self.users_list:
             if user.user_id == user_id:
                 return user
-        raise UserNotExist(user_id)
 
     def able_to_borrow(self, user_id, max_number_loans, max_total_fine):
         # checks if user is able to borrow
@@ -27,10 +27,10 @@ class UserList:
         self.users_list.append(new_user)
         return
 
-    def checkout_item(self,user_id, item):
+    def checkout_item(self,user_id, item, date=dt.now()):
         # checks out item
         user = self._find_user(user_id)
-        user.checkout_item(item, dt.datetime.now())
+        user.checkout_item(item, date)
 
     def get_fine_total(self, user_id):
         # returns the total amount of fines for the user

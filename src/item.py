@@ -11,8 +11,7 @@ class Item:
         _title is set as the title argument passed in the constructor,
         _identity is set as the indent argument passed in the constructor."""
         self._checkout_date = None
-        self.loantime = None
-        self.finerate = None
+
         if type(title) == str:
             self._title = title
         else:

@@ -1,7 +1,7 @@
 """LibraryController: provide a public facing interface to the library."""
 from itemlist import ItemList
 from userlist import UserList
-import library_exceptions
+from datetime import datetime as dt
 
 
 class LibraryController(object):
@@ -16,7 +16,7 @@ class LibraryController(object):
         if self._verbose:
             print(message)
 
-    def __init__(self, verbose=True):
+    def __init__(self, verbose=False):
         """Initialize library, optionally setting verbose mode."""
         self._verbose = verbose
         self._log('Initializing {}'.format(self))
@@ -31,7 +31,7 @@ class LibraryController(object):
 
     def add_user(self, user):
         """Add an user to the library."""
-        self._log('Adding user: {}'.format(user))
+        #self._log('Adding user: {}'.format(user))
         self._user_list.add_user(user)
 
     def is_on_loan(self, item_title):
@@ -43,26 +43,16 @@ class LibraryController(object):
         self._log('Paying fine: {} - {}'.format(user_id, amount))
         self._user_list.pay_fine(user_id, amount)
 
-    def user_checkout(self, user_id, item_title):
+    def user_checkout(self, user_id, item_title, date=dt.now()):
         """Checkout an item for a user."""
         self._log('User checkout: {} - {}'.format(user_id, item_title))
-        try:
-            self._user_list.able_to_borrow(user_id, self.MAX_LOANS, self.MAX_FINE)
+        if self._user_list.able_to_borrow(user_id, self.MAX_LOANS, self.MAX_FINE):
             self._log('User {} able to borrow.'.format(user_id))
-            item = self._item_list.checkout_item(item_title)
-            self._user_list.checkout_item(user_id, item)
+            item = self._item_list.checkout_item(item_title, date)
+            self._user_list.checkout_item(user_id, item, date)
             return True
-        except library_exceptions.UserNotExist:
-            self._log('User {} does not exist'.format(user_id))
-            return False
-        except library_exceptions.FineHighError:
-            self._log('User {} not able to borrow due to fine over max fine limit'.format(user_id))
-            return False
-        except library_exceptions.ItemDoesNotExist:
-            self._log('Item {} does not exist'.format(item_title))
-            return False
-        except library_exceptions.TooManyItems:
-            self._log('User {} not able to borrow due to many items on borrow'.format(user_id))
+        else:
+            self._log('User {} not able to borrow'.format(user_id))
             return False
 
     def get_user_fine(self, user_id):
