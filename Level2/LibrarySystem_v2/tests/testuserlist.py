@@ -29,4 +29,4 @@ def test_able_to_borrow_fine_fail():
     new_user._fines = 60.0
     user_list = UserList()
     user_list.add_user(new_user)
-    ns.assert_true(user_list.able_to_borrow(35, 4, 50))
+    ns.assert_false(user_list.able_to_borrow(35, 4, 50))
