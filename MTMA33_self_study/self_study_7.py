@@ -6,13 +6,21 @@ import numpy as np
 from netCDF4 import Dataset
 
 if __name__ == '__main__':
-    # Opening the netcdf file and extracting the data
+    # Open the netcdf file and extract the data
+    # note that this is a 'hard-coded' path which will need to be changed. It would be better to make
+    # this dependency an argument into the program itself. You may like to investigate how to do this.
     filename = '/home/rg906695/extract.nc'
     fileformat = 'NETCDF3_CLASSIC'
     data = Dataset(filename, 'r', format=fileformat)
+
+    # extract the data from the file
     bt11 = data.variables['btemp_nadir_1100'][:, :]
     ref05 = data.variables['reflec_nadir_0550'][:, :]
-    # Making a set of figures of temperature and reflectance on the same plot
+
+    # close the netcdf file
+    data.close()
+
+    # Make a set of figures of temperature and reflectance on the same plot
     fig = plt.figure()
     cmap = plt.get_cmap('Greys')
     plt.subplot(1, 2, 1)
@@ -24,10 +32,13 @@ if __name__ == '__main__':
     plt.imshow(ref05, interpolation='nearest', cmap=cmap)
     plt.colorbar()
     plt.title('0.55 micron reflectance')
+
+    # Create and initialise the arrays which will hold the mask values
     mask1 = np.zeros((10, 10))
     mask2 = np.zeros((10, 10))
     mask3 = np.zeros((10, 10))
-    # Using an if conditional to create a mask of ones and zeros
+
+    # Use an 'if' conditional to create a mask of ones and zeros
     for elem in range(10):
         for line in range(10):
             if (bt11[elem, line] < 280):
@@ -48,7 +59,8 @@ if __name__ == '__main__':
                 mask3[elem, line] = 1
             else:
                 mask3[elem, line] = 0
-    # Plotting the mask
+
+    # Plot the masks
     fig = plt.figure()
     cmap = plt.get_cmap('Greys_r')
     plt.subplot(1, 3, 1)

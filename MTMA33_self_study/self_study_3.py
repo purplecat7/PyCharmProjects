@@ -7,6 +7,10 @@ from netCDF4 import Dataset
 import numpy as np
 from mpl_toolkits.basemap import Basemap
 
+# Note that we are no longer just writing the Python commands as a script: we have enclosed them in the special line
+# if __name__ in '__main__':
+# This 'script' is now a program.
+
 if __name__ in '__main__':
 
     filename = './l4_sst.nc'
@@ -20,10 +24,12 @@ if __name__ in '__main__':
     sst = data.variables['sea_water_temperature'][:, :]
     uncert = data.variables['sea_water_temperature_uncertainty'][:, :]
     data.close()
-# Extract SST along the equator and along the Tropics
+
+    # Extract SST along the equator and along the Tropics
     sst_eq = sst[800, :]
     sst_tropic = sst[1200, :]
-# Make line plots and maps of SST
+
+    # Make line plots and maps of SST
     fig = plt.figure()
     plt.plot(lon, sst_eq, label='Equator')
     plt.plot(lon, sst_tropic, '--', label='Tropics')
@@ -48,11 +54,13 @@ if __name__ in '__main__':
     plt.imshow(np.flipud(sst), cmap='bwr')
     plt.colorbar()
     fig_four.savefig("myplot4.png")
-# Write a netcdf file with a modified SST
+
+    # Write a netcdf file with a modified SST
     outfile = 'modified_l4_sst.nc'
     rootgrp = Dataset(outfile, mode='w')
-#  You can encourage students to add more global metadata
-    rootgrp.description = 'Modified asea water temperature file from session 4 practical'
+
+    #  You can encourage students to add more global metadata
+    rootgrp.description = 'Modified sea water temperature file from session 4 practical'
     dim_a = sst.shape[0]
     dim_b = sst.shape[1]
     rootgrp.createDimension('lat', dim_a)
@@ -63,7 +71,8 @@ if __name__ in '__main__':
     var1.long_name = 'Sea Water Temperature'
     var1[:, :] = sst
     rootgrp.close()
-#  Extension exercise
+
+    #  Extension exercise
     fig_five = plt.figure()
     m = Basemap(projection='cea')
     x, y = m(*np.meshgrid(lon, lat))

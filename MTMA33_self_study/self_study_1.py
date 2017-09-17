@@ -22,9 +22,10 @@ neg_ts = np.zeros(shape=(1, 2))
 
 '''Using a for loop,  print out all 166 rows of your time series array to the screen in turn.  '''
 for i in np.arange(0, 166):   # Looping over every row
-    print(ts[:, i])   # Both columnes are plotted
+    print(ts[:, i])   # Both columns are plotted
 
 '''Now using an if conditional,  rather than printing out the actual row,  print out whether the data value is positive or negative.'''
+''' Note that it is bad practice to leave 'print' commands in code once they have served their purpose for debugging.'''
 
 for i in np.arange(0, 166):   # Looping over every row
     if ts[1, i] >= 0:    # Testing to see if the temperature is positive

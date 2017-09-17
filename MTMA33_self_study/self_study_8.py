@@ -3,16 +3,25 @@ SELF STUDY 8:  MODEL CODE
 """
 import matplotlib.pyplot as plt
 from netCDF4 import Dataset
+
 if __name__ in '__main__':
+    # Open the netcdf file and extract the data
+    # note that this is a 'hard-coded' path which will need to be changed.
     filename = 'sst_comparisons.nc'
     in_data = Dataset(filename, 'r')
+
+    # extract required data from named variables
     sst_sat_1 = in_data.variables['SST_sat_1'][:]
     sst_sat_2 = in_data.variables['SST_sat_2'][:]
     moored_buoy = in_data.variables['Moored_Buoy_1'][:]
     drifter = in_data.variables['Drifting_Buoy_2'][:]
     time_1 = in_data.variables['Time_1'][:]
     time_2 = in_data.variables['Time_2'][:]
+
+    # close the netcdf file
     in_data.close()
+
+    # create a plot
     plt.figure()
     plt.plot(time_2, drifter,  label='Drifting Buoy (1)')
     plt.plot(time_2, sst_sat_2, color='r', label='Sat SST (1)')
