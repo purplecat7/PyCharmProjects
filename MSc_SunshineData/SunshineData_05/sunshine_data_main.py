@@ -79,8 +79,8 @@ def add_sunshine_per_day(file_contents):
             # ERROR 3: don't forget to reset the date comparison variable
             current_date = next_date
 
-    print(sunshine_hours)
-    print(type(sunshine_hours[0][0]))
+    # print(sunshine_hours)
+    # print(type(sunshine_hours[0][0]))
     # funny values? see https://docs.python.org/3/tutorial/floatingpoint.html
 
     # And send back a numpy array of the results

@@ -29,7 +29,7 @@ def loadfile(filename):
     Reads a csv format file.
 
     Uses the second line of the file to name the columns. Converts fields to datetimes
-    as appropriate. Expects a file containing date, time, value, value, value from line 3
+    as appropriate. Expects a file containing date, time, value, value, value, from line 3
     onwards.
 
     Args:
