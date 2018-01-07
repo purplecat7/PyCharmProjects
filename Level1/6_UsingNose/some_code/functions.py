@@ -5,8 +5,8 @@ def my_func(the_value):
     Summary of func
 
     Details of func inc assumptions
-    :param the_value: array type of windspeeds
-    :return: boolean if
+    :param the_value: an integer to test
+    :return: boolean: True if the_value is equal to 2, else False
     """
     if the_value == 2:
         return True
@@ -14,7 +14,7 @@ def my_func(the_value):
         return False
 
 def my_other_func(val1, val2):
-    return val1 + val2
+    return val1 * val2
 
 def main():
     if (my_func(1) == True) :

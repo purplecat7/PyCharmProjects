@@ -23,4 +23,4 @@ def test_my_func_false():
 
 def test_my_other_func():
     result = f.my_other_func(2, 3)
-    ns.assert_equals(result, 6)
+    ns.assert_equals(result, 5)
