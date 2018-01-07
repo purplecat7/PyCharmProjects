@@ -9,7 +9,9 @@ run from the command line using 'nosetests tests.py'
 from some_code import functions as f
 import nose.tools as ns
 
-
+# It's not possible (not nicely anyway) to assign variables during setup. Setup and teardown
+# are really only useful for file creation/deletion etc.
+# https://stackoverflow.com/questions/10565523/how-can-i-access-variables-set-in-the-python-nosetests-setup-function
 def test_my_func_true():
     result = f.my_func(2)
     ns.assert_true(result)

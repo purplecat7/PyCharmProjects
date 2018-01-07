@@ -17,7 +17,7 @@ class TestA(object):
 
     def setUp(self):
         """This method is run once before _each_ test method is executed"""
-
+        # use self.attribute to keep anything which needs to be accessed later
         pass
 
     def teardown(self):
