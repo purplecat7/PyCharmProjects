@@ -5,6 +5,8 @@ OR
 run from the command line using 'nosetests tests.py'
 (http://nose.readthedocs.io/en/latest/usage.html)
 """
+# Writing to stdout to record behaviour - one would never usually print from tests.
+# In run configuration, need to add '--nocapture' as nosetest parameter.
 
 from some_code import functions as f
 import nose.tools as ns
