@@ -10,27 +10,19 @@ from some_code import functions as f
 import nose.tools as ns
 
 def setup_module():
-    f = open('test_log.txt', 'w')
-    f.write('setup_module\n')
-    f.close()
+    print('setup_module\n')
 
 
 def teardown_module():
-    f = open('test_log.txt', 'a')
-    f.write('teardown_module\n')
-    f.close()
+    print('teardown_module\n')
 
 
 def my_setup():
-    f = open('test_log.txt', 'a')
-    f.write('my_setup called\n')
-    f.close()
+    print('my_setup called\n')
 
 
 def my_teardown():
-    f = open('test_log.txt', 'a')
-    f.write('my_teardown called\n')
-    f.close()
+    print('my_teardown called\n')
 
 
 # It's not possible (not nicely anyway) to assign variables during setup. Setup and teardown
@@ -41,6 +33,7 @@ def my_teardown():
 # results then compare with ideal results. If large amount of data, consider having small sub-sample.
 # OK to use multiple asserts wisely as the test will tell you which one fails.
 def test_my_func_true():
+    print('running test_my_func_true\n')
     result = f.my_func(2)
     ns.assert_true(result)
 
@@ -62,6 +55,4 @@ def test_sys_exit():
 
 @ns.with_setup(setup=my_setup, teardown=my_teardown)
 def test_setup_teardown():
-    f = open('test_log.txt', 'a')
-    f.write('test_setup_teardown called\n')
-    f.close()
+    print('test_setup_teardown called\n')
