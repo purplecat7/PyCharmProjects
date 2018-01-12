@@ -45,6 +45,9 @@ def my_func(the_value):
 def my_other_func(val1, val2):
     return val1 * val2
 
+def sys_exit():
+    raise SystemExit
+
 def main():
     if (my_func(1) == True) :
         print ('Yay, it works!')
