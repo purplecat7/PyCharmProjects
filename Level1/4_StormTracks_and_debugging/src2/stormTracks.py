@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Feb 19 08:54:27 2015
-
+This version extracts only windspeed per storm
 @author: Jane
 """
 import numpy as np
@@ -26,7 +26,8 @@ def extract_windspeed(the_data):
     """
     Function to parse the loaded data and construct a local datatype from it.
     This will be a dictionary with the storm serial number as the key, and its
-    windspeeds in a list as the value.
+    windspeeds in a list as the value. Note that the function expects data relating to
+    a single storm to be contiguous.
     :param the_data: loaded data extracted from file
     """
     # create empty list and empty dictionary
