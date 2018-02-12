@@ -61,7 +61,8 @@ def extract_fields(the_data):
 
             if item['press'] != -999:
                 storm.pressure.append(item['press'])
-
+    # add the final storm when the_data runs out
+    storm_list.append(storm)
     return storm_list
 
 
@@ -75,11 +76,14 @@ def get_averages_for_storm(storms):
     avg_wind_data = dict()
     avg_press_data = dict()
     # note that 'item' will be each Storm structure in the list
-    for item in storms:
-        avg_wind_data[item.stormid] = np.average(item.windspeed)
-        avg_press_data[item.stormid] = np.average(item.pressure)
-    return avg_wind_data, avg_press_data
-
+    try:
+        for item in storms:
+            avg_wind_data[item.stormid] = np.average(item.windspeed)
+            avg_press_data[item.stormid] = np.average(item.pressure)
+        return avg_wind_data, avg_press_data
+    except TypeError as te:
+        #print te.message
+        raise TypeError('silly user, do not use strings')
 
 def write_result(avg_dict, variable_name):
     """
@@ -88,11 +92,15 @@ def write_result(avg_dict, variable_name):
     :param variable_name: text to describe mean data
     :return: no return
     """
-    # output result to screen
-    # note - could be to file, also could be given a set of storm ids and do a plot
-    for item in avg_dict:
-        print ("Storm id " + item)
-        print ("Mean " + variable_name + ": " + str(avg_dict[item]))
+    # output result to screen & file
+    # note - could be given a set of storm ids and do a plot
+    filename = "results_" + variable_name + ".txt"
+    with open(filename, 'w') as text_file:
+        for item in avg_dict:
+            print ("Storm id: " + item)
+            print ("Mean " + variable_name + ": " + str(avg_dict[item]))
+            text_file.write("Storm id: {}\n".format(item))
+            text_file.write("Mean {}: {}\n".format(variable_name,avg_dict[item]))
 
 
 def main():
@@ -101,9 +109,17 @@ def main():
     if len(sys.argv) >= 2:
         the_file = sys.argv[1]
     else:
-        #file path OS independent
-        filepath = os.path.normpath("../data/ibtracs_storms.dat")
+        # file path OS independent
+        filepath = os.path.normpath("../data/ibtracs_storms.day")
         the_file = str(filepath)
+    while True:
+        try:
+            if os.path.isfile(the_file):
+                break
+            else:
+                the_file = raw_input("Please give valid file for analysis: ")
+        except Exception:
+            pass
 
     # open data file, get data in memory
     loaded_data = load_data(the_file)

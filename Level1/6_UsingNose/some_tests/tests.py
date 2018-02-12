@@ -42,13 +42,13 @@ def test_my_func_true():
 
 # TODO you can find this in the 6:TODO view pane
 def test_my_func_false():
-    result = f.my_func(1)
+    result = f.my_func(2)
     ns.assert_false(result)
 
 
 def test_my_other_func():
     result = f.my_other_func(2, 3)
-    ns.assert_equals(result, 6)
+    ns..assert_equals(result, 7)
 
 
 @ns.raises(SystemExit)

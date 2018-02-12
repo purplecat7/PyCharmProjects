@@ -1,0 +1,4 @@
+Storm id: 1
+Mean a_variable: 40
+Storm id: 2
+Mean a_variable: 35

@@ -74,9 +74,13 @@ def get_average_for_storm(storm_details, index):
     # use local data to do the calculations
     avg_data = dict()
     # note that 'item' will be the key for each dictionary entry
-    for item in storm_details:
-        avg_data[item] = np.average(storm_details[item][index])
-    return avg_data
+    try:
+        for item in storm_details:
+            avg_data[item] = np.average(storm_details[item])
+        return avg_data
+    except TypeError as te:
+        #print te.message
+        raise TypeError('silly user, do not use strings')
 
 
 def write_result(avg_dict, variable_name):
@@ -86,41 +90,47 @@ def write_result(avg_dict, variable_name):
     :param variable_name: text to describe mean data
     :return: no return
     """
-    # output result to screen
-    # note - could be to file, also could be given a set of storm ids and do a plot
-    for item in avg_dict:
-        print ("Storm id " + item)
-        print ("Mean " + variable_name + ": " + str(avg_dict[item]))
+    # ooutput result to screen & file
+    # note - could be given a set of storm ids and do a plot
+    filename = "results_" + variable_name + ".txt"
+    with open(filename, 'w') as text_file:
+        for item in avg_dict:
+            print ("Storm id: " + item)
+            print ("Mean " + variable_name + ": " + str(avg_dict[item]))
+            text_file.write("Storm id: {}\n".format(item))
+            text_file.write("Mean {}: {}\n".format(variable_name,avg_dict[item]))
 
 
 def main():
-    # read command line arguments
-    # if the file name/location is provided, get it from the command line
-    if len(sys.argv) >= 2:
-        the_file = sys.argv[1]
-    else:
-        #file path OS independent
-        filepath = os.path.normpath("../data/ibtracs_storms.dat")
-        the_file = str(filepath)
+    try:
+        # read command line arguments
+        # if the file name/location is provided, get it from the command line
+        if len(sys.argv) >= 2:
+            the_file = sys.argv[1]
+        else:
+            #file path OS independent
+            filepath = os.path.normpath("../data/ibtracs_storms.dat")
+            the_file = str(filepath)
 
-    # open data file, get data in memory
-    loaded_data = load_data(the_file)
+        # open data file, get data in memory
+        loaded_data = load_data(the_file)
 
-    # read data in memory and construct local datatype
-    storm_details = extract_fields(loaded_data)
+        # read data in memory and construct local datatype
+        storm_details = extract_fields(loaded_data)
 
-    # process local datatype
-    # note - could have user input for which storm they're interested in
-    #TODO Note that we have to hard-code the index into the dictionary to get pressure or windspeed information... this seems wrong!
-    avg_wind = get_average_for_storm(storm_details, 0)
+        # process local datatype
+        # note - could have user input for which storm they're interested in
+        #TODO Note that we have to hard-code the index into the dictionary to get pressure or windspeed information... this seems wrong!
+        avg_wind = get_average_for_storm(storm_details, 0)
 
-    # produce results
-    write_result(avg_wind, 'windspeed')
+        # produce results
+        write_result(avg_wind, 'windspeed')
 
-    avg_press = get_average_for_storm(storm_details, 1)
+        avg_press = get_average_for_storm(storm_details, 1)
 
-    write_result(avg_press, 'pressure')
-
+        write_result(avg_press, 'pressure')
+    except TypeError as te:
+        print te.message
 
 if __name__ == '__main__':
     main()
