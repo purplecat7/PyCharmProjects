@@ -9,7 +9,7 @@ except ImportError:
             self._title = title
             self._checkout_date = checkout_date
 
-        def get_id(self):
+        def get_identifier(self):
             return self._identity
 
 
@@ -47,7 +47,7 @@ class ItemCollection:
         """
         Get the key (id) of the item. If we are given a int assume that is
         the id if not assume we have been given an item and use the
-        item.get_id method
+        item.get_identifier method
 
         :param item: The item id (int) or an item object
         :return: The item id
@@ -55,7 +55,7 @@ class ItemCollection:
         if type(item) is int:
             return item
         else:
-            return item.get_id
+            return item.get_identifier
 
     def add_item(self, item):
         """
@@ -63,7 +63,7 @@ class ItemCollection:
 
         :param item: The item to add
         """
-        self._items[item.get_id] = item
+        self._items[item.get_identifier] = item
 
     def remove_item(self, item):
         """
