@@ -13,7 +13,7 @@ class Item:
     def loantime(self):
         """
         This gets overridden by child classes (e.g. Book)
-        It's the number of days an item can be loaned before being overdue.
+        :return: The number of days an item can be loaned before being overdue.
         """
         pass
 
@@ -22,7 +22,7 @@ class Item:
     def finerate(self):
         """
         This gets overridden by child classes (e.g. Book)
-        It's the charge per-overdue-day.
+        :return: The charge per-overdue-day.
         """
         pass
 
@@ -32,8 +32,11 @@ class Item:
     def set_checkout(self, date: datetime):
         """
         Set the checkout_date to whatever's passed in.
-        If it's not a datetime then get_fine_due will break.
+        :param date: Date of checkout (probably today)
+        :raises: ValueError if the date isn't a datetime.datetime object
         """
+        if type(date) is not datetime.datetime:
+            raise ValueError
         self._checkout_date = date
 
     def reset_checkout(self):
