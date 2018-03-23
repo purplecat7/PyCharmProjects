@@ -1,4 +1,4 @@
-from src import ItemCollection
+from src import ItemCollection as im
 
 
 class User(object):
@@ -6,7 +6,7 @@ class User(object):
 
     def __init__(self):
         self._identification = self.set_id()
-        self._ItemList = ItemCollection()
+        self._ItemList = im.ItemCollection()
         self._fines = 0
 
     def set_id(self):
