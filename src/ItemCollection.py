@@ -148,6 +148,7 @@ class ItemCollection:
         except KeyError:
             self._item_not_found()
 
+    @property
     def number_of_items(self):
         """
         Return the number of items
