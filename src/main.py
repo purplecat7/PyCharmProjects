@@ -10,11 +10,12 @@ CLASSES
 # note that print statements should not normally be in functions - they are
 # in some here for clarity in interpreting the behaviour.
 
-import item_manager as im
-import user_manager as um
-import library
+from src import ItemManager as im
+from src import UserManager as um
+from src import Library
 import datetime as dt
-import lib_exceptions
+# import lib_exceptions
+
 
 class NumbID:
     """
@@ -60,12 +61,12 @@ def create_library_catalogue(lib_controller, infile):
     file_ = open(infile, 'r')
     for line in file_:
         item_manager.create_book(line.strip(), NumbID.new_id())
-    print 'Number of books added: ', NumbID.id_number
+    print('Number of books added: ', NumbID.id_number)
     item_manager.create_journal("Amazing Clouds", NumbID.new_id())
     item_manager.create_journal("Sleuthing in C#", NumbID.new_id())
     item_manager.create_dvd("Dad's Army", NumbID.new_id())
     item_manager.create_dvd("Debugging to music", NumbID.new_id())
-    print 'Total number of items: ', NumbID.id_number
+    print('Total number of items: ', NumbID.id_number)
 
 
 def create_library_members(lib_controller):
@@ -81,7 +82,7 @@ def create_library_members(lib_controller):
     # create 4 users
     for count in range(0, 4):
         user_manager.create_user(NumbID.new_id())
-        print 'User ID created: ', NumbID.id_number
+        print('User ID created: ', NumbID.id_number)
 
 
 def exercise1(user_id, title, lib_controller):
@@ -107,8 +108,8 @@ def exercise2(user_id, return_id, title, lib_controller):
     :return: no return
     """
     fine = lib_controller.user_fine(user_id)
-    print "User: ", user_id
-    print "Total Fine: ", fine
+    print("User: ", user_id)
+    print("Total Fine: ", fine)
     
     lib_controller.user_return(user_id, return_id)
     lib_controller.user_checkout(user_id, title)
@@ -128,10 +129,11 @@ def johnny_codewarrior(lib_controller):
         # now get the new book
         lib_controller.user_checkout(1, "Document, Your job depends on it")
         fine = lib_controller.user_fine(1)
-        print "User: Johnny, ID ", str(1)
-        print "Total Fine: ", fine
-    except lib_exceptions.CannotBorrowException:
-        print ("User 1 may not borrow book")
+        print("User: Johnny, ID ", str(1))
+        print("Total Fine: ", fine)
+    except Exception:
+            # lib_exceptions.CannotBorrowException:
+        print("User 1 may not borrow book")
 
 
 def judy_hacker(lib_controller):
@@ -156,11 +158,12 @@ def judy_hacker(lib_controller):
         lib_controller.user_checkout(2, "Debugging to music")
 
         fine = lib_controller.user_fine(2)
-        print "User: Judy, ID ", str(2)
-        print "Total Fine: ", fine
+        print("User: Judy, ID ", str(2))
+        print("Total Fine: ", fine)
 
-    except lib_exceptions.CannotBorrowException:
-        print ("User 2 may not borrow DVD")
+    except Exception:
+            # lib_exceptions.CannotBorrowException:
+        print("User 2 may not borrow DVD")
 
 
 def miss_marple(lib_controller):
@@ -185,6 +188,7 @@ def miss_marple(lib_controller):
     else:
         print("Sleuthing in C# available.")
 
+
 def eric_halfbee(lib_controller):
     """
     Use case 4: user returns overdue items but needs to be able to pay off before borrowing DVD.
@@ -197,88 +201,91 @@ def eric_halfbee(lib_controller):
         lib_controller.user_checkout(4, "Harry Potter and the Philosopher's Stone", date=(dt.datetime.now() - dt.timedelta(days=55)))
         lib_controller.user_checkout(4, "Harry Potter and the Chamber of Secrets", date=(dt.datetime.now() - dt.timedelta(days=65)))
         fine = lib_controller.user_fine(4)
-        print "User: Eric, ID ", str(4)
-        print "Total Fine: ", fine
+        print("User: Eric, ID ", str(4))
+        print("Total Fine: ", fine)
         # try to borrow something - this should throw an exception since Eric owes a pile of dosh...
         lib_controller.user_checkout(4, "Angels and Demons")
 
-    except lib_exceptions.CannotBorrowException as e:
+    except Exception as e:
+        # lib_exceptions.CannotBorrowException as e:
         print(e.message)
 
     try:
         # so now pay off some of the money
         lib_controller.pay_fine(4, 35.50)
         fine = lib_controller.user_fine(4)
-        print "User: Eric, ID ", str(4)
-        print "Total Fine: ", fine
+        print("User: Eric, ID ", str(4))
+        print("Total Fine: ", fine)
         # and try again
         lib_controller.user_checkout(4, "Angels and Demons")
         lib_controller.user_checkout(4, "Dad's Army")
-        print "Borrowed trashy novel & DVD successfully"
+        print("Borrowed trashy novel & DVD successfully")
 
-    except lib_exceptions.CannotBorrowException as e:
+    except Exception as e:
+        # lib_exceptions.CannotBorrowException as e:
         print(e.message)
+
 
 def main():
     """
     Program initialisation and execution.
     :return: no return
     """
-    print "Initialising library controller..."
-    lib_controller = library.LibraryController()
+    print("Initialising library controller...")
+    lib_controller = Library.Library()
 
-    print "Populating library catalogue..."
+    print("Populating library catalogue...")
     infile = 'top100t.txt'
     try:
         create_library_catalogue(lib_controller, infile)
     except:
-        print "Catalogue populating failed"
+        print("Catalogue populating failed")
         raise
 
-    print "Populating library members..."
+    print("Populating library members...")
     try:
         create_library_members(lib_controller)
     except:
-        print "User populating failed"
+        print("User populating failed")
         raise
 
-    print "Exercise 1..."
+    print("Exercise 1...")
     try:
         exercise1(1, 'The Kite Runner', lib_controller)
     except:
-        print "Exercise 1 failed"
+        print("Exercise 1 failed")
         raise
 
-    print "Exercise 2..."
+    print("Exercise 2...")
     try:
         exercise2(1, 19, 'Sleuthing in C#', lib_controller)
     except:
-        print "Exercise 2 failed"
+        print("Exercise 2 failed")
         raise
 
     try:
         johnny_codewarrior(lib_controller)
     except:
-        print "Johnny Codewarrior failed"
+        print("Johnny Codewarrior failed")
         raise
 
     try:
         judy_hacker(lib_controller)
     except:
-        print "Judy Hacker failed"
+        print("Judy Hacker failed")
         raise
 
 
     try:
         miss_marple(lib_controller)
     except:
-        print "Miss Marple failed"
+        print("Miss Marple failed")
         raise
 
     try:
         eric_halfbee(lib_controller)
     except:
-        print "Eric Halfbee failed"
+        print("Eric Halfbee failed")
         raise
 
 
