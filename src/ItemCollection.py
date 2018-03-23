@@ -181,18 +181,21 @@ class ItemCollection:
         except KeyError:
             self._item_not_found()
 
-    def checkout_item(self, item):
+    def checkout_item(self, item, date=None):
         """
         Checkout an item
 
+        :param date: The date the item was checkout
         :param item: The id or the item
         :return: Output of item.set_checkout
         :raises: ItemNotFound if the item is not found
         """
         key = self._get_key(item)
 
+        if date is None:
+            date = datetime.datetime.now()
+
         try:
-            current_data = datetime.datetime.now()
-            return self._items[key].set_checkout(current_data)
+            return self._items[key].set_checkout(date)
         except KeyError:
             self._item_not_found()
