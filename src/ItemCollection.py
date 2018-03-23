@@ -61,7 +61,7 @@ class ItemCollection:
         if type(item) is int:
             return item
         else:
-            return item.get_identifier()
+            return item.get_identifier(None)
 
     def add_item(self, item):
         """
@@ -69,7 +69,7 @@ class ItemCollection:
 
         :param item: The item to add
         """
-        self._items[item.get_identifier()] = item
+        self._items[item.get_identifier(None)] = item
 
     def remove_item(self, item):
         """
