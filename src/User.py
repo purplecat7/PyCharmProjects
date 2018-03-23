@@ -31,8 +31,8 @@ class User:
         :param date: the date of checkout
         :return: N/A
         """
-        item = self._ItemList.get_item(item_requested)
-        item.set_checkout(date)
+        item_requested.set_checkout(date)
+        self._ItemList.add_item(item_requested)
 
     def return_item(self, item_id, date):
         """Remove item from user's item list
