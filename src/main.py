@@ -56,8 +56,7 @@ def create_library_catalogue(lib_controller, infile):
     :param infile: text file containing book titles
     :return: no return
     """
-    item_manager = im.ItemManager()
-    item_manager.set_library_controller(lib_controller)
+    item_manager = im.ItemManager(library_controller=lib_controller)
     file_ = open(infile, 'r')
     for line in file_:
         item_manager.create_book(line.strip(), NumbID.new_id())
