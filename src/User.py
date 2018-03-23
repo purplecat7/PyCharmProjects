@@ -34,13 +34,14 @@ class User:
         item = self._ItemList.get_item(item_requested)
         item.set_checkout(date)
 
-    def return_item(self, item_id):
+    def return_item(self, item_id, date):
         """Remove item from user's item list
         :param item_id: ID of item to be returned
+        :param date: date of return
         :return: N/A
         """
         item = self._ItemList.get_item(item_id)
-        self._ItemList.return_item(item)
+        self._ItemList.return_item(item, date)
 
     def get_fines(self):
         """Check total fines for user
