@@ -1,9 +1,10 @@
 # Library class, handles interactions with the great unwashed and our resplendent literature
 # amg 22/03/2018
-# Not quite sure how skeletal to go, so I'll just call methods
 
-from src import UserCollection
-from src import ItemCollection
+from src.UserCollection import UserCollection
+from src.ItemCollection import ItemCollection
+from src.BusinessRules import USER_ELIGABLE_TO_BORROW
+from datetime import datetime as dt
 
 
 class Library(object):
@@ -27,7 +28,7 @@ class Library(object):
         :param user_id:
         :return: Numerical fine amount
         """
-        return self._user_collection.get_fine_total(user_id)
+        return self._user_collection.get_fine(user_id)
         # TODO: Why the inconsistent naming of this method through the structure?
 
 
@@ -42,6 +43,17 @@ class Library(object):
         self._user_collection.pay_fine(user_id, amount)
 
 
+    def able_to_borrow(self, user_id):
+        """
+        Return a flag indicating if the user is allowed to borrow an item, given their limits on loans and fines
+        :param user_id:
+        :param max_loans:
+        :param max_fine:
+        :return: Boolean indicating their permission to borrow something new
+        """
+        return self._user_collection.able_to_borrow(user_id, USER_ELIGABLE_TO_BORROW)
+
+
     # Catalogue management
     def add_item(self, item):
         """
@@ -49,6 +61,7 @@ class Library(object):
         :param item:
         :return: N/A
         """
+
         self._item_collection.add_item(item)
 
 
@@ -60,7 +73,8 @@ class Library(object):
         :return:
         """
         # Assuming there's one of every title in the library
-        return self._item_collection.is_on_loan(item_title)
+        item = self._item_collection.get_item(item_title)
+        return self._item_collection.is_on_loan(item.get_identifier())
 
 
     def user_return(self, user_id, item_id):
@@ -70,32 +84,28 @@ class Library(object):
         :param item_id: 
         :return: 
         """
-        # TODO: I feel like the user ID should be looked up down the chain as it's associated with the item ID
+
         self._user_collection.return_item(user_id, item_id)
 
 
-    def user_checkout(self, user_id, item_title, date):
+    def user_checkout(self, user_id, item_title, date=None):
         """
         User checks out item on specified date
-        :param user_id:
-        :param item_title:
-        :param date:
+        :param user_id: User ID (int)
+        :param item_title: Item title (str)
+        :param date: checkout date (datetime)
+
+
         :return:
         """
-        self._user_collection.checkout_item(user_id, item_title, date)
+        if self.able_to_borrow(user_id):
+            item = self._item_collection.get_item(item_title)
+            self._user_collection.checkout_item(user_id, item, date)
+        else:
+            raise Exception('User cannot borrow this')
 
 
-    def able_to_borrow(self, user_id, max_loans, max_fine):
-        """
-        Return a flag indicating if the user is allowed to borrow an item, given their limits on loans and fines
-        :param user_id:
-        :param max_loans:
-        :param max_fine:
-        :return: Boolean indicating their permission to borrow something new
-        """
-        return self._user_collection.able_to_borrow(user_id, max_loans, max_fine)
-        # TODO: Note the skeleton user collection has "business rules" as an expandable input, so this probably
-        #       doesn't align with it
+
 
 
 

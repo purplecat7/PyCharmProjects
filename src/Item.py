@@ -54,6 +54,9 @@ class Item:
     def is_checked_out(self):
         return self._checkout_date is not None
 
+    def get_title(self):
+        return self._title
+
 
 class Book(Item):
     @property

@@ -19,6 +19,12 @@ class ItemNotFound(Exception):
     """
     pass
 
+class ItemNotUnique(Exception):
+    """
+    Exception class for finding too many items for title lookup
+    """
+    pass
+
 
 class ItemCollection:
     def __init__(self):
@@ -55,7 +61,7 @@ class ItemCollection:
         if type(item) is int:
             return item
         else:
-            return item.get_identifier()
+            return item.get_identifier(None)
 
     def add_item(self, item):
         """
@@ -63,7 +69,7 @@ class ItemCollection:
 
         :param item: The item to add
         """
-        self._items[item.get_identifier()] = item
+        self._items[item.get_identifier(None)] = item
 
     def remove_item(self, item):
         """
@@ -79,9 +85,60 @@ class ItemCollection:
         except KeyError:
             self._item_not_found()
 
-    def get_item(self, item_id):
+    @staticmethod
+    def _fuzz(title):
         """
-        Get an item. Return the item object
+        Fuzz the title string, lower the case and remove the non alpha numeric
+        characters
+        :param title: Title str
+        :return: Title str fuzzed
+        """
+        return str(filter(str.isalnum, title)).lower()
+
+    def search_for_title(self, title):
+        """
+        Search for items with a title string
+        :param title: Title string to search for
+        :return: A list of items that match the title
+        """
+        items = []
+        for ids, item in self._items:
+            if self._fuzz(title) in self._fuzz(item.get_title()):
+                items.append(item)
+        return items
+
+    def get_item(self, item_key):
+        """
+        Get item by id (if int) or title (if string)
+        :param item_key: The id as an int or the title as a string
+        :return: The item object
+        """
+        if type(item_key) == str:
+            return self.get_item_by_title(item_key)
+        elif type(item_key) == int:
+            return self.get_item_by_id(item_key)
+        elif type(item_key) == Item:
+            return item_key
+        else:
+            raise TypeError
+
+    def get_item_by_title(self, title):
+        """
+        Get the item by title
+        :param title: The title to get the item by
+        :return: The item object
+        """
+        items = self.search_for_title(title)
+        if len(items) == 0:
+            self._item_not_found()
+        elif len(items) > 1:
+            raise ItemNotUnique('Found two or more items by title')
+        else:
+            return items[0]
+
+    def get_item_by_id(self, item_id):
+        """
+        Get an item. by id Return the item object
         :param item_id: The id or the item
         :return: item
         :raises: ItemNotFound if the item is not found
@@ -128,18 +185,21 @@ class ItemCollection:
         except KeyError:
             self._item_not_found()
 
-    def checkout_item(self, item):
+    def checkout_item(self, item, date=None):
         """
         Checkout an item
 
+        :param date: The date the item was checkout
         :param item: The id or the item
         :return: Output of item.set_checkout
         :raises: ItemNotFound if the item is not found
         """
         key = self._get_key(item)
 
+        if date is None:
+            date = datetime.datetime.now()
+
         try:
-            current_data = datetime.datetime.now()
-            return self._items[key].set_checkout(current_data)
+            return self._items[key].set_checkout(date)
         except KeyError:
             self._item_not_found()

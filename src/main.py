@@ -75,8 +75,8 @@ def create_library_members(lib_controller):
     :param lib_controller: LibraryController object
     :return: no return
     """
-    user_manager = um.UserManager()
-    user_manager.set_library_controller(lib_controller)
+    user_manager = um.UserManager(lib_controller)
+    #user_manager.set_library_controller(lib_controller)
     NumbID.reset_id()
     # create 4 users
     for count in range(0, 4):

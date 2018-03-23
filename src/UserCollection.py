@@ -22,17 +22,17 @@ class UserCollection(list):
         """
         return self._get_user(user_id).able_to_borrow(*rules)
 
-    def checkout_item(self, user_id, item):
+    def checkout_item(self, user_id, item, date=None):
         """
         checkout a library item
         """
-        return self._get_user(user_id).checkout_item(item)
+        return self._get_user(user_id).checkout_item(item, date)
 
-    def return_item(self, user_id, item_id):
+    def return_item(self, user_id, item_id, date=None):
         """
         return a library item
         """
-        return self._get_user(user_id).return_item(item_id)
+        return self._get_user(user_id).return_item(item_id, date)
 
     def get_fine(self, user_id):
         """
