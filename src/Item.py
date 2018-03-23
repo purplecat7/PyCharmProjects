@@ -53,3 +53,51 @@ class Item:
 
     def is_checked_out(self):
         return self._checkout_date is not None
+
+
+class Book(Item):
+    @property
+    def finerate(self):
+        """
+        :return: The charge per-overdue-day.
+        """
+        return 0.5
+
+    @property
+    def loantime(self):
+        """
+        :return: The number of days an item can be loaned before being overdue.
+        """
+        return 4*7
+
+
+class Journal(Item):
+    @property
+    def finerate(self):
+        """
+        :return: The charge per-overdue-day.
+        """
+        return 1.0
+
+    @property
+    def loantime(self):
+        """
+        :return: The number of days an item can be loaned before being overdue.
+        """
+        return 2*7
+
+
+class Dvd(Item):
+    @property
+    def finerate(self):
+        """
+        :return: The charge per-overdue-day.
+        """
+        return 2.0
+
+    @property
+    def loantime(self):
+        """
+        :return: The number of days an item can be loaned before being overdue.
+        """
+        return 1*7
