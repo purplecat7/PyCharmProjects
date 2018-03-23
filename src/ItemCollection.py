@@ -1,7 +1,7 @@
 import datetime
 
 try:
-    from Item import Item
+    from .Item import Item
 except ImportError:
     class Item:
         def __init__(self, title, identity, checkout_date):
