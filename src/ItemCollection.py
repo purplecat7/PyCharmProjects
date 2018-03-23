@@ -115,8 +115,12 @@ class ItemCollection:
         """
         if type(item_key) == str:
             return self.get_item_by_title(item_key)
-        else:
+        elif type(item_key) == int:
             return self.get_item_by_id(item_key)
+        elif type(item_key) == Item:
+            return item_key
+        else:
+            raise TypeError
 
     def get_item_by_title(self, title):
         """
