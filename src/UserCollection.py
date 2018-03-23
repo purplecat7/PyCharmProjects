@@ -28,11 +28,11 @@ class UserCollection(list):
         """
         return self._get_user(user_id).checkout_item(item, date)
 
-    def return_item(self, user_id, item_id, date=None):
+    def return_item(self, user_id, item_id):
         """
         return a library item
         """
-        return self._get_user(user_id).return_item(item_id, date)
+        return self._get_user(user_id).return_item(item_id)
 
     def get_fine(self, user_id):
         """
