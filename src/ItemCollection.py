@@ -27,6 +27,20 @@ class ItemNotUnique(Exception):
     pass
 
 
+class ItemNotCheckedOut(Exception):
+    """
+    Exception class for an item not being checked out
+    """
+    pass
+
+
+class ItemCheckedOut(Exception):
+    """
+    Exception class for an item being already checked out
+    """
+    pass
+
+
 class ItemCollection:
     def __init__(self):
         """
@@ -181,13 +195,18 @@ class ItemCollection:
         :param item: The id or the item
         :return: The fine due on return
         :raises: ItemNotFound if the item is not found
+                 ItemNotCheckedOut if the item is not checked out
         """
         key = self._get_key(item)
 
         try:
-            fine = self._items[key].get_fine_due()
-            self._items[key].reset_checkout()
-            return fine
+            item = self._items[key]
+            if item.is_checked_out():
+                fine = item.get_fine_due()
+                item.reset_checkout()
+                return fine
+            else:
+                raise ItemNotCheckedOut('Item not checked out')
         except KeyError:
             self._item_not_found()
 
@@ -199,6 +218,7 @@ class ItemCollection:
         :param item: The id or the item
         :return: Output of item.set_checkout
         :raises: ItemNotFound if the item is not found
+                 ItemCheckedOut if the item is already checked out
         """
         key = self._get_key(item)
 
@@ -206,7 +226,11 @@ class ItemCollection:
             date = datetime.datetime.now()
 
         try:
-            return self._items[key].set_checkout(date)
+            item = self._items[key]
+            if not item.is_checked_out():
+                return item.set_checkout(date)
+            else:
+                raise ItemCheckedOut('Item is already checked out')
         except KeyError:
             self._item_not_found()
 
