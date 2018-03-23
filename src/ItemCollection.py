@@ -132,7 +132,9 @@ class ItemCollection:
         if len(items) == 0:
             self._item_not_found()
         elif len(items) > 1:
-            raise ItemNotUnique('Found two or more items by title')
+            raise ItemNotUnique('Found two or more items by title: {}'.format(
+                items
+                ))
         else:
             return items[0]
 
