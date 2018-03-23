@@ -27,6 +27,13 @@ class ItemNotUnique(Exception):
     pass
 
 
+class ItemNotCheckedOut(Exception):
+    """
+    Exception class for an item not being checked out
+    """
+    pass
+
+
 class ItemCollection:
     def __init__(self):
         """
@@ -185,9 +192,13 @@ class ItemCollection:
         key = self._get_key(item)
 
         try:
-            fine = self._items[key].get_fine_due()
-            self._items[key].reset_checkout()
-            return fine
+            item = self._items[key]
+            if item.is_checked_out():
+                fine = item.get_fine_due()
+                item.reset_checkout()
+                return fine
+            else:
+                raise ItemNotCheckedOut('Item not checked out')
         except KeyError:
             self._item_not_found()
 
