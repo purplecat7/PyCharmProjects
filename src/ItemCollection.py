@@ -102,7 +102,7 @@ class ItemCollection:
         :return: A list of items that match the title
         """
         items = []
-        for ids, item in self._items:
+        for ids, item in self._items.items():
             if self._fuzz(title) in self._fuzz(item.get_title()):
                 items.append(item)
         return items
