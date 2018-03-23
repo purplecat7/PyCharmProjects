@@ -35,7 +35,9 @@ class Item:
         :param date: Date of checkout (probably today)
         :raises: ValueError if the date isn't a datetime.datetime object
         """
-        if type(date) is not datetime.datetime:
+        if date is None:
+            date = datetime.now()
+        if type(date) is not datetime:
             raise ValueError
         self._checkout_date = date
 

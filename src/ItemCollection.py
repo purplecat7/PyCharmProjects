@@ -93,7 +93,8 @@ class ItemCollection:
         :param title: Title str
         :return: Title str fuzzed
         """
-        return str(filter(str.isalnum, title)).lower()
+        return title
+        #return str(filter(str.isalnum, title)).lower()
 
     def search_for_title(self, title):
         """
@@ -133,7 +134,7 @@ class ItemCollection:
             self._item_not_found()
         elif len(items) > 1:
             raise ItemNotUnique('Found two or more items by title: {}'.format(
-                items
+                [i.get_title() for i in items]
                 ))
         else:
             return items[0]
