@@ -7,7 +7,7 @@ CLASSES
     UserManager
 """
 
-import user
+from User import User
 
 
 class UserManager(object):
@@ -27,19 +27,12 @@ class UserManager(object):
 
     """
 
-    def __init__(self):
-        self._library_controller = None
+    def __init__(self,lib_controller):
+        self._library_controller = lib_controller
 
     def __del__(self):
         pass
 
-    def set_library_controller(self, library_controller):
-        """
-        Store a reference to the LibraryController object
-
-        :param library_controller: the LibraryController object
-        :return: no return
-        """
 
     def create_user(self, user_id):
         """
@@ -48,18 +41,9 @@ class UserManager(object):
         :param user_id: unique identifier for the user
         :return: no return
         """
-        # create user object and set its id
-        # tell the library controller about it
 
+        # create user with user id
+        my_user = User(user_id)
 
-class UserManager:
-    # Q: What is a "manager" thing?
-    # Q: Should be called "UserCollectionManager"?
-
-    def set_library_controller(self, library_controller):
-        # Q: Why set a library controller? Shouldn't I manage a UserCollection?
-        raise NotImplementedError
-
-    def create_user(self, user_id):
-        # From the UML
-        raise NotImplementedError
+        # pass user to lib controller
+        self._library_controller.add_user(my_user)
