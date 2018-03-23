@@ -19,6 +19,7 @@ class ItemNotFound(Exception):
     """
     pass
 
+
 class ItemNotUnique(Exception):
     """
     Exception class for finding too many items for title lookup
@@ -93,8 +94,7 @@ class ItemCollection:
         :param title: Title str
         :return: Title str fuzzed
         """
-        return title
-        #return str(filter(str.isalnum, title)).lower()
+        return ''.join(filter(str.isalnum, title)).lower()
 
     def search_for_title(self, title):
         """
