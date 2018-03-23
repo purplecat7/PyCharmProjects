@@ -15,8 +15,7 @@ class User:
 
     def able_to_borrow(self, *rules):
         """Check if user is eligible to borrow
-        :param max_number_loans: maximum number of items allowed out
-        :param max_total_fine: maximum accrued fine allowed in order to borrow
+        :param rules: business rules
         :return: Bool
         """
         eligible = True
