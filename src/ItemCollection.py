@@ -19,6 +19,12 @@ class ItemNotFound(Exception):
     """
     pass
 
+class ItemNotUnique(Exception):
+    """
+    Exception class for finding too many items for title lookup
+    """
+    pass
+
 
 class ItemCollection:
     def __init__(self):
@@ -79,9 +85,56 @@ class ItemCollection:
         except KeyError:
             self._item_not_found()
 
-    def get_item(self, item_id):
+    @staticmethod
+    def _fuzz(title):
         """
-        Get an item. Return the item object
+        Fuzz the title string, lower the case and remove the non alpha numeric
+        characters
+        :param title: Title str
+        :return: Title str fuzzed
+        """
+        return str(filter(str.isalnum, title)).lower()
+
+    def search_for_title(self, title):
+        """
+        Search for items with a title string
+        :param title: Title string to search for
+        :return: A list of items that match the title
+        """
+        items = []
+        for ids, item in self._items:
+            if self._fuzz(title) in self._fuzz(item.get_title()):
+                items.append(item)
+        return items
+
+    def get_item(self, item_key):
+        """
+        Get item by id (if int) or title (if string)
+        :param item_key: The id as an int or the title as a string
+        :return: The item object
+        """
+        if type(item_key) == str:
+            return self.get_item_by_title(item_key)
+        else:
+            return self.get_item_by_id(item_key)
+
+    def get_item_by_title(self, title):
+        """
+        Get the item by title
+        :param title: The title to get the item by
+        :return: The item object
+        """
+        items = self.search_for_title(title)
+        if len(items) == 0:
+            self._item_not_found()
+        elif len(items) > 1:
+            raise ItemNotUnique('Found two or more items by title')
+        else:
+            return items[0]
+
+    def get_item_by_id(self, item_id):
+        """
+        Get an item. by id Return the item object
         :param item_id: The id or the item
         :return: item
         :raises: ItemNotFound if the item is not found
