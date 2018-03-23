@@ -1,3 +1,6 @@
+from src import ItemCollection
+
+
 class User(object):
     """ A user/borrower in the library system"""
 
@@ -50,3 +53,10 @@ class User(object):
         :return: N/A
         """
         self._fines = self._fines - amount
+
+    def get_number_loans(self):
+        """Get number of items currently borrowed
+        :param:
+        :return n_loans: number of items currently borrowed
+        """
+        return self._ItemList.number_of_items
