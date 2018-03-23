@@ -1,4 +1,3 @@
-# TODO write something here
 """
 NAME
     item_manager - implementation of ItemManager class
@@ -8,34 +7,40 @@ CLASSES
     ItemManager
 """
 
-import item
+from .Item import Book, Dvd, Journal
+from .Library import Library
 
 
 class ItemManager:
-    """
-    Class handling the creation of new items
 
-    Methods defined here:
+    def __init__(self, library_controller=None):
+        """
+        Class handling the creation of new items
 
-        set_library_controller(...)
-            Store a reference to the LibraryController object
+        Methods defined here:
 
-        create_book(...)
-            Create a new 'book' object and pass to the library controller to add to its item list
+            set_library_controller(...)
+                Store a reference to the LibraryController object
 
-        create_dvd(...)
-            Create a new 'dvd' object and pass to the library controller to add to its item list
+            create_book(...)
+                Create a new 'book' object and pass to the library controller
+                to add to its item list
 
-        create_journal(...)
-            Create a new 'journal' object and pass to the library controller to add to its item list
+            create_dvd(...)
+                Create a new 'dvd' object and pass to the library controller to
+                add to its item list
 
-    ----------------------------------------------------------------------
-    No data or other attributes defined here.
+            create_journal(...)
+                Create a new 'journal' object and pass to the library
+                controller to add to its item list
 
-    """
+        ----------------------------------------------------------------------
+        :param library_controller: the LibraryController object
 
-    def __init__(self):
-        self._library_controller = None
+        """
+        self._library_controller: Library = None
+        if library_controller is not None:
+            self.set_library_controller(library_controller)
 
     def __del__(self):
         pass
@@ -47,37 +52,46 @@ class ItemManager:
         :param library_controller: the LibraryController object
         :return: no return
         """
+        self._library_controller = library_controller
 
     def create_book(self, title, ident):
         """
-        Create a new 'book' object and pass to the library controller to add to its item list
+        Create a new 'book' object and pass to the library controller to add
+        to its item list
 
         :param title: title of the book to be created
         :param ident: id of the book to be created
         :return: no return
         """
         # create object
+        new_book = Book(title, ident)
         # tell the library controller about it
+        self._library_controller.add_item(new_book)
 
     def create_dvd(self, title, ident):
         """
-        Create a new 'dvd' object and pass to the library controller to add to its item list
+        Create a new 'dvd' object and pass to the library controller to add to
+        its item list
 
         :param title: title of the dvd to be created
         :param ident: id of the dvd to be created
         :return: no return
         """
         # create object
+        new_dvd = Dvd(title, ident)
         # tell the library controller about it
+        self._library_controller.add_item(new_dvd)
 
     def create_journal(self, title, ident):
         """
-        Create a new 'journal' object and pass to the library controller to add to its item list
+        Create a new 'journal' object and pass to the library controller to
+        add to its item list
 
         :param title: title of the journal to be created
         :param ident: id of the journal to be created
         :return: no return
         """
-        new_journal = item.Journal(title, ident)
         # create object
+        new_journal = Journal(title, ident)
         # tell the library controller about it
+        self._library_controller.add_item(new_journal)
