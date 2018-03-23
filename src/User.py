@@ -21,7 +21,7 @@ class User:
         """
         eligible = True
         for rule in rules:
-            if rule is False:
+            if rule(self) is False:
                 eligible = False
         return eligible
 
