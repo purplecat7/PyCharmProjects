@@ -51,7 +51,7 @@ class Library(object):
         :param max_fine:
         :return: Boolean indicating their permission to borrow something new
         """
-        return self._user_collection.able_to_borrow(user_id, USER_ELIGABLE_TO_BORROW)
+        return self._user_collection.able_to_borrow(user_id, *USER_ELIGABLE_TO_BORROW)
 
 
     # Catalogue management
