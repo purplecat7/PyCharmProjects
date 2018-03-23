@@ -93,7 +93,8 @@ class ItemCollection:
         :param title: Title str
         :return: Title str fuzzed
         """
-        return str(filter(str.isalnum, title)).lower()
+        return title
+        #return str(filter(str.isalnum, title)).lower()
 
     def search_for_title(self, title):
         """
