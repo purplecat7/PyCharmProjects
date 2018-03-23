@@ -53,7 +53,10 @@ class Item:
                     "Can't get the fines of an item which isn't checked out")
         time_checked_out = datetime.now() - self._checkout_date
         days_overdue = time_checked_out.days - self.loantime
-        fine = self.finerate * days_overdue
+        if days_overdue > 0:
+            fine = self.finerate * days_overdue
+        else:
+            fine = 0
         return fine
 
     def is_checked_out(self):
