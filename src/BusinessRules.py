@@ -24,7 +24,7 @@ def check_max_fines(user: User) -> bool:
     return user.get_fines() <= MAX_FINES
 
 
-USER_ELIGABLE_TO_BORROW = (
+USER_ELIGIBLE_TO_BORROW = (
     check_max_loans,
     check_max_fines
 )

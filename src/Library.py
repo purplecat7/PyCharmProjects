@@ -3,7 +3,7 @@
 
 from src.UserCollection import UserCollection
 from src.ItemCollection import ItemCollection
-from src.BusinessRules import USER_ELIGABLE_TO_BORROW
+from src.BusinessRules import USER_ELIGIBLE_TO_BORROW
 from datetime import datetime as dt
 
 
@@ -51,7 +51,7 @@ class Library(object):
         :param max_fine:
         :return: Boolean indicating their permission to borrow something new
         """
-        return self._user_collection.able_to_borrow(user_id, *USER_ELIGABLE_TO_BORROW)
+        return self._user_collection.able_to_borrow(user_id, *USER_ELIGIBLE_TO_BORROW)
 
 
     # Catalogue management
