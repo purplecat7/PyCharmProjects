@@ -49,8 +49,8 @@ class Item:
 
     def get_fine_due(self):
         time_checked_out = datetime.now() - self._checkout_date
-        time_overdue = time_checked_out - self.loantime
-        fine = self.finerate * time_overdue
+        days_overdue = time_checked_out.days - self.loantime
+        fine = self.finerate * days_overdue
         return fine
 
     def is_checked_out(self):
