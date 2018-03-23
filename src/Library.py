@@ -4,6 +4,8 @@
 from src.UserCollection import UserCollection
 from src.ItemCollection import ItemCollection
 from src.BusinessRules import USER_ELIGABLE_TO_BORROW
+from datetime import datetime as dt
+
 
 class Library(object):
     def __init__(self):
@@ -86,12 +88,14 @@ class Library(object):
         self._user_collection.return_item(user_id, item_id)
 
 
-    def user_checkout(self, user_id, item_title, date):
+    def user_checkout(self, user_id, item_title, date=None):
         """
         User checks out item on specified date
-        :param user_id:
-        :param item_title:
-        :param date:
+        :param user_id: User ID (int)
+        :param item_title: Item title (str)
+        :param date: checkout date (datetime)
+
+
         :return:
         """
         if self.able_to_borrow(user_id):
