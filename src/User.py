@@ -39,8 +39,8 @@ class User:
         :param date: date of return
         :return: N/A
         """
-        item = self._ItemList.get_item(item_id)
-        self._ItemList.return_item(item, date)
+        self._ItemList.return_item(item_id)
+
 
     def get_fines(self):
         """Check total fines for user
