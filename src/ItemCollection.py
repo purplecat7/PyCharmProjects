@@ -207,3 +207,13 @@ class ItemCollection:
             return self._items[key].set_checkout(date)
         except KeyError:
             self._item_not_found()
+
+    def get_fines(self):
+        """
+        Get all the fines for the items in the collection
+        :return: The totel fine
+        """
+        fine = 0.0
+        for ids, item in self._items.items():
+            fine = fine + item.get_fine_due()
+        return fine
