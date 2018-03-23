@@ -13,7 +13,7 @@ class UserCollection(list):
         self.append(user)
 
     def _get_user(self, user_id):
-        (user, ) = filter(lambda user: user.id == user_id, self)
+        (user, ) = filter(lambda user: user.get_id() == user_id, self)
         return user
 
     def able_to_borrow(self, user_id, *rules: Callable) -> bool:
