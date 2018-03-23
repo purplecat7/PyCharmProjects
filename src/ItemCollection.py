@@ -179,13 +179,15 @@ class ItemCollection:
         Return the item
 
         :param item: The id or the item
-        :return: Output of item.reset_checkout
+        :return: The fine due on return
         :raises: ItemNotFound if the item is not found
         """
         key = self._get_key(item)
 
         try:
-            return self._items[key].reset_checkout()
+            fine = self._items[key].get_fine_due()
+            self._items[key].reset_checkout()
+            return fine
         except KeyError:
             self._item_not_found()
 
