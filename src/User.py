@@ -47,11 +47,7 @@ class User:
         :param: none
         :return: total fine owed by user
         """
-        items = self._ItemList._items
-        fine = 0
-        for item in items:
-            fine = fine + item.get_fine_due()
-        return fine + self._fines
+        return self._ItemList.get_fines()
 
     def pay_fine(self, amount):
         """Subtract paid amount from total

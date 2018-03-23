@@ -38,7 +38,7 @@ class UserCollection(list):
         """
         get the current fine owed by a user
         """
-        return self._get_user(user_id).fine
+        return self._get_user(user_id).get_fines()
 
     def pay_fine(self, user_id, amount):
         """

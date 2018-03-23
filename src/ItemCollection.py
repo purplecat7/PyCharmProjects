@@ -19,6 +19,7 @@ class ItemNotFound(Exception):
     """
     pass
 
+
 class ItemNotUnique(Exception):
     """
     Exception class for finding too many items for title lookup
@@ -93,8 +94,7 @@ class ItemCollection:
         :param title: Title str
         :return: Title str fuzzed
         """
-        return title
-        #return str(filter(str.isalnum, title)).lower()
+        return ''.join(filter(str.isalnum, title)).lower()
 
     def search_for_title(self, title):
         """
@@ -179,13 +179,15 @@ class ItemCollection:
         Return the item
 
         :param item: The id or the item
-        :return: Output of item.reset_checkout
+        :return: The fine due on return
         :raises: ItemNotFound if the item is not found
         """
         key = self._get_key(item)
 
         try:
-            return self._items[key].reset_checkout()
+            fine = self._items[key].get_fine_due()
+            self._items[key].reset_checkout()
+            return fine
         except KeyError:
             self._item_not_found()
 
@@ -207,3 +209,13 @@ class ItemCollection:
             return self._items[key].set_checkout(date)
         except KeyError:
             self._item_not_found()
+
+    def get_fines(self):
+        """
+        Get all the fines for the items in the collection
+        :return: The totel fine
+        """
+        fine = 0.0
+        for ids, item in self._items.items():
+            fine = fine + item.get_fine_due()
+        return fine
