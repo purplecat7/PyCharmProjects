@@ -38,7 +38,7 @@ def do_a_while():
     the_limit = rd.randint(1, 10)
     while flag:
         count += 1
-        if count <= the_limit:
+        if count >= the_limit:
             flag = False
     return count
 

@@ -28,8 +28,6 @@ FUNCTIONS
 
 """
 # TODO runtime options
-# option: have a command line switch to run tests... -t
-#       (or better still, use a test framework such as 'nosetests'
 # option: take file name from command line argument
 import file_reader
 import numpy as np
@@ -64,18 +62,19 @@ def add_sunshine_per_day(file_contents):
             hours = 0
     print(sunshine_hours)
 
+def main():
+    # set file path/name here not in the reader, so it's easier to change later
+    filename = '..\MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv'
+    # call FileReader.loadFile(filepath) to return data in suitable variables
+    file_contents = file_reader.loadfile(filename)
+    # use functions here to process data
+    add_sunshine_per_day(file_contents)
+    # send processed data to Plotting.* methods to draw graphs
+    # else:
+    # call methods in tests.py
 
 if __name__ == '__main__':
-    # if command switch != t
-        # set file path/name here not in the reader, so it's easier to change later
-    filename = '..\MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv'
-        # call FileReader.loadFile(filepath) to return data in suitable variables
-    file_contents = file_reader.loadfile(filename)
-        # use functions here to process data
-    add_sunshine_per_day(file_contents)
-        # send processed data to Plotting.* methods to draw graphs
-    # else:
-        # call methods in tests.py
+    main()
 
 
 

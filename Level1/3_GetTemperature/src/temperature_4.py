@@ -18,7 +18,7 @@ def create_parser(args=None):
     :return: Invocation arguments
     """
     # http://www.alanbriolat.co.uk/optional-positional-arguments-with-argparse.html
-    parser = argparse.ArgumentParser(description='Data file to read may be provided with -f switch.')
+    parser = argparse.ArgumentParser(description='Data file to read may be provided with -i switch.')
 
     # TODO make file path OS independent
     parser.add_argument('-input', '-i',
