@@ -3,7 +3,7 @@ src_skeleton/ : how code should start life from its design
     - all method docstrings fully explain the interface of each class
 
 src/ : full working solution for library system.
-    - that there are some aspects which could be better
+    - there are some aspects which could be better
     - use cases described in the exercise are implemented
     - there are 2 different implementations for the lists -
         item-list is the better since it uses inheritance
