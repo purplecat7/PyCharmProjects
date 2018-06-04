@@ -23,7 +23,7 @@ class Item():
 
     """
 
-    def __init__(self, id, title, checkout_date):
+    def __init__(self, id, title):
         """Initialise instance variables.
 
         id : ID number.
@@ -33,7 +33,7 @@ class Item():
         self.id = id
         self.title = title
         self.checkout_date = None
-        self.checked_out = True
+        self.checked_out = False
         pass
 
     def get_identifier(self):
