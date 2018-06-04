@@ -1,5 +1,5 @@
 """
-Class for user for library example
+User class for library example
 
 """
 
@@ -39,7 +39,7 @@ class User():
 		:return: boolean
 		"""
 		# if user has fines > than max fines or num of items > max allowed then can't borrow
-		if (item_list.fines_owed() > maxfines) or (item_list.number_of_items() > maxallowed):
+		if (item_list.fines_owed()+self.fines > maxfines) or (item_list.number_of_items() > maxallowed):
 			return False
 		else:  # can borrow
 			return True
@@ -59,7 +59,7 @@ class User():
 
 		:return:
 		"""
-		item_list.return_item(title)
+		self.fines += item_list.return_item(title)
 
 	def get_id(self):
 		"""
