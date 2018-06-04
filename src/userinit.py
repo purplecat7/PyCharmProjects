@@ -9,7 +9,7 @@ class UserInit():
     def __init__(self):
         pass
 
-    def setLibManager(theLibrary):
+    def set_library_controller(theLibrary):
         """
         Two classes User Init and Library Manager
         need to know about each other
@@ -23,3 +23,5 @@ class UserInit():
         Allow the Library Manager to add the user to the user list
         :return:
         """
+        theuser = USER("name" , "surname" , "ID")
+        self.LibManager.add.user(theuser)
