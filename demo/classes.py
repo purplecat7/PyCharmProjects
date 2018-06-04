@@ -29,6 +29,7 @@ class MyClass:
         # initialise instance attributes
         self.__privateAttribute = 0
         self.__privateList = list()
+        self.publicAttribute = None
         
     # this method called whenever object destroyed
     def __del__(self):
