@@ -52,8 +52,8 @@ def create_library_catalogue(lib_controller, infile):
     :param infile: text file containing book titles
     :return: no return
     """
-    item_manager = im.ItemManager()
-    item_manager.set_library_controller(lib_controller)
+    item_manager = im.ItemInit()
+    item_manager.set_library_manager(lib_controller)
     file_ = open(infile, 'r')
     for line in file_:
         item_manager.create_book(line.strip(), NumbID.new_id())
@@ -154,12 +154,12 @@ def main():
         print ("Exercise 1 failed")
         raise
 
-    print ("Exercise 2...")
-    try:
-        exercise2(1, 19, 'Sleuthing in C#', lib_controller)
-    except:
-        print ("Exercise 2 failed")
-        raise
+    # print ("Exercise 2...")
+    # try:
+    #     exercise2(1, 19, 'Sleuthing in C#', lib_controller)
+    # except:
+    #     print ("Exercise 2 failed")
+    #     raise
 
     print ("Johnny Codewarrior")
     try:
