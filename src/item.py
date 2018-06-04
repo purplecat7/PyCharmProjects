@@ -20,7 +20,7 @@ class Item():
         self.checkout_date = checkout_date
         pass
 
-    def get_id(self):
+    def get_identifier(self):
         """Return the ID number."""
         return self.id
 
@@ -32,7 +32,7 @@ class Item():
         """Return the checkout date."""
         return self.checkout_date
 
-    def get_fine(self):
+    def get_fine_due(self):
         """Calculate the fine owed on this item."""
         the_fine = 0.0
         return the_fine
