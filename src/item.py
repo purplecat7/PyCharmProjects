@@ -1,5 +1,6 @@
 from __future__ import division
 from datetime import datetime
+# ^ not a typo, the module has the same name as the package
 
 class Item():
     """
@@ -49,21 +50,33 @@ class Item():
 
     def get_fine_due(self):
         """Calculate the fine owed on this item."""
-        days_overdue = datetime.today() - (self.checkout_date + self.max_loan_time)
+        days_overdue = (datetime.today() - self.checkout_date).days - self.max_loan_time
         the_fine = self.fee_rate*days_overdue*(days_overdue>0)
         return the_fine
 
     def is_available(self):
+        """Return True if item is checked out."""
         return not(self.checked_out == True)
 
-    def set_checkout(self):
-        """Set the checkout date somehow."""
-        self.checkout_date = datetime.today()
+    def set_checkout(self, the_date=datetime.today()):
+        """Set the checkout date.
+
+        Optional argument:
+
+        the_date: datetime.datetime date format, by default this is set to
+                  today's date but may be set by using
+
+                      the_date = datetime.strpdate(date, "%d/%m/%y")
+
+                  where date is a string in the same format as the second
+                  argument (see datetime docs for details).
+        """
+        self.checkout_date = the_date
         self.checked_out = True
         pass
 
     def clear_checkout(self):
-        """Clear the checkout date somehow."""
+        """Clear the checkout date."""
         self.checkout_date = None
         self.checked_out = False
         pass
