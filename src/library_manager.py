@@ -36,7 +36,7 @@ class LibMgr:
         """
         self.user_list.add_user(user)
 
-    def checkout(self, title, ID, date=None):
+    def checkout(self, ID, title, date=None):
         """
         Initialises the checkout -- to ask the item list and user list about their respective contents.
         The ID is used for the User_List, and the title is used for the Item_List.
