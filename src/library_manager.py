@@ -28,6 +28,7 @@ class LibMgr():
         :return: some things. # ToDo: Beth, fill this in properly.
         """
 
+
     def checkout(self, ID, title):
         """
         Initialises the checkout -- to ask the item list and userlist about their resepctive contents.
