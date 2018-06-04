@@ -1,6 +1,3 @@
-import item as it
-
-
 class ItemList(list):
     """
     Class for list of library items.
@@ -82,4 +79,3 @@ class ItemList(list):
         for item in self:
             fine_due += item.get_fine_due()
         return fine_due
-
