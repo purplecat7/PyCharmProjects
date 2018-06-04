@@ -3,8 +3,8 @@ Class for user for library example
 
 """
 
-class User():
 
+class User():
 	"""
 	User class for creating and managing user of library
 
@@ -53,5 +53,13 @@ class User():
 		Return item back to library for current user
 
 		:return:
+		"""
+		pass
+
+	def get_id(self):
+		"""
+		Return user id
+
+		:return: user id
 		"""
 		pass
