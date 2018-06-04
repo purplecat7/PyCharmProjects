@@ -51,7 +51,10 @@ class User():
 		:param item: item object that is to be checked out
 		:return:
 		"""
-		item_list.checkout(item)
+		try:
+			item_list.checkout(item)
+		except Exception as e:
+			raise(e)
 
 	def return_item(self, title):
 		"""
