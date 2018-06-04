@@ -28,7 +28,6 @@ class Item():
 
         id : ID number.
         title: title of item.
-        checkout_date: datetime-module date when checked out.
         """
         self.id = id
         self.title = title
