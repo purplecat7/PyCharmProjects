@@ -1,3 +1,8 @@
+
+
+import user
+#import library_manager as m
+
 class UserInit():
     """
     This is an initialization class.
@@ -7,21 +12,22 @@ class UserInit():
     that has an ID, name and surname
     """
     def __init__(self):
+        self.lib_mgr = None     # holds pointer to library manager
         pass
 
-    def set_library_controller(theLibrary):
+    def set_library_controller(self, theLibrary):
         """
         Two classes User Init and Library Manager
         need to know about each other
         :return:
         """
-        self.LibManager = theLibrary
+        self.lib_mgr = theLibrary
 
-    def create_user(self):
+    def create_user(self, id):
         """
         Create a user with name, surname and ID.
         Allow the Library Manager to add the user to the user list
         :return:
         """
-        theuser = USER("name" , "surname" , "ID")
-        self.LibManager.add.user(theuser)
+        theuser = user.User(id)
+        self.lib_mgr.add_user(theuser)
