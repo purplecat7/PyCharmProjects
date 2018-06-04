@@ -56,13 +56,13 @@ class User():
 		except Exception as e:
 			raise(e)
 
-	def return_item(self, title):
+	def return_item(self, id):
 		"""
 		Return item back to library for current user
 
 		:return:
 		"""
-		self.fines += item_list.return_item(title)
+		self.fines += item_list.return_item(id)
 
 	def get_id(self):
 		"""
