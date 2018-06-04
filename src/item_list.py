@@ -11,11 +11,11 @@ class ItemList(list):
         fines_owed(): total fines owed on items in list
     """
 
-    def add_item(self, item):
+    def __add_item(self, item):
         """Input: item object. No return. Adds a library item to the list."""
         self.append(item)
 
-    def remove_item(self, item):
+    def __remove_item(self, item):
         """Input: item object. No return. Removes a library item from the list."""
         self.remove(item)
 
