@@ -1,44 +1,54 @@
 # Beth -- 04/06/18 -- Software Development Course
 
-class LibMgr():
+import user_list
+import item_list
+
+
+class LibMgr:
     """
     Library manager - I am managing this bad-boy.
     """
 
-    # constructor
     def __init__(self):
         """
         This constructor will create the item list and the user list.
-        :return: some things. # ToDo: Beth, fill this in properly.
+        :return: A user and item list.
         """
-        # ToDo: add the method for __init__ here
+        self.user_list = user_list.UserList()
+        self.item_list = item_list.ItemList()
+        # ToDo: check these amounts for fines and loans
+        self.max_loans = 100
+        self.max_fines = 50
 
     def add_item(self, item):
         """
         Adds an item to the item list.
         :param item: The item to be added to the item list.
-        :return: some things. # ToDo: Beth, fill this in properly.
+        :return: A item list with the added item.
         """
-        # ToDo: add the method for add_item here
+        self.item_list.add_item(item)
 
     def add_user(self, user):
         """
         Adds a user to the user list.
         :param user: The user to be added to the user list.
-        :return: some things. # ToDo: Beth, fill this in properly.
+        :return: A user list with the added user.
         """
+        self.user_list.add_user(user)
 
-    def checkout(self, ID, title):
+    def checkout(self, ID, title, date=None):
         """
-        Initialises the checkout -- to ask the item list and userlist about their resepctive contents.
+        Initialises the checkout -- to ask the item list and user list about their respective contents.
         The ID is used for the User_List, and the title is used for the Item_List.
         :param ID: The users unique identification number.
         :param title: The title of the item requested.
-        :return: some things. # ToDo: Beth, fill this in properly.
+        :return: If able to borrow is true, it gets and checks out the item.
         """
-        # ToDo: add the method for checkout here
+        if self.user_list.able_to_borrow(ID, self.max_fines, self.max_loans) == True:
+            the_item = self.item_list.get_item(title)
+            self.user_list.checkout(ID, the_item)
 
-    def return_item(self, ID, title):
+    def return_item(self, ID, item_ID):
         """
         Enables a user to return an item.
         :param ID: The users unique identification number.
@@ -46,3 +56,4 @@ class LibMgr():
         :return: some things. # ToDo: Beth, fill this in properly.
         """
         # ToDo: add the method for return_item here
+        pass
