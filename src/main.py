@@ -111,6 +111,19 @@ def exercise2(user_id, return_id, title, lib_controller):
     lib_controller.checkout(user_id, title)
 
 
+def johnny_codewarrior(lib_controller):
+    """What happens when Johnny Codewarrior, who has no accrued fines and one
+    outstanding book, not overdue, checks out a book entitled Document, Your
+    job depends on it."""
+    user_id = NumbID()
+    # One outstanding book
+    date = dt.datetime(2018, 06, 01, 12, 56, 07)
+    lib_controller.checkout(user_id,
+                            'Harry Potter and the Prisoner of Azkaban', date)
+    # Checks out new book
+    lib_controller.checkout(user_id, 'Document, Your job depends on it')
+
+
 def main():
     """
     Program initialisation and execution.
@@ -148,7 +161,13 @@ def main():
         print ("Exercise 2 failed")
         raise
 
-
+    print ("Johnny Codewarrior")
+    try:
+        johnny_codewarrior(lib_controller)
+    except:
+        print "Johnny codewarrior failed"
+        raise
+    
 
 if __name__ == '__main__':
     main()
