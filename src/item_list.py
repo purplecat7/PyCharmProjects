@@ -1,3 +1,5 @@
+
+
 class ItemList(list):
     """
     Class for list of library items.
@@ -14,22 +16,34 @@ class ItemList(list):
 
     def add_item(self, item):
         """Input: item object. No return. Adds a library item to the list."""
-        pass
+        self.append(item)
 
     def remove_item(self, item):
         """Input: item object. No return. Removes a library item from the list."""
-        pass
+        self.remove(item)
 
     def get_item_from_title(self, title):
-        """Input: string of item title. Return: item object."""
-        pass
+        """Input: string of item title. Return: item object or None if title not found in list."""
+        for item in self:
+            if item.title == title:
+                requested_item = item
+                break
+        else:
+            requested_item = None
+        return requested_item
 
     def get_item_from_id(self, item_id):
-        """Input: item object address. Return: item object."""
-        pass
+        """Input: item id number. Return: item object or None if id not found in list."""
+        for item in self:
+            if item.id == item_id:
+                requested_item = item
+                break
+        else:
+            requested_item = None
+        return requested_item
 
     def get_item(self, item_id):
-        """Input: string of item title OR item object id. Return: item object.
+        """Input: string of item title OR item id. Return: item object.
         Uses get_item_from_title if input is string and get_item_from_id if input is int."""
 
     def is_available(self, title):
@@ -49,7 +63,10 @@ class ItemList(list):
 
     def number_of_items(self):
         """Returns number of items in list (no parameters taken)."""
-        pass
+        list_length = self.__len__()
+        return list_length
 
     def fines_owed(self):
         """Return float: total fines owed over all items in list. No parameters taken."""
+        pass
+
