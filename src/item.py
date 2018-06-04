@@ -32,7 +32,7 @@ class Item():
         """
         self.id = id
         self.title = title
-        self.checkout_date = checkout_date
+        self.checkout_date = None
         self.checked_out = True
         pass
 
