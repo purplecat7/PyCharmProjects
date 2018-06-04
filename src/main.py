@@ -7,9 +7,9 @@ FILE
 CLASSES
     NumID
 """
-import item_manager as im
-import user_manager as um
-import library
+import item_init as im
+import userinit as um
+import library_manager
 import datetime as dt
 
 
@@ -57,12 +57,12 @@ def create_library_catalogue(lib_controller, infile):
     file_ = open(infile, 'r')
     for line in file_:
         item_manager.create_book(line.strip(), NumbID.new_id())
-    print 'Number of books added: ', NumbID.id_number
+    print ('Number of books added: ', NumbID.id_number)
     item_manager.create_journal("Amazing Clouds", NumbID.new_id())
     item_manager.create_journal("Sleuthing in C#", NumbID.new_id())
     item_manager.create_dvd("Dad's Army", NumbID.new_id())
     item_manager.create_dvd("Debugging to music", NumbID.new_id())
-    print 'Total number of items: ', NumbID.id_number
+    print ('Total number of items: ', NumbID.id_number)
 
 
 def create_library_members(lib_controller):
@@ -72,13 +72,13 @@ def create_library_members(lib_controller):
     :param lib_controller: LibraryController object
     :return: no return
     """
-    user_manager = um.UserManager()
+    user_manager = um.UserInit()
     user_manager.set_library_controller(lib_controller)
     NumbID.reset_id()
     # create 4 users
     for count in range(0, 4):
         user_manager.create_user(NumbID.new_id())
-        print 'User ID created: ', NumbID.id_number
+        print ('User ID created: ', NumbID.id_number)
 
 
 def exercise1(user_id, title, lib_controller):
@@ -90,7 +90,7 @@ def exercise1(user_id, title, lib_controller):
     :param lib_controller: LibraryController object
     :return: no return
     """
-    lib_controller.user_checkout(user_id, title)
+    lib_controller.checkout(user_id, title)
 
 
 def exercise2(user_id, return_id, title, lib_controller):
@@ -104,11 +104,11 @@ def exercise2(user_id, return_id, title, lib_controller):
     :return: no return
     """
     fine = lib_controller.user_fine(user_id)
-    print "User: ", user_id
-    print "Total Fine: ", fine
+    print ("User: ", user_id)
+    print ("Total Fine: ", fine)
     
-    lib_controller.user_return(user_id, return_id)
-    lib_controller.user_checkout(user_id, title)
+    lib_controller.return_item(user_id, return_id)
+    lib_controller.checkout(user_id, title)
 
 
 def main():
@@ -116,36 +116,36 @@ def main():
     Program initialisation and execution.
     :return: no return
     """
-    print "Initialising library controller..."
-    lib_controller = library.LibraryController()
+    print ("Initialising library controller...")
+    lib_controller = library_manager.LibMgr()
 
-    print "Populating library catalogue..."
+    print ("Populating library catalogue...")
     infile = 'top100t.txt'
     try:
         create_library_catalogue(lib_controller, infile)
     except:
-        print "Catalogue populating failed"
+        print ("Catalogue populating failed")
         raise
 
-    print "Populating library members..."
+    print ("Populating library members...")
     try:
         create_library_members(lib_controller)
     except:
-        print "User populating failed"
+        print ("User populating failed")
         raise
 
-    print "Exercise 1..."
+    print ("Exercise 1...")
     try:
         exercise1(1, 'The Kite Runner', lib_controller)
     except:
-        print "Exercise 1 failed"
+        print ("Exercise 1 failed")
         raise
 
-    print "Exercise 2..."
+    print ("Exercise 2...")
     try:
         exercise2(1, 19, 'Sleuthing in C#', lib_controller)
     except:
-        print "Exercise 2 failed"
+        print ("Exercise 2 failed")
         raise
 
 
