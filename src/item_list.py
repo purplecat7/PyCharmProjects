@@ -55,7 +55,7 @@ class ItemList(list):
         returned_item = self.get_item(item_id)
         fine_due = returned_item.get_fine_due()
         returned_item.clear_checkout()
-        self.remove_item(returned_item)
+        self.__remove_item(returned_item)
         return fine_due
 
     def checkout(self, item):
@@ -63,7 +63,7 @@ class ItemList(list):
         Check out library item to user: check if item available,
         add item to item list, tell item to set checkout date. Raise error if item not available to borrow."""
         if item.is_available():
-            self.add_item(item)
+            self.__add_item(item)
             item.set_checkout()
         else:
             raise KeyError('Item not available to borrow.')
