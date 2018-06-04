@@ -18,7 +18,7 @@ class Item():
         get_checkout_date () : return the checkout date attribute.
         get_fine_due()       : calculate the fine owed on this item.
         is_available()       : return True if available, False otherwise.
-        set_checkout()       : set the date of checkout to today's date.
+        set_checkout()       : set the date of checkout to specified or today's date.
         clear_checkout()     : set the item to be not checked-out (i.e. check-
                                in) and clear checkout_date attribute.
 
