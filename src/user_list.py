@@ -8,6 +8,7 @@ Has methods to:
 
 from user import User
 
+
 class UserList:
     """
     This class is a list of all the users in the library system.
