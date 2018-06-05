@@ -25,7 +25,6 @@ class UserList:
     def __init__(self):
         # create a list
         self.user_list = list()
-        pass
 
     def __del__(self):
         pass
@@ -38,7 +37,6 @@ class UserList:
         """
         # add the user to the list
         self.user_list.append(user)
-        pass
 
     def find(self, user_id):
         """
@@ -96,3 +94,12 @@ class UserList:
         # Tell user to return the item.
         return user.return_item(item)
 
+    def fines_owed(self,user_id):
+        # Find the user in the list
+        user = self.find(user_id)
+        # ToDo Get fines due from user
+
+    def pay_fine(self, user_id, amount):
+        # find user
+        user = self.find(user_id)
+        # TODO have user pay amount
