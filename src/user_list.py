@@ -1,9 +1,5 @@
 """
 A class that describes the user list.
-
-Has methods to:
-
-
 """
 
 from user import User
