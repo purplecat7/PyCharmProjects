@@ -40,17 +40,17 @@ class UserList:
         self.user_list.append(user)
         pass
 
-    def find(self, id):
+    def find(self, user_id):
         """
         Find the user from the ID on the list
 
-        :param id: int, id of a user to find on the list
+        :param user_id: int, id of a user to find on the list
         :return: User object or None if no user with that id is on the list
         """
         # for each item in the list check its ID
         # and return the user whose ID matches the ID provided or None if user doesn't exist
         for user in self.user_list:
-            if id == user.get_id():
+            if user_id == user.get_id():
                 return user
         else:
             return None
@@ -95,3 +95,4 @@ class UserList:
         user = self.find(user_id)
         # Tell user to return the item.
         return user.return_item(item)
+
