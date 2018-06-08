@@ -62,7 +62,7 @@ class Item:
             days_over = 0
         else:
             days_over = ((datetime.date.today() - self.checkout_date).days -
-                        self.max_loan_time)
+                         self.max_loan_time)
             days_over *= days_over > 0
         return days_over
 
