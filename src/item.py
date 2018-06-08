@@ -1,124 +1,135 @@
 from __future__ import division
-from datetime import datetime
-# ^ not a typo, the module has the same name as the package
+import datetime
 
-class Item():
+
+class Item:
     """
-    Class for items in the library.
+    Abstract class for items in the library.
 
-    Attributes:
-        id            : int, unique identifier for the item.
-        title         : str, title of item.
-        checkout_date : date at which item was checked-out.
-        checked_out   : bool, whether checked out or not.
+    --Public attributes--
+        id_num (int)     : unique identifier for the item.
+        title (str)      : title of item.
+        checkout_date    : date at which item was checked-out
+                           (datetime.datetime date object).
+        available (bool) : True if available for checking out.
 
-    Methods:
-        get_identifier()     : return the ID number attribute.
-        get_title()          : return the title attribute.
-        get_checkout_date () : return the checkout date attribute.
-        get_fine_due()       : calculate the fine owed on this item.
-        is_available()       : return True if available, False otherwise.
-        set_checkout()       : set the date of checkout to specified or today's date.
-        clear_checkout()     : set the item to be not checked-out (i.e. check-
-                               in) and clear checkout_date attribute.
-
+    --Public methods--
+        get_identifier()    : return the ID number (int).
+        get_title()         : return the title (str).
+        get_checkout_date() : return the checkout date
+                             (datetime.datetime date object).
+        is_available()      : return whether available for checkout or
+                              not (bool).
+        get_fine_due()      : calculate the fine owed on this item.
+        set_checkout()      : set the date of checkout and mark as
+                              unavailable (no return).
+        clear_checkout()    : check item in and clear checkout date
+                              (no return).
     """
 
-    def __init__(self, id, title):
-        """Initialise instance variables.
+    def __init__(self, id_num, title):
+        """Class initializer: declare instance variables. No return.
 
-        id : ID number.
-        title: title of item.
+        --Arguments--
+        id_num (int) : ID number.
+        title (str)  : title of item.
         """
-        self.id = id
+        self.id_num = id_num
         self.title = title
         self.checkout_date = None
-        self.checked_out = False
+        self.available = True
         pass
 
     def get_identifier(self):
-        """Return the ID number."""
-        return self.id
+        """Return the item ID number (int)."""
+        return self.id_num
 
     def get_title(self):
-        """Return the title."""
+        """Return the item title (str)."""
         return self.title
 
     def get_checkout_date(self):
-        """Return the checkout date."""
+        """Return the item checkout date (datetime.datetime date object)."""
         return self.checkout_date
 
-    def get_fine_due(self):
-        """Calculate the fine owed on this item."""
-        days_overdue = (datetime.today() - self.checkout_date).days - self.max_loan_time
-        the_fine = self.fee_rate*days_overdue*(days_overdue>0)
-        return the_fine
-
     def is_available(self):
-        """Return True if item is checked out."""
-        return not(self.checked_out == True)
+        """Return True if the item is available for checking out, else False."""
+        return self.available
 
-    def set_checkout(self, the_date=datetime.today()):
-        """Set the checkout date.
+    def get_overdue_days(self):
+        """Return the number of days item is overdue (int)."""
+        if self.checkout_date is None:
+            days_over = 0
+        else:
+            days_over = ((datetime.date.today() - self.checkout_date).days -
+                        self.max_loan_time)
+            days_over *= days_over > 0
+        return days_over
 
-        Optional argument:
+    def get_fine_due(self):
+        """Return the fine owed (float) in GBP on item."""
+        return self.fee_rate*self.get_overdue_days()
 
-        the_date: datetime.datetime date format, by default this is set to
+    def set_checkout(self, the_date=datetime.date.today()):
+        """Set the checkout date. No return.
+
+        --Arguments--
+        the_date: datetime module date object; by default this is
                   today's date but may be set by using
 
-                      the_date = datetime.strpdate(date, "%d/%m/%y")
+                      datetime.date(YEAR, MONTH, DAY)
 
-                  where date is a string in the same format as the second
-                  argument (see datetime docs for details).
+                  where the YEAR, MONTH and DAY arguments are
+                  integers (see datetime docs for further details).
         """
+        if type(the_date) != datetime.date:
+            raise TypeError('Checkout date must be a datetime.date object.')
+
         self.checkout_date = the_date
-        self.checked_out = True
+        self.available = False
         pass
 
     def clear_checkout(self):
-        """Clear the checkout date."""
+        """Clear the checkout date and mark as available. No return."""
         self.checkout_date = None
-        self.checked_out = False
+        self.available = True
         pass
 
 
 class Book(Item):
-    """
-    Book class, inherits from Item.
+    """Book class (concrete, inherits from Item).
 
-    Attributes:
-        fee_rate      : float, over-due fee per day over due-date.
-        max_loan_time : float, maximum number of days item can be on loan.
+    --Additional public attributes--
+        fee_rate (float)    : fee accrued in GBP per day over due-date.
+        max_loan_time (int) : maximum number of days item can be on loan.
     """
 
     # Class attributes:
-    fee_rate = 0.5 # GBP/day
-    max_loan_time = 28 # days
+    fee_rate = 0.5  # GBP/day
+    max_loan_time = 28  # days
 
 
 class Dvd(Item):
-    """
-    DVD class, inherits from Item.
+    """DVD class (concrete, inherits from Item).
 
-    Attributes:
-        fee_rate      : float, over-due fee per day over due-date.
-        max_loan_time : float, maximum number of days item can be on loan.
+    --Additional public attributes--
+        fee_rate (float)    : fee accrued in GBP per day over due-date.
+        max_loan_time (int) : maximum number of days item can be on loan.
     """
 
     # Class attributes:
-    fee_rate = 2.0 # GBP/day
+    fee_rate = 2.0  # GBP/day
     max_loan_time = 7  # days
 
 
 class Journal(Item):
-    """
-    Journal article class, inherits from Item.
+    """Journal article class (concrete, inherits from Item).
 
-        Attributes:
-        fee_rate      : float, over-due fee per day over due-date.
-        max_loan_time : float, maximum number of days item can be on loan.
+    --Additional public attributes--
+        fee_rate (float)    : fee accrued in GBP per day over due-date.
+        max_loan_time (int) : maximum number of days item can be on loan.
     """
 
     # Class attributes:
-    fee_rate = 1.0 # GBP/day
-    max_loan_time = 14 # days
+    fee_rate = 1.0  # GBP/day
+    max_loan_time = 14  # days
