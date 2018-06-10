@@ -23,6 +23,9 @@ class UserList:
     """
 
     def __init__(self):
+        """
+        create an empty list (as an attribute) to contain the users.
+        """
         # create a list
         self.user_list = list()
 
@@ -34,13 +37,14 @@ class UserList:
         Add a new user item to the list
 
         :param user: user object, to be added to the list
+        :return: n/a
         """
-        # add the user to the list
+        # add the user to the line
         self.user_list.append(user)
 
     def find(self, user_id):
         """
-        Find the user from the ID on the list
+        Find the user on the list from their ID
 
         :param user_id: int, id of a user to find on the list
         :return: User object or None if no user with that id is on the list
@@ -74,7 +78,7 @@ class UserList:
 
         :param user_id: an int giving the id of a user to find on the list
         :param item: an item object for the user to checkout
-        :return: calls checkout on the user with item
+        :return: n/a
         """
         # Find the user on the list
         user = self.find(user_id)
@@ -87,19 +91,32 @@ class UserList:
 
         :param user_id: an int giving the id of a user to find on the list
         :param item: an item object for the user to checkout
-        :return: returns item that user (with id) has out.
+        :return: n/a
         """
         # Find the user in the list
         user = self.find(user_id)
         # Tell user to return the item.
         return user.return_item(item)
 
-    def fines_owed(self,user_id):
-        # Find the user in the list
-        user = self.find(user_id)
-        # ToDo Get fines due from user
-
-    def pay_fine(self, user_id, amount):
-        # find user
-        user = self.find(user_id)
-        # TODO have user pay amount
+    # def fines_owed(self,user_id):
+    #     """
+    #     Finds the fines that a user owes from their ID.
+    #
+    #     :param user_id: c
+    #     :return: float, the fines the user owes
+    #     """
+    #     # Find the user in the list
+    #     user = self.find(user_id)
+    #     # ToDo Get fines due from user
+    #
+    # def pay_fine(self, user_id, amount):
+    #     """
+    #     Pays fines for user with given ID.
+    #
+    #     :param user_id: an int giving the id of a user to find on the list
+    #     :param amount: float, the amount the user pays off
+    #     :return: n/a
+    #     """
+    #     # find user
+    #     user = self.find(user_id)
+    #     # TODO have user pay amount
