@@ -1,10 +1,12 @@
 class ItemList(list):
     """
     Class for list of library items.
-    Methods:
+    Methods (all public):
         add_item(Item): adds library item to list
         remove_item(Item): removes library item from list
-        get_item(title): returns item object from item title
+        get_item(title_or_id): returns item object from item title or ID number
+        get_item_from_title(title): returns item object from item title
+        get_item_from_id(title): returns item object from item ID number
         checkout(Item): check item out to library user
         return(title): return item to library from use
         number_of_items(): number of items in list
@@ -12,15 +14,19 @@ class ItemList(list):
     """
 
     def add_item(self, item):
-        """Input: item object. No return. Adds a library item to the list."""
+        """Adds a library item to the list. Parameter: item object. No return."""
         self.append(item)
 
     def remove_item(self, item):
-        """Input: item object. No return. Removes a library item from the list."""
+        """Remove a library item from the list. Parameter: item object. No return."""
         self.remove(item)
 
     def get_item_from_title(self, title):
-        """Input: string of item title. Return: item object or None if title not found in list."""
+        """
+        Find library item given its title.
+        Parameter: item title (str).
+        Return: item object or None if title not found in list.
+        """
         requested_item = None
         for item in self:
             if item.title == title:
@@ -29,7 +35,11 @@ class ItemList(list):
         return requested_item
 
     def get_item_from_id(self, item_id):
-        """Input: item id number. Return: item object or None if id not found in list."""
+        """
+        Find library item given its ID
+         number.
+        Parameter: item id number (int). Return: item object or None if id not found in list.
+        """
         requested_item = None
         for item in self:
             if item.id == item_id:
@@ -37,21 +47,27 @@ class ItemList(list):
                 break
         return requested_item
 
-    def get_item(self, item_id):
-        """Input: string of item title OR item id. Return: item object.
-        Uses get_item_from_title if input is string and get_item_from_id if input is int."""
-        if type(item_id) == str:
-            requested_item = self.get_item_from_title(item_id)
-        elif type(item_id) == int:
-            requested_item = self.get_item_from_id(item_id)
+    def get_item(self, item_id_or_title):
+        """
+        Find library item from either its title or ID number.
+        Parameter: item title (str) OR item id (int).
+        Return: item object.
+        """
+        if type(item_id_or_title) == str:
+            requested_item = self.get_item_from_title(item_id_or_title)
+        elif type(item_id_or_title) == int:
+            requested_item = self.get_item_from_id(item_id_or_title)
         else:
             raise TypeError('Item must be identified through ID (int) or title (str)')
         return requested_item
 
     def return_item(self, item_id):
-        """Input: int of item ID or string of item title. Return float: final fine owed on item.
+        """
         Check item back into library from user: remove item from item list, get final fine due on item, and tell
-        item to clear checkout date."""
+        item to clear checkout date.
+        Parameter: item ID (int) or item title (str).
+        Return: final fine owed on item (float).
+        """
         returned_item = self.get_item(item_id)
         fine_due = returned_item.get_fine_due()
         returned_item.clear_checkout()
@@ -59,9 +75,12 @@ class ItemList(list):
         return fine_due
 
     def checkout(self, item):
-        """Input: item object. No return.
-        Check out library item to user: check if item available,
-        add item to item list, tell item to set checkout date. Raise error if item not available to borrow."""
+        """
+        Check out library item to user: check if item available, add item to item list,
+        tell item to set checkout date. Raise error if item not available to borrow.
+        Parameter: item object.
+        No return.
+        """
         if item.is_available():
             self.add_item(item)
             item.set_checkout()
@@ -69,12 +88,12 @@ class ItemList(list):
             raise KeyError('Item not available to borrow.')
 
     def number_of_items(self):
-        """Returns number of items in list (no parameters taken)."""
+        """No parameters taken. Return: number of items in list."""
         list_length = len(self)
         return list_length
 
     def fines_owed(self):
-        """Return float: total fines owed over all items in list. No parameters taken."""
+        """No parameters taken. Return: total fines owed over all items in list (float)."""
         fine_due = 0.
         for item in self:
             fine_due += item.get_fine_due()
