@@ -1,5 +1,6 @@
 import item_list
-
+import except_too_many_items
+import max_fine_error.py
 
 class User():
 	"""
@@ -41,9 +42,10 @@ class User():
 		"""
 
 		# if user has fines > than max fines or num of items > max allowed then can't borrow
-		if (self.user_item_list.fines_owed() + self.fines > maxfines) or (
-				self.user_item_list.number_of_items() > maxallowed):
-			return False
+		if ((self.user_item_list.fines_owed() + self.fines) > maxfines):
+			raise(max_fine_error.MaxFinesError)
+		elif (self.user_item_list.number_of_items() > maxallowed):
+			raise(except_too_many_items.TooManyCooksError)
 		else:  # can borrow
 			return True
 
