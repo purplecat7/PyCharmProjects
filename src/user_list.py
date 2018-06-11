@@ -86,18 +86,18 @@ class UserList:
         # tell user to checkout item
         return user.checkout(item)
 
-    def return_item(self, user_id, item):
+    def return_item(self, user_id, item_id):
         """
         Return the an item in a users account.
 
         :param user_id: an int giving the id of a user to find on the list
-        :param item: an item object for the user to checkout
+        :param item_id: an item ID for the user to checkout
         :return: n/a
         """
         # Find the user in the list
         user = self.find(user_id)
         # Tell user to return the item.
-        return user.return_item(item)
+        return user.return_item(item_id)
 
     def fines_owed(self,user_id):
         """

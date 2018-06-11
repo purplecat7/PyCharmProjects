@@ -221,7 +221,7 @@ def main():
 
     print ("Judy Hacker")
     try:
-        judy_hacker(2, 1, lib_controller)
+        judy_hacker(1, 1, lib_controller)
     except:
         print ("Judy Hacker failed")
         raise

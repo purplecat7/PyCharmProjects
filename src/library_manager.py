@@ -55,8 +55,7 @@ class LibMgr:
         :param title: The title of the returned item.
         :return: some things. # ToDo: Beth, fill this in properly.
         """
-        # ToDo: add the method for return_item here
-        pass
+        self.user_list.return_item(ID, item_ID)
 
     def get_user_fines(self, ID):
         """
