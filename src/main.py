@@ -105,10 +105,7 @@ def exercise2(user_id, return_id, title, lib_controller):
     :param lib_controller: LibraryController object
     :return: no return
     """
-    fine = lib_controller.user_fine(user_id)
-    print ("User: ", user_id)
-    print ("Total Fine: ", fine)
-    
+
     lib_controller.return_item(user_id, return_id)
     lib_controller.checkout(user_id, title)
 
@@ -133,16 +130,11 @@ def judy_hacker(user_id, return_id, lib_controller):
     is bringing back an overdue journal."""
     # One outstanding book
     date = dt.datetime(2018, 06, 03, 11, 30, 00)
-    lib_controller.checkout(user_id,
-                            'Harry Potter and the Prisoner of Azkaban', date)
+    lib_controller.checkout(user_id, 'Chocolat', date)
     # Checks out new book
     lib_controller.checkout(user_id, 'Debugging to music')
     # is bringing back an overdue journal
-    fine = lib_controller.user_fine(user_id)
-    print ("User: ", user_id)
-    print ("Total Fine: ", fine)
     lib_controller.return_item(user_id, return_id)
-
 
 
 def miss_marple(lib_controller):
@@ -193,12 +185,12 @@ def main():
         print ("Exercise 1 failed")
         raise
 
-    #print ("Exercise 2...")
-    #try:
-    #    exercise2(1, 19, 'Sleuthing in C#', lib_controller)
-    #except:
-    #    print ("Exercise 2 failed")
-    #    raise
+    print ("Exercise 2...")
+    try:
+       exercise2(1, 19, 'Sleuthing in C#', lib_controller)
+    except:
+       print ("Exercise 2 failed")
+       raise
 
     print ("Johnny Codewarrior")
     try:

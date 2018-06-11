@@ -1,6 +1,6 @@
 import item_list
 import except_too_many_items
-import max_fine_error.py
+import max_fine_error
 
 class User():
 	"""
