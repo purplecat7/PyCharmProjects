@@ -173,12 +173,12 @@ def main():
         print ("Exercise 1 failed")
         raise
 
-    # print ("Exercise 2...")
-    # try:
-    #     exercise2(1, 19, 'Sleuthing in C#', lib_controller)
-    # except:
-    #     print ("Exercise 2 failed")
-    #     raise
+    #print ("Exercise 2...")
+    #try:
+    #    exercise2(1, 19, 'Sleuthing in C#', lib_controller)
+    #except:
+    #    print ("Exercise 2 failed")
+    #    raise
 
     print ("Johnny Codewarrior")
     try:
@@ -187,12 +187,12 @@ def main():
         print ("Johnny codewarrior failed")
         raise
 
-    #print ("Judy Hacker")
-    #try:
-    #    judy_hacker(user_id, return_id, lib_controller)
-    #except:
-    #    print ("Judy Hacker failed")
-    #    raise
+    print ("Judy Hacker")
+    try:
+        judy_hacker(2, 1, lib_controller)
+    except:
+        print ("Judy Hacker failed")
+        raise
     
 
 if __name__ == '__main__':
