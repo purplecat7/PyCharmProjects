@@ -144,13 +144,13 @@ def miss_marple(lib_controller):
     :return:
     """
     checked_out_user = 4
-    lib_controller.checkout(checked_out_user,"Sleuthing in C#")
+    lib_controller.checkout(checked_out_user,"Amazing Clouds")
     #try to check out the item for Miss MArple
     try:
         lib_controller.checkout(3, "Sleuthing in C#")
 
     except ItemNotAvailableError as e: #it should raise this exception
-        pass
+        print(e.message)
 
 
 
