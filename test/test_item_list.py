@@ -23,7 +23,7 @@ class TestItemList(object):
         # use self.attribute to keep anything which needs to be accessed later
         print('setUp method\n')
         self.my_list = item_list.ItemList()
-        self.my_item = item.Item(34, 'Cloud Atlas')
+        self.my_item = item.Book(34, 'Cloud Atlas')
         self.my_list.add_item(self.my_item)
 
 
@@ -33,7 +33,7 @@ class TestItemList(object):
 
     def test_number_of_items(self):
         print('test_number_of_items\n')
-        my_second_item = item.Item(31, 'City of Stairs')
+        my_second_item = item.Book(31, 'City of Stairs')
         self.my_list.add_item(my_second_item)
         ns.assert_equals(self.my_list.number_of_items(), 2)
 
