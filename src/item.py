@@ -1,6 +1,6 @@
 from __future__ import division
 import datetime
-
+import except_item_not_available
 
 class Item:
     """
@@ -54,7 +54,10 @@ class Item:
 
     def is_available(self):
         """Return True if the item is available for checking out, else False."""
-        return self.available
+        if not self.available:
+            raise(except_item_not_available.ItemNotAvailableError)
+        else:
+            return self.available
 
     def get_overdue_days(self):
         """Return the number of days item is overdue (int)."""
