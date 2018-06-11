@@ -57,3 +57,11 @@ class LibMgr:
         """
         # ToDo: add the method for return_item here
         pass
+
+    def get_user_fines(self, ID):
+        """
+        Get outstanding fines owed by a user.
+        :param ID: user ID number
+        :return: user's outstanding fines
+        """
+        return self.user_list.fines_owed(ID)
