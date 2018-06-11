@@ -9,8 +9,8 @@ class UserIdError:
     """
 
     def __init__(self):
-        pass
+        self.message = 'User ID not found'
 
     def __str__(self):
         # repr() returns a string representation of the object
-        pass
+        return repr(self.message)
