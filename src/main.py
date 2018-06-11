@@ -7,6 +7,7 @@ FILE
 CLASSES
     NumID
 """
+from __future__ import print_function
 import item_init as im
 import userinit as um
 import library_manager
@@ -115,13 +116,31 @@ def johnny_codewarrior(lib_controller):
     """What happens when Johnny Codewarrior, who has no accrued fines and one
     outstanding book, not overdue, checks out a book entitled Document, Your
     job depends on it."""
-    user_id = NumbID()
+    user_id = 1
     # One outstanding book
     date = dt.datetime(2018, 06, 01, 12, 56, 07)
     lib_controller.checkout(user_id,
                             'Harry Potter and the Prisoner of Azkaban', date)
     # Checks out new book
     lib_controller.checkout(user_id, 'Document, Your job depends on it')
+
+def judy_hacker(user_id, return_id, lib_controller):
+    """What happens when Judy Hacker, who has 2 pounds oustanding
+    fines and one outstanding book, not overdue,
+    checks out a DVD entitled 'Debugging to music' and
+    is bringing back an overdue journal."""
+    # One outstanding book
+    date = dt.datetime(2018, 06, 03, 11, 30, 00)
+    lib_controller.checkout(user_id,
+                            'Harry Potter and the Prisoner of Azkaban', date)
+    # Checks out new book
+    lib_controller.checkout(user_id, 'Debugging to music')
+    # is bringing back an overdue journal
+    fine = lib_controller.user_fine(user_id)
+    print ("User: ", user_id)
+    print ("Total Fine: ", fine)
+    lib_controller.return_item(user_id, return_id)
+
 
 
 def miss_marple(lib_controller):
@@ -177,8 +196,15 @@ def main():
     try:
         johnny_codewarrior(lib_controller)
     except:
-        print "Johnny codewarrior failed"
+        print ("Johnny codewarrior failed")
         raise
+
+    #print ("Judy Hacker")
+    #try:
+    #    judy_hacker(user_id, return_id, lib_controller)
+    #except:
+    #    print ("Judy Hacker failed")
+    #    raise
     
 
 if __name__ == '__main__':
