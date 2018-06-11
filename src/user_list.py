@@ -2,8 +2,8 @@
 A class that describes the user list.
 """
 
-from user import User
-from user_not_valid import UserIdError
+from src.user import User
+from src.user_not_valid import UserIdError
 
 
 class UserList:
