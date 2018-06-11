@@ -7,6 +7,7 @@ FILE
 CLASSES
     NumID
 """
+from __future__ import print_function
 import item_init as im
 import userinit as um
 import library_manager
@@ -115,7 +116,7 @@ def johnny_codewarrior(lib_controller):
     """What happens when Johnny Codewarrior, who has no accrued fines and one
     outstanding book, not overdue, checks out a book entitled Document, Your
     job depends on it."""
-    user_id = NumbID()
+    user_id = 1
     # One outstanding book
     date = dt.datetime(2018, 06, 01, 12, 56, 07)
     lib_controller.checkout(user_id,
@@ -186,12 +187,12 @@ def main():
         print ("Johnny codewarrior failed")
         raise
 
-    print ("Judy Hacker")
-    try:
-        judy_hacker(user_id, return_id, lib_controller)
-    except:
-        print ("Judy Hacker failed")
-        raise
+    #print ("Judy Hacker")
+    #try:
+    #    judy_hacker(user_id, return_id, lib_controller)
+    #except:
+    #    print ("Judy Hacker failed")
+    #    raise
     
 
 if __name__ == '__main__':
