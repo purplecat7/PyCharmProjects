@@ -1,6 +1,6 @@
-import item_list
-import except_too_many_items
-import max_fine_error
+import src.item_list as s
+import src.except_too_many_items
+import src.max_fine_error
 
 class User():
 	"""
@@ -17,7 +17,7 @@ class User():
 
 		self.user_id = id  # assign id
 		self.fines = 0  # set initial fine of user to 0
-		self.user_item_list = item_list.ItemList()  # create users item list instance
+		self.user_item_list = s.ItemList()  # create users item list instance
 
 	def __del__(self):
 		"""

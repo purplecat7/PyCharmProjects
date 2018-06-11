@@ -31,14 +31,32 @@ class TestItem:
     # TEST METHODS:
     def test_get_title(self):
         print('Test get_title() method')
-        myItem = item.Item(1, 'The Title')
-        ns.assert_equals('The Title', myItem.get_title())
+        my_item = item.Item(1, 'The Title')
+        ns.assert_equals('The Title', my_item.get_title())
+        pass
+
+    def test_get_identifier(self):
+        print('Test get_identifier() method')
+        my_item = item.Item(12, 'The Title')
+        ns.assert_equals(12, my_item.get_identifier())
+        pass
+
+    def test_get_overdue_days(self):
+        print('Test get_overdue_days() method')
+        my_dvd = item.Dvd(18, 'My DVD')
+        ns.assert_equals(0, my_dvd.get_overdue_days())
+        pass
+
+    def test_get_fine_due(self):
+        print('Test get_fine_due() method')
+        my_book = item.Book(14, 'My Book')
+        ns.assert_equals(0.0, my_book.get_fine_due())
         pass
 
 
     @ns.raises(TypeError)
     def test_set_checkoute(self):
         print('Test_set_checkout() method')
-        myItem = item.Item(1, 'The Title')
-        myItem.set_checkout('01/01/2018')
+        my_item = item.Item(1, 'The Title')
+        my_item.set_checkout('01/01/2018')
         pass
