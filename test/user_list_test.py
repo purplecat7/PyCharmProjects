@@ -19,16 +19,26 @@ class TestUserList(object):
 
     @ns.raises(UserIdError)
     def test_no_user(self):
+        """
+        This test checks that an exception is raised if a user is not on the list
+        """
         # ask for a user not on the list
         #ns.assert_raises(UserIdError, TestUserList.user_list.find(3), "ccc")
         TestUserList.user_list.find(30)
 
     def test_on_list(self):
+        """
+        This test checks that finding a user that is on the list does not raise any errors
+        """
         #check a user is on the list
         #i.e no exception raised when you find them
         TestUserList.user_list.find(1)
 
     def test_add_user(self):
+        """
+        This test checks that if a new user is added to the list it can then be found from the list.
+        :return:
+        """
         #add a user to the list
         user = User(3)
         TestUserList.user_list.add_user(user)
