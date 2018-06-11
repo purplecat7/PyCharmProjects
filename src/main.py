@@ -124,6 +124,18 @@ def johnny_codewarrior(lib_controller):
     lib_controller.checkout(user_id, 'Document, Your job depends on it')
 
 
+def miss_marple(lib_controller):
+    """
+    Miss Marple wants to borrow "Sleuthing in C#"
+    :param lib_controller:
+    :return:
+    """
+    user_id = NumbID
+    #find the item
+
+
+
+
 def main():
     """
     Program initialisation and execution.
