@@ -3,6 +3,7 @@ A class that describes the user list.
 """
 
 from user import User
+from user_not_valid import UserIdError
 
 
 class UserList:
@@ -55,7 +56,7 @@ class UserList:
             if user_id == user.get_id():
                 return user
         else:
-            return None
+            raise UserIdError
 
     def able_to_borrow(self, user_id, max_fines, max_allowed):
         """
@@ -98,17 +99,17 @@ class UserList:
         # Tell user to return the item.
         return user.return_item(item)
 
-    # def fines_owed(self,user_id):
-    #     """
-    #     Finds the fines that a user owes from their ID.
-    #
-    #     :param user_id: c
-    #     :return: float, the fines the user owes
-    #     """
-    #     # Find the user in the list
-    #     user = self.find(user_id)
-    #     # ToDo Get fines due from user
-    #
+    def fines_owed(self,user_id):
+        """
+         Finds the fines that a user owes from their ID.
+
+        :param user_id: c
+        :return: float, the fines the user owes
+        """
+        # Find the user in the list
+        user = self.find(user_id)
+        return user.get_fines()
+
     # def pay_fine(self, user_id, amount):
     #     """
     #     Pays fines for user with given ID.
