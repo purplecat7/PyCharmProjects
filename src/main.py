@@ -12,6 +12,7 @@ import item_init as im
 import userinit as um
 import library_manager
 import datetime as dt
+from  except_item_not_available import ItemNotAvailableError
 
 
 class NumbID:
@@ -124,6 +125,7 @@ def johnny_codewarrior(lib_controller):
     # Checks out new book
     lib_controller.checkout(user_id, 'Document, Your job depends on it')
 
+
 def judy_hacker(user_id, return_id, lib_controller):
     """What happens when Judy Hacker, who has 2 pounds oustanding
     fines and one outstanding book, not overdue,
@@ -146,11 +148,17 @@ def judy_hacker(user_id, return_id, lib_controller):
 def miss_marple(lib_controller):
     """
     Miss Marple wants to borrow "Sleuthing in C#"
-    :param lib_controller:
+    :param lib_controller: lib_controller object
     :return:
     """
-    user_id = NumbID
-    #find the item
+    checked_out_user = 1
+    lib_controller.checkout(checked_out_user,"Sleuthing in C#")
+    #try to check out the item for Miss MArple
+    try:
+        lib_controller.checkout(3,"Sleuthing in C#")
+
+    except ItemNotAvailableError as e: #it should raise this exception
+        e.message
 
 
 
