@@ -150,6 +150,7 @@ def miss_marple(lib_controller):
         lib_controller.checkout(3,"Sleuthing in C#")
 
     except ItemNotAvailableError as e: #it should raise this exception
+        pass
 
 
 
@@ -166,7 +167,7 @@ def eric_halfbee(lib_controller):
     lib_controller.returnitem(user_id, "The Lovely Bones")
     lib_controller.returnitem(user_id, "The Curious Incident of the Dog in the Night-time")
     lib_controller.returnitem(user_id, "The Time Traveler's Wife")
-    lib_controller.pay
+    lib_controller.
 
 
 
