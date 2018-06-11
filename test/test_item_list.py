@@ -1,7 +1,7 @@
+from __future__ import print_function
 from src import item_list, item
 import nose.tools as ns
 from src import except_item_not_available
-from __future__ import print_function
 
 
 class TestItemList(object):
