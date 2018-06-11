@@ -44,7 +44,7 @@ class ItemList(list):
         """
         requested_item = None
         for item in self:
-            if item.id == item_id:
+            if item.id_num == item_id:
                 requested_item = item
                 break
         return requested_item
@@ -89,7 +89,6 @@ class ItemList(list):
             item.set_checkout()
         except ItemNotAvailableError:
             raise ItemNotAvailableError
-
 
     def number_of_items(self):
         """No parameters taken. Return: number of items in list."""
