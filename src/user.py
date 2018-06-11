@@ -57,8 +57,8 @@ class User():
 
 		try:  # try and check it out if its available to do so
 			self.user_item_list.checkout(item)  # pass item to users item list
-		except Exception as e:  # exception raised if item not available
-			raise (e)  # raise exception back to user list
+		except:  # exception raised if item not available
+			raise  # raise exception back to user list
 
 	def return_item(self, itemid):
 		"""
@@ -80,3 +80,23 @@ class User():
 
 		# return the user id
 		return self.user_id
+
+	def get_fines(self):
+		"""
+		Return the fines owed for user id
+
+		:param user_id: user id, flaot
+		:return: return the fines owed for user
+		"""
+
+		return self.fines
+
+	def pay_fines(self, amount):
+		"""
+		Pay the user fine by subtracting an amount from the users fine
+
+		:param: amount: an amount to pay off, float
+		:return: NA
+		"""
+
+		self.fines -= self.fines - amount
