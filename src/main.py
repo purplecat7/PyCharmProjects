@@ -147,7 +147,7 @@ def miss_marple(lib_controller):
     lib_controller.checkout(checked_out_user,"Sleuthing in C#")
     #try to check out the item for Miss MArple
     try:
-        lib_controller.checkout(3,"Sleuthing in C#")
+        lib_controller.checkout(3, "Sleuthing in C#")
 
     except ItemNotAvailableError as e: #it should raise this exception
         pass
@@ -168,8 +168,6 @@ def eric_halfbee(lib_controller):
     lib_controller.returnitem(user_id, "The Curious Incident of the Dog in the Night-time")
     lib_controller.returnitem(user_id, "The Time Traveler's Wife")
     lib_controller.
-
-
 
 
 
@@ -223,6 +221,13 @@ def main():
         judy_hacker(2, 1, lib_controller)
     except:
         print ("Judy Hacker failed")
+        raise
+
+    print ("Miss Marple")
+    try:
+        miss_marple(lib_controller)
+    except:
+        print ("Miss Marple failed to solve the crime")
         raise
     
 
