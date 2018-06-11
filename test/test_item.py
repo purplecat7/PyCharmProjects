@@ -35,6 +35,18 @@ class TestItem:
         ns.assert_equals('The Title', myItem.get_title())
         pass
 
+    def test_get_identifier(self):
+        print('Test get_identifier() method')
+        myItem = item.Item(12, 'The Title')
+        ns.assert_equals(12, myItem.get_identifier())
+        pass
+
+    def test_get_fine_due(self):
+        print('Test get_fine_due() method')
+        myBook = item.Book(14, 'My Book')
+        ns.assert_equals(0.0, myBook.get_fine_due())
+        pass
+
 
     @ns.raises(TypeError)
     def test_set_checkoute(self):
