@@ -8,8 +8,8 @@ class UserIdError(Exception):
 
     """
 
-    def __init__(self):
-        self.message = 'User ID not found'
+    def __init__(self, arg):
+        self.message = arg
 
     def __str__(self):
         # repr() returns a string representation of the object

@@ -56,7 +56,7 @@ class UserList:
             if user_id == user.get_id():
                 return user
         else:
-            raise UserIdError
+            raise UserIdError("The user " + user_id + " is not in the user list")
 
     def able_to_borrow(self, user_id, max_fines, max_allowed):
         """
