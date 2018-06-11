@@ -21,4 +21,18 @@ class TestUserList(object):
     def test_no_user(self):
         # ask for a user not on the list
         #ns.assert_raises(UserIdError, TestUserList.user_list.find(3), "ccc")
-        TestUserList.user_list.find(3)
+        TestUserList.user_list.find(30)
+
+    def test_on_list(self):
+        #check a user is on the list
+        #i.e no exception raised when you find them
+        TestUserList.user_list.find(1)
+
+    def test_add_user(self):
+        #add a user to the list
+        user = User(3)
+        TestUserList.user_list.add_user(user)
+        #check this user is on the list
+        user = TestUserList.user_list.find(3)
+        #check their id returned is right
+        ns.assert_equals(3,user.get_id())
