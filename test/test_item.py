@@ -53,7 +53,6 @@ class TestItem:
         ns.assert_equals(0.0, my_book.get_fine_due())
         pass
 
-
     @ns.raises(TypeError)
     def test_set_checkoute(self):
         print('Test_set_checkout() method')
