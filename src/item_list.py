@@ -1,3 +1,5 @@
+from except_item_not_available import ItemNotAvailableError
+
 class ItemList(list):
     """
     Class for list of library items.
@@ -81,11 +83,13 @@ class ItemList(list):
         Parameter: item object.
         No return.
         """
-        if item.is_available():
+        try:
+            item.is_available()
             self.add_item(item)
             item.set_checkout()
-        else:
-            raise KeyError('Item not available to borrow.')
+        except ItemNotAvailableError:
+            raise ItemNotAvailableError
+
 
     def number_of_items(self):
         """No parameters taken. Return: number of items in list."""
