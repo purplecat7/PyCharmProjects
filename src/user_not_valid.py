@@ -1,4 +1,4 @@
-class UserIdError:
+class UserIdError(Exception):
     """
     This is an exception class for when the user ID is not valid.
     -------

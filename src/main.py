@@ -143,14 +143,36 @@ def miss_marple(lib_controller):
     :param lib_controller: lib_controller object
     :return:
     """
-    checked_out_user = 1
+    checked_out_user = 4
     lib_controller.checkout(checked_out_user,"Sleuthing in C#")
     #try to check out the item for Miss MArple
     try:
         lib_controller.checkout(3, "Sleuthing in C#")
 
     except ItemNotAvailableError as e: #it should raise this exception
-        e.message
+        pass
+
+
+
+# def eric_halfbee(lib_controller):
+#     user_id = 4
+#     date = dt.datetime(2018, 06, 03, 11, 30, 00)
+#     #has some overdue books
+#     lib_controller.checkout(user_id,"New Moon", date)
+#     lib_controller.checkout(user_id, "The Lovely Bones", date)
+#     lib_controller.checkout(user_id, "The Curious Incident of the Dog in the Night-time", date)
+#     lib_controller.checkout(user_id, "The Time Traveler's Wife", date)
+#     #returns the pile of books
+#     lib_controller.returnitem(user_id,"New Moon")
+#     lib_controller.returnitem(user_id, "The Lovely Bones")
+#     lib_controller.returnitem(user_id, "The Curious Incident of the Dog in the Night-time")
+#     lib_controller.returnitem(user_id, "The Time Traveler's Wife")
+#     #Find the fines
+#     lib_controller.getuserfines(user_id)
+#     # ToDo pay fines if he has enough
+#     #
+
+
 
 
 def main():
