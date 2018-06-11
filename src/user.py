@@ -99,4 +99,4 @@ class User():
 		:return: NA
 		"""
 
-		self.fines -= self.fines - amount
+		self.fines -= amount
