@@ -3,6 +3,7 @@ A class that describes the user list.
 """
 
 from user import User
+from user_not_valid import UserIdError
 
 
 class UserList:
@@ -55,7 +56,7 @@ class UserList:
             if user_id == user.get_id():
                 return user
         else:
-            return None
+            raise UserIdError
 
     def able_to_borrow(self, user_id, max_fines, max_allowed):
         """
