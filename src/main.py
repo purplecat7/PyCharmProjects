@@ -147,7 +147,7 @@ def miss_marple(lib_controller):
     lib_controller.checkout(checked_out_user,"Amazing Clouds")
     #try to check out the item for Miss MArple
     try:
-        lib_controller.checkout(3, "Sleuthing in C#")
+        lib_controller.checkout(3, "Amazing Clouds")
 
     except ItemNotAvailableError as e: #it should raise this exception
         print(e.message)
