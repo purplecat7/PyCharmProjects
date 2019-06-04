@@ -1,12 +1,12 @@
 # Object of User for library system project
 
 class User:
-    #class attributes
 
     def __init__(self, name, user_id):
         # constructor
         self.name = name
         self.user_id = user_id
+        self.accrued_fine = 0
         self.max_borrow = 5
         self.max_fine = 50
         # Make an instance of ItemList
@@ -15,33 +15,27 @@ class User:
     def __del__(self):
         # destructor
 
-    def lenitems(self):
-        '''
-        Ask ItemList for length of list
-        :return: length int
-        '''
-        pass
 
-    def is_overdue(self):
+    def can_borrow(self):
         '''
-        Ask ItemList if any item is overdue
-        :return: Boolean
-        '''
-        pass
-
-    def set_date(self, item):
-        '''
-        Set the borrowed date on an item
-        :param item:
-        :return: item
-        '''
-        pass
-
-    def add_to_list(self, item):
-        '''
-        Ask ItemList to add item to list
-        :param item:
+        Check if user is allowed to borrow
         :return:
         '''
-        pass
+        # ask UserList for length of list
+        # check length of list against max_borrow
+        # Check accrued fine less than max_fine
+        # Ask UserList if any items are overdue
+
+
+    def checkout(self, item, date=None):
+        '''
+        Checkout book
+        :param item:
+        :param date:
+        :return:
+        '''
+        # Set the borrowing date to item
+        # Ask ItemList to add item to list
+
+
 
