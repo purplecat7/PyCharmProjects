@@ -61,7 +61,7 @@ class Item():
         Calculate number of days by which item is overdue
         If item is not overdue returns zero
         :param date: datetime object of today's date
-        :return: int, number of days overdue
+        :return: float, number of days overdue
         """
 
         days_overdue = (today_date - self.checkout_date) - self.lend_time
@@ -69,7 +69,7 @@ class Item():
         # will be timedelta object
 
         return days_overdue.days
-        # return integer number of days
+        # return float number of days
 
 
     def is_overdue(self, date):
@@ -114,34 +114,23 @@ class Item():
 
 class Book(Item):
 
-    def __init__(self, name, id):
-
-        super().__init__(name, id)
-        # initialise all of the overarching Item attributes
-
-        self.lend_time = datetime.timedelta(weeks = 4)
-        self.fine_rate = .5
-        # fine rate 50p per day, loan period 4 weeks
+    lend_time = datetime.timedelta(weeks = 4)
+    fine_rate = .5
+    # fine rate 50p per day, loan period 4 weeks
 
 
 class DVD(Item):
-    def __init__(self, name, id):
-        super().__init__(name, id)
-        # initialise all of the overarching Item attributes
 
-        self.lend_time = datetime.timedelta(weeks=1)
-        self.fine_rate = 2
-        # fine rate £2 per day, loan period 1 week
+    lend_time = datetime.timedelta(weeks=1)
+    fine_rate = 2
+    # fine rate £2 per day, loan period 1 week
 
 
 class Journal(Item):
-    def __init__(self, name, id):
-        super().__init__(name, id)
-        # initialise all of the overarching Item attributes
 
-        self.lend_time = datetime.timedelta(weeks=2)
-        self.fine_rate = 2
-        # fine rate £2 per day, loan period 2 weeks
+    lend_time = datetime.timedelta(weeks=2)
+    fine_rate = 2
+    # fine rate £2 per day, loan period 2 weeks
 
 
 
