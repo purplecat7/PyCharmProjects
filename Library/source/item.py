@@ -58,5 +58,28 @@ class Item():
         # if the item was not everdue this will return zero (so may as well be added)
 
 
-    def is_overdue(self):
+    def days_overdue(self, date):
+        """
+        Calculate number of days by which item is overdue
+        If item is not overdue returns zero
+        :param date: datetime object of today's date
+        :return: int, number of days overdue
+        """
+
+        days_overdue = (today_date - self.checkout_date) - self.lend_time
+        # calculate number of days item is overdue (may be negative)
+        # will be timedelta object
+
+        return days_overdue.days
+        # return integer number of days
+
+
+    def is_overdue(self, date):
+        """
+
+        :param date:
+        :return:
+        """
+
+
 
