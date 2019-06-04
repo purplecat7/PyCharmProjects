@@ -18,7 +18,7 @@ class Item():
         # delete an item
 
 
-    def setdate(self, date):
+    def setdate(self, date=datetime.date.today()):
         """
         Set the date attribute of item to given date (on which item is checked out)
         :param date: datetime object of today's date
@@ -30,7 +30,7 @@ class Item():
         # set date that item is checked out
 
 
-    def checkin_item(self, date):
+    def checkin_item(self, date=datetime.date.today()):
         """
         Calculate fine resultant from item being overdue (if any)
         Set checkout_date to None, as item is no longer checked out
@@ -56,7 +56,7 @@ class Item():
         # if the item was not everdue this will return zero (so may as well be added)
 
 
-    def find_days_overdue(self, date):
+    def find_days_overdue(self, date=datetime.date.today()):
         """
         Calculate number of days by which item is overdue
         If item is not overdue returns zero
@@ -64,7 +64,7 @@ class Item():
         :return: float, number of days overdue
         """
 
-        days_overdue = (today_date - self.checkout_date) - self.lend_time
+        days_overdue = (date - self.checkout_date) - self.lend_time
         # calculate number of days item is overdue (may be negative)
         # will be timedelta object
 
@@ -72,7 +72,7 @@ class Item():
         # return float number of days
 
 
-    def is_overdue(self, date):
+    def is_overdue(self, date=datetime.date.today()):
         """
         Determine whether item is overdue
         :param date: datetime object of today's date
