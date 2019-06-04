@@ -24,7 +24,7 @@ class User:
         # ask UserList for length of list
         # check length of list against max_borrow
         # Check accrued fine less than max_fine
-        # Ask UserList is any items are overdue
+        # Ask UserList if any items are overdue
 
 
     def checkout(self, item, date=None):
