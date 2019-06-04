@@ -20,6 +20,10 @@ class Item():
 
 
     def setdate(self, date):
+        """
+        Set the date attribute of item to given date (on which item is checked out)
+        :param date: datetime object of today's date
+        """
 
         # possibly raise exception if date is not None
 
@@ -28,9 +32,17 @@ class Item():
 
 
     def checkin_item(self, date):
+        """
+        Calculate fine resultant from item being overdue (if any)
+        Set checkout_date to None, as item is no longer checked out
+        :param date: datetime object of today's date
+        :return:
+        """
 
         days_overdue = (today_date - self.checkout_date) - self.lend_time
         # calculate number of days item is overdue (may be negative)
+
+        fine = 0
 
         if days_overdue > 0:
             # if item is overdue
@@ -42,4 +54,9 @@ class Item():
         # now item is returned reset checkout date to None
 
         return fine
-        #
+        # the method checkin_item will return to the caller the fine which needs to be added to the User's fine accrued
+        # if the item was not everdue this will return zero (so may as well be added)
+
+
+    def is_overdue(self):
+
