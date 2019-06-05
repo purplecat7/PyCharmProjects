@@ -81,6 +81,30 @@ def borrow_item(libsys, username, user_id, item_name, item_id, date = datetime.d
     libsys.borrow_item(username, user_id, item_name, item_id, date)
 
 
+def return_item(libsys, username, user_id, item_name, item_id, date = datetime.date.today()):
+    """
+    Have user return item on date in libsys
+    :param libsys: LibrarySystem object
+    :param username: string, name of user
+    :param user_id: int, unique user id
+    :param item_name: string, name of item
+    :param item_id: int, unique item id
+    :param date: datetime object, date at which item is(/was) borrowed
+    """
+    libsys.return_item(username, user_id, item_name, item_id, date)
+
+
+def all_scenario_user_setup(libsys):
+    """
+    Create users for test scenarios
+    :param libsys: LibrarySystem object
+    """
+    libsys.add_new_user("JohnnyCodewarrior")
+    libsys.add_new_user("JudyHacker")
+    libsys.add_new_user("MissMarple")
+    libsys.add_new_user("EricHalfbee")
+
+
 def scenario1_setup(libsys, book_name):
     """
     Johnny has one outstanding book, not overdue
@@ -96,19 +120,6 @@ def scenario1(libsys):
     :param libsys: LibrarySystem object
     """
     borrow_item(libsys, "JohnnyCodewarrior", None, "Document, Your job depends on it", None)
-
-
-def return_item(libsys, username, user_id, item_name, item_id, date = datetime.date.today()):
-    """
-    Have user return item on date in libsys
-    :param libsys: LibrarySystem object
-    :param username: string, name of user
-    :param user_id: int, unique user id
-    :param item_name: string, name of item
-    :param item_id: int, unique item id
-    :param date: datetime object, date at which item is(/was) borrowed
-    """
-    libsys.return_item(username, user_id, item_name, item_id, date)
 
 
 def scenario2_setup(libsys, overdueJournalName, date_in_the_past, book_name,
@@ -145,7 +156,11 @@ def scenario3(libsys):
     Run scenario 3 from CRC exercise on libsys
     :param libsys: LibrarySystem object
     """
-    libsys.is_item_out(item_name = "Sleuthing in C#", item_id = None)
+    is_journal_avail = libsys.is_item_available(item_name = "Sleuthing in C#")
+
+    if is_journal_avail:
+
+        borrow_item(libsys, username="MissMarple", item_name="Sleuthing in C#")
 
 
 def scenario4_setup(libsys, item_list, list_of_past_dates):

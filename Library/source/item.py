@@ -129,8 +129,8 @@ class DVD(Item):
 class Journal(Item):
 
     lend_time = datetime.timedelta(weeks=2)
-    fine_rate = 2
-    # fine rate £2 per day, loan period 2 weeks
+    fine_rate = 1
+    # fine rate £1 per day, loan period 2 weeks
 
 
 
