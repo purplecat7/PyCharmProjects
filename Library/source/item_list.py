@@ -9,13 +9,39 @@ class ItemList(list):
     find_items()
     """
     def len_items(self):
-        '''
+        """
         number of items in the list
         :return: length of self
-        '''
+        """
 
     def is_overdue(self, item):
-        '''
-        asks the
+        """
+        asks the item if it is overdue
+        :param item: name of item
+        :return: pass on message from item
+        """
+
+    def add_to_list(self, item):
+        """
+        adds the given item to the list
+        :param item: instance of item
         :return:
-        '''
+        """
+
+        # self.add(item)
+
+    def get_item(self, item):
+        """
+        returns the item asked for
+        :param item: name of item
+        :return: instance of item
+        """
+
+        # User super's get item?
+
+    def find_items(self, item):
+        """
+        Check for item?
+        :param item: name of item
+        :return:
+        """
