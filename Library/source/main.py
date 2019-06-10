@@ -176,7 +176,7 @@ if __name__ == "__main__":
     item_init = ItemInitialise(libsys)
     # instantiate Item Initialiser
     user_init = UserInitialise(libsys)
-    setup_libsys(libsys, {op.normpath("../data/top100t.txt"): Book})
+    setup_libsys({op.normpath("../data/top100t.txt"): Book})
     all_scenario_user_setup(user_init)
     scenario1_setup(libsys, 5)
     scenario1(libsys)
