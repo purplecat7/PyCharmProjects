@@ -14,6 +14,8 @@ class ItemList(list):
         :return: length of self
         """
 
+        pass
+
     def is_overdue(self, item):
         """
         asks the item if it is overdue
@@ -21,11 +23,15 @@ class ItemList(list):
         :return: pass on message from item
         """
 
+        pass
+
     def get_fines(self):
         """
         ask each item what the fine is
         :return: total fine
         """
+
+        pass
 
     def add_to_list(self, item):
         """
@@ -33,6 +39,8 @@ class ItemList(list):
         :param item: instance of item
         :return:
         """
+
+        pass
 
         # self.add(item)
 
@@ -45,9 +53,13 @@ class ItemList(list):
 
         # User super's get item?
 
+        pass
+
     def find_items(self, item):
         """
         Check for item?
         :param item: name of item
         :return:
         """
+
+        pass
