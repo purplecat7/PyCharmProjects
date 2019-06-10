@@ -1,5 +1,21 @@
+"""
+Main "actor" for Library
+Assumes a LibrarySystem object with methods:
+
+borrow_item(username, user_id, item_name, item_id, date)
+return_item(username, user_id, item_name, item_id, date)
+change_fine_of_user
+is_item_available
+add_new_item
+add_new_user
+find_fine_of_user
+can_user_borrow
+"""
+
 from libsys import LibrarySystem
-from item import Item, Book, DVD, Journal
+from item_initialise import  ItemInitialise
+from user_initialise import UserInitialise
+from item import Book, DVD, Journal
 import datetime
 
 class NumbID:
@@ -47,51 +63,18 @@ def setup_libsys(initial_catalogue_dictionary):
     libsys = LibrarySystem()
     # instantiate Library System
 
+    item_init = ItemInitialise(libsys)
+    # instantiate Item Initialiser
+
     if initial_catalogue_dictionary:
         # if dictionary is non-empty
 
         for key in initial_catalogue_dictionary:
 
-            libsys.load_items(filename = key, item_type = initial_catalogue_dictionary[key])
+            item_init.load_items(filename = key, item_type = initial_catalogue_dictionary[key])
             # load items from specified file to the Library System
 
     return libsys
-
-
-def add_new_item(libsys, item_type, name):
-    """
-    Add new item to library system
-    :param libsys: LibrarySystem object
-    :param item_type: class, subclass of Item, e.g. Book, DVD, Journal
-    :param name: string, name of item
-    """
-    libsys.load_new_item(item_type, name)
-
-
-def borrow_item(libsys, username, user_id, item_name, item_id, date = datetime.date.today()):
-    """
-    Have user borrow item on date in libsys
-    :param libsys: LibrarySystem object
-    :param username: string, name of user
-    :param user_id: int, unique user id
-    :param item_name: string, name of item
-    :param item_id: int, unique item id
-    :param date: datetime object, date at which item is(/was) borrowed
-    """
-    libsys.borrow_item(username, user_id, item_name, item_id, date)
-
-
-def return_item(libsys, username, user_id, item_name, item_id, date = datetime.date.today()):
-    """
-    Have user return item on date in libsys
-    :param libsys: LibrarySystem object
-    :param username: string, name of user
-    :param user_id: int, unique user id
-    :param item_name: string, name of item
-    :param item_id: int, unique item id
-    :param date: datetime object, date at which item is(/was) borrowed
-    """
-    libsys.return_item(username, user_id, item_name, item_id, date)
 
 
 def all_scenario_user_setup(libsys):
@@ -99,10 +82,12 @@ def all_scenario_user_setup(libsys):
     Create users for test scenarios
     :param libsys: LibrarySystem object
     """
-    libsys.add_new_user("JohnnyCodewarrior")
-    libsys.add_new_user("JudyHacker")
-    libsys.add_new_user("MissMarple")
-    libsys.add_new_user("EricHalfbee")
+    user_init = UserInitialise(libsys)
+
+    user_init.add_new_user("JohnnyCodewarrior")
+    user_init.add_new_user("JudyHacker")
+    user_init.add_new_user("MissMarple")
+    user_init.add_new_user("EricHalfbee")
 
 
 def scenario1_setup(libsys, book_name):
@@ -111,7 +96,7 @@ def scenario1_setup(libsys, book_name):
     :param libsys: LibrarySystem object
     :param book_name: string, name of book
     """
-    borrow_item(libsys, "JohnnyCodewarrior", None, book_name, None, datetime.date.today() - datetime.timedelta(days = 3))
+    libsys.borrow_item(libsys, "JohnnyCodewarrior", None, book_name, None, datetime.date.today() - datetime.timedelta(days = 3))
 
 
 def scenario1(libsys):
@@ -119,10 +104,10 @@ def scenario1(libsys):
     Run scenario 1 from CRC exercise on libsys
     :param libsys: LibrarySystem object
     """
-    borrow_item(libsys, "JohnnyCodewarrior", None, "Document, Your job depends on it", None)
+    libsys.borrow_item(libsys, "JohnnyCodewarrior", None, "Document, Your job depends on it", None)
 
 
-def scenario2_setup(libsys, overdueJournalName, date_in_the_past, book_name,
+def scenario2_setup(libsys, item_init, overdueJournalName, date_in_the_past, book_name,
                     earlier_date = datetime.date.today() - datetime.timedelta(days = 3)):
     """
     Setup for scenario 2, add Journal to system, and make it have been borrowed on some past date
@@ -133,9 +118,10 @@ def scenario2_setup(libsys, overdueJournalName, date_in_the_past, book_name,
     :param book_name: string, name of Book Judy has out
     :param earlier_date: datetime object, date at which Book was borrowed
     """
-    add_new_item(libsys, Journal, overdueJournalName)
-    borrow_item(libsys, "JudyHacker", None, overdueJournalName, None, date_in_the_past)
-    borrow_item(libsys, "JudyHacker", None, book_name, None, earlier_date)
+    item_init.load_new_item(libsys, Journal, overdueJournalName)
+    item_init.load_new_item(libsys, DVD, "Debugging to music")
+    libsys.borrow_item(libsys, "JudyHacker", None, overdueJournalName, None, date_in_the_past)
+    libsys.borrow_item(libsys, "JudyHacker", None, book_name, None, earlier_date)
     libsys.change_fine_of_user(username = "JudyHacker", fine_reduce_by = -2)
     # there needs to be some mechanism by which users can pay back fines, this should also be used to increase fines
     # for the sake of setting up these scenarios
@@ -147,8 +133,8 @@ def scenario2(libsys, overdueJournalName):
     :param libsys: LibrarySystem object
     :param overdueJournalName: string, name of Journal
     """
-    return_item(libsys, "JudyHacker", None, overdueJournalName, None)
-    borrow_item(libsys, "JudyHacker", None, "Debugging to music", None)
+    libsys.return_item(libsys, "JudyHacker", None, overdueJournalName, None)
+    libsys.borrow_item(libsys, "JudyHacker", None, "Debugging to music", None)
 
 
 def scenario3(libsys):
@@ -159,8 +145,7 @@ def scenario3(libsys):
     is_journal_avail = libsys.is_item_available(item_name = "Sleuthing in C#")
 
     if is_journal_avail:
-
-        borrow_item(libsys, username="MissMarple", item_name="Sleuthing in C#")
+        libsys.borrow_item(libsys, username="MissMarple", item_name="Sleuthing in C#")
 
 
 def scenario4_setup(libsys, item_list, list_of_past_dates):
@@ -171,8 +156,7 @@ def scenario4_setup(libsys, item_list, list_of_past_dates):
     :param list_of_past_dates: list of datetime objects of same length
     """
     for date_index, item in enumerate(item_list):
-
-        borrow_item(libsys, "EricHalfbee", None, item.name, item.id, list_of_past_dates[date_index])
+        libsys.borrow_item(libsys, "EricHalfbee", None, item.name, item.id, list_of_past_dates[date_index])
 
 
 def scenario4(libsys, item_list, dvd, eric_money):
@@ -185,7 +169,7 @@ def scenario4(libsys, item_list, dvd, eric_money):
     """
     for item in item_list:
 
-        return_item(libsys, "EricHalfbee", None, item.name, item.id)
+        libsys.return_item(libsys, "EricHalfbee", None, item.name, item.id)
     # make Eric return all overdue items
     # this will internally increase his accrued fine accordingly
 
@@ -198,10 +182,44 @@ def scenario4(libsys, item_list, dvd, eric_money):
 
     if can_Eric_borrow:
 
-        borrow_item(libsys, "EricHalfbee", None, dvd.name, dvd.id)
+        libsys.borrow_item(libsys, "EricHalfbee", None, dvd.name, dvd.id)
         # if he can now borrow, do this
 
 
 
-
-
+# ### defunct
+#
+# def add_new_item(libsys, item_type, name):
+#     """
+#     Add new item to library system
+#     :param libsys: LibrarySystem object
+#     :param item_type: class, subclass of Item, e.g. Book, DVD, Journal
+#     :param name: string, name of item
+#     """
+#     libsys.load_new_item(item_type, name)
+#
+#
+# def borrow_item(libsys, username, user_id, item_name, item_id, date = datetime.date.today()):
+#     """
+#     Have user borrow item on date in libsys
+#     :param libsys: LibrarySystem object
+#     :param username: string, name of user
+#     :param user_id: int, unique user id
+#     :param item_name: string, name of item
+#     :param item_id: int, unique item id
+#     :param date: datetime object, date at which item is(/was) borrowed
+#     """
+#     libsys.borrow_item(username, user_id, item_name, item_id, date)
+#
+#
+# def return_item(libsys, username, user_id, item_name, item_id, date = datetime.date.today()):
+#     """
+#     Have user return item on date in libsys
+#     :param libsys: LibrarySystem object
+#     :param username: string, name of user
+#     :param user_id: int, unique user id
+#     :param item_name: string, name of item
+#     :param item_id: int, unique item id
+#     :param date: datetime object, date at which item is(/was) borrowed
+#     """
+#     libsys.return_item(username, user_id, item_name, item_id, date)

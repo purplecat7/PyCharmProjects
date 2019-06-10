@@ -24,11 +24,9 @@ class UserList():
         # some code here that appends the current user to
         # the self.available_users on initialisation.
 
-        # self.available_users.append(user_to_add)
+        self.available_users.append(user_to_add)
 
-        pass
-
-    def can_borrow(self, user_name, item_name, passed_date=None):
+    def can_borrow(self, user_name, item_name):
         """
 
         :param user_name: the name of the person
@@ -38,30 +36,46 @@ class UserList():
                  borrowing.
         """
 
-        # some code that delegates the user to Karls code.
+        # some code that delegates the user to Carls code.
 
         # first link to _find_user
-        # user_to_pass = _find_user(user_name)
+        user_to_pass = self._find_user(user_name)
 
         # second pass all the usefull items to the User handler.
         # Karls_function(user_to_pass)
-        # if passed_date == None:
-        #    passed_date = dt.date.today()
-        # User.can_borrow(user_to_pass)
-        
-        pass
+
+        User.can_borrow(user_to_pass, item_name)
   
 
     def checkout_item(self, matching_item):
-        
+        """
+        A method to add the new item to a users list of taken out
+        items, using Carls code.
+        :param matching_item: an item object to add to a users list
+        """
         # some code to pass an item object to the user so it can be 
         # added to the users list of borrowed items.
         
-        # User.checkout_item(matching_item)
-        
-        pass
-    
-    def _find_user(self, user_name):
+        User.checkout_item(matching_item)
+
+    def checkin_item(self, user_id, item_id):
+        """
+        A method to deal with when a user brings back an item.
+        This will tell the user to remove the item from the
+        users list of objects.
+        :param user: the id of the user who wants to bring back
+                     the item
+        :param item_id: the if of the item
+        """
+
+        # first find the user fro the list
+        user_to_act_on = self._find_user(user_id)
+
+        # then tell the user to checkin the item to the user
+        # using Carls Code
+        User.check_in(user_to_act_on, item_id)
+
+    def _find_user(self, user_id):
         """
         A function to return the class of the person.
         :param user_name: the user_name of the person calling
@@ -71,9 +85,9 @@ class UserList():
         # loops through all the users in self.user_list
         # and returns the class of the desired person.
 
-        # for possible_user in self.availble_users:
-            # if possible_user meets some requirment that matches
-            # it to the user_name:
-                # return possible_user
-        pass
+        for possible_user in self.availble_users:
+            # each user has an attribute that is a user id
+            # and if it is the right one - return it
+            if possible_user.user_id == user_id:
+                return possible_user
 
