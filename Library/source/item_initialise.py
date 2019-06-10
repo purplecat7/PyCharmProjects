@@ -1,4 +1,5 @@
 from item import Book, DVD, Journal
+from main import NumbID
 
 class ItemInitialise():
 
@@ -19,15 +20,17 @@ class ItemInitialise():
         :param filename: string, name of file of names of items
         :param item_type: class, subclass of Item, type of item in file
         """
-
+        file = open(filename, 'r')
+        for item_name in file:
         # iterate over names of items in file
-
+            new_item = item_type(item_name, self.IDgen.new_id())
             # create object of class item_type for each name, assigning a unique id number & name
-
+            libsys.add_new_item(new_item)
             # tell libsys to add object to itemlist
+        file.close()
 
 
-    def load_new_item(self, itemlist, item_name, item_type):
+    def load_new_item(self, item_name, item_type):
         """
         Creates single item of specified type and adds to list
         :param itemlist: ItemList object to add items to

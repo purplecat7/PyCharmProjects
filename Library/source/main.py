@@ -1,7 +1,21 @@
+"""
+Main "actor" for Library
+Assumes a LibrarySystem object with methods:
+
+borrow_item(username, user_id, item_name, item_id, date)
+return_item(username, user_id, item_name, item_id, date)
+change_fine_of_user
+is_item_available
+add_new_item
+add_new_user
+find_fine_of_user
+can_user_borrow
+"""
+
 from libsys import LibrarySystem
 from item_initialise import  ItemInitialise
 from user_initialise import UserInitialise
-from item import Item, Book, DVD, Journal
+from item import Book, DVD, Journal
 import datetime
 
 class NumbID:
@@ -105,6 +119,7 @@ def scenario2_setup(libsys, item_init, overdueJournalName, date_in_the_past, boo
     :param earlier_date: datetime object, date at which Book was borrowed
     """
     item_init.load_new_item(libsys, Journal, overdueJournalName)
+    item_init.load_new_item(libsys, DVD, "Debugging to music")
     libsys.borrow_item(libsys, "JudyHacker", None, overdueJournalName, None, date_in_the_past)
     libsys.borrow_item(libsys, "JudyHacker", None, book_name, None, earlier_date)
     libsys.change_fine_of_user(username = "JudyHacker", fine_reduce_by = -2)

@@ -22,5 +22,5 @@ class UserInitialise():
         new_user = User(username, self.IDgen.new_id())
         # create object of class User, assigning a unique id number & name
 
-        libsys.add_user(new_user)
+        libsys.add_new_user(new_user)
         # tell libsys to add object to given UserList
