@@ -12,7 +12,8 @@ find_fine_of_user(user_identifier, date = datetime.date.today()) # user identifi
 can_user_borrow(user_identifier, date = datetime.date.today())
 """
 
-from LibSys import libsys as LibrarySystem
+import os.path as op
+from LibSys import LibrarySystem
 from item_initialise import  ItemInitialise
 from user_initialise import UserInitialise
 from item import Book, DVD, Journal
@@ -184,3 +185,10 @@ def scenario4(libsys, item_list, dvd, eric_money):
 
         libsys.borrow_item(libsys, "EricHalfbee", None, dvd.name, dvd.id)
         # if he can now borrow, do this
+
+if __name__ == "__main__":
+    libsys = setup_libsys({op.normpath("..\data\top100t.txt"): Book})
+    all_scenario_user_setup(libsys)
+    scenario1_setup(libsys, 5)
+    scenario1(libsys)
+    print("success")

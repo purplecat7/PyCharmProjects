@@ -1,11 +1,11 @@
 from item import Book, DVD, Journal
-from LibSys import libsys
-from main import NumbID
+from LibSys import LibrarySystem
+
 
 class ItemInitialise:
 
     def __init__(self, library_system):
-
+        from main import NumbID
         self.libsys = library_system
         self.IDgen = NumbID()
 
@@ -26,7 +26,7 @@ class ItemInitialise:
         # iterate over names of items in file
             new_item = item_type(item_name, self.IDgen.new_id())
             # create object of class item_type for each name, assigning a unique id number & name
-            libsys.add_new_item(new_item)
+            self.libsys.add_new_item(new_item)
             # tell libsys to add object to itemlist
         file.close()
 
@@ -42,6 +42,6 @@ class ItemInitialise:
         new_item = item_type(item_name, self.IDgen.new_id())
         # create object of class item_type, assigning a unique id number & name
 
-        libsys.add_new_item(new_item)
+        self.libsys.add_new_item(new_item)
         # tell libsys to add object to given itemlist
 

@@ -47,7 +47,7 @@ class UserList():
         User.can_borrow(user_to_pass, item_name)
   
 
-    def checkout_item(self, matching_item, checkout_date):
+    def checkout_item(self, user_id,matching_item, checkout_date):
         """
         A method to add the new item to a users list of taken out
         items, using Carls code.
@@ -55,10 +55,14 @@ class UserList():
         """
         # some code to pass an item object to the user so it can be 
         # added to the users list of borrowed items.
-        
-        User.checkout_item(matching_item, checkout_date)
 
-    def checkin_item(self, item_obj):
+        user_to_act_on = self._find_user(user_id)
+
+        # now add the new item to the person
+        user_to_act_on.checkout_item(matching_item, checkout_date)
+
+
+    def checkin_item(self, user_id, item_obj):
         """
         A method to deal with when a user brings back an item.
         This will tell the user to remove the item from the
@@ -71,7 +75,7 @@ class UserList():
 
         # then tell the user to checkin the item to the user
         # using Carls Code
-        User.check_in(item_obj)
+        user_to_act_on.check_in(item_obj)
 
     def _find_user(self, user_id):
         """
