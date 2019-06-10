@@ -47,7 +47,7 @@ class UserList():
         User.can_borrow(user_to_pass, item_name)
   
 
-    def checkout_item(self, matching_item):
+    def checkout_item(self, matching_item, checkout_date):
         """
         A method to add the new item to a users list of taken out
         items, using Carls code.
@@ -56,7 +56,7 @@ class UserList():
         # some code to pass an item object to the user so it can be 
         # added to the users list of borrowed items.
         
-        User.checkout_item(matching_item)
+        User.checkout_item(matching_item, checkout_date)
 
     def checkin_item(self, user_id, item_id):
         """
@@ -84,10 +84,20 @@ class UserList():
         """
         # loops through all the users in self.user_list
         # and returns the class of the desired person.
+        #TODO if there are two users with identical identifiers
+        # the the last one will be returned - write in an exception
+        # to give a proper error.
 
         for possible_user in self.availble_users:
             # each user has an attribute that is a user id
             # and if it is the right one - return it
-            if possible_user.user_id == user_id:
-                return possible_user
+            if type(user_id) == int:
+                if possible_user.user_id == user_id:
+                    ret_val = possible_user
+            if type(user_id) == str:
+                if possible_user.name == user_id:
+                    ret_val = possible_user
+
+        return ret_val
+
 

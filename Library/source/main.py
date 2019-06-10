@@ -2,14 +2,14 @@
 Main "actor" for Library
 Assumes a LibrarySystem object with methods:
 
-borrow_item(username, user_id, item_name, item_id, date = datetime.date.today())
-return_item(username, user_id, item_name, item_id, date = datetime.date.today())
+borrow_item(username_or_user_id, item_name_or_item_id, date = datetime.date.today())
+return_item(username_or_user_id, item_name_or_item_id, date = datetime.date.today())
 change_fine_of_user(fine_reduce_by, username = None, user_id = None)
-is_item_available(item_name = None, item_id = None)
-add_new_item(item_type, name)
+is_item_available(item_identifier) # item identifier can be string (item_name) or integer (item_id)
+add_new_item(item_type, item_name)
 add_new_user(username)
-find_fine_of_user(username, user_id, date = datetime.date.today())
-can_user_borrow(username, user_id, date = datetime.date.today())
+find_fine_of_user(user_identifier, date = datetime.date.today()) # user identifier can be string (username) or integer (user_id)
+can_user_borrow(user_identifier, date = datetime.date.today())
 """
 
 from LibSys import libsys as LibrarySystem
@@ -90,13 +90,13 @@ def all_scenario_user_setup(libsys):
     user_init.add_new_user("EricHalfbee")
 
 
-def scenario1_setup(libsys, book_name):
+def scenario1_setup(libsys, book_ident):
     """
     Johnny has one outstanding book, not overdue
     :param libsys: LibrarySystem object
-    :param book_name: string, name of book
+    :param book_name: string, name of book; or integer, int
     """
-    libsys.borrow_item(libsys, "JohnnyCodewarrior", None, book_name, None, datetime.date.today() - datetime.timedelta(days = 3))
+    libsys.borrow_item(libsys, "JohnnyCodewarrior", book_ident, datetime.date.today() - datetime.timedelta(days = 3))
 
 
 def scenario1(libsys):
@@ -104,7 +104,7 @@ def scenario1(libsys):
     Run scenario 1 from CRC exercise on libsys
     :param libsys: LibrarySystem object
     """
-    libsys.borrow_item(libsys, "JohnnyCodewarrior", None, "Document, Your job depends on it", None)
+    libsys.borrow_item(libsys, "JohnnyCodewarrior", "Document, Your job depends on it")
 
 
 def scenario2_setup(libsys, item_init, overdueJournalName, date_in_the_past, book_name,
@@ -120,9 +120,9 @@ def scenario2_setup(libsys, item_init, overdueJournalName, date_in_the_past, boo
     """
     item_init.load_new_item(libsys, Journal, overdueJournalName)
     item_init.load_new_item(libsys, DVD, "Debugging to music")
-    libsys.borrow_item(libsys, "JudyHacker", None, overdueJournalName, None, date_in_the_past)
-    libsys.borrow_item(libsys, "JudyHacker", None, book_name, None, earlier_date)
-    libsys.change_fine_of_user(username = "JudyHacker", fine_reduce_by = -2)
+    libsys.borrow_item("JudyHacker", overdueJournalName, date_in_the_past)
+    libsys.borrow_item("JudyHacker", book_name, earlier_date)
+    libsys.change_fine_of_user("JudyHacker", fine_reduce_by = -2)
     # there needs to be some mechanism by which users can pay back fines, this should also be used to increase fines
     # for the sake of setting up these scenarios
 
@@ -133,8 +133,8 @@ def scenario2(libsys, overdueJournalName):
     :param libsys: LibrarySystem object
     :param overdueJournalName: string, name of Journal
     """
-    libsys.return_item(libsys, "JudyHacker", None, overdueJournalName, None)
-    libsys.borrow_item(libsys, "JudyHacker", None, "Debugging to music", None)
+    libsys.return_item(username = "JudyHacker", item_name = overdueJournalName)
+    libsys.borrow_item("JudyHacker", None, "Debugging to music", None)
 
 
 def scenario3(libsys):
