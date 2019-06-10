@@ -89,7 +89,7 @@ def all_scenario_user_setup():
     user_init.add_new_user("EricHalfbee")
 
 
-def scenario1_setup(libsys, book_ident):
+def scenario1_setup(book_ident):
     """
     Johnny has one outstanding book, not overdue
     :param libsys: LibrarySystem object
@@ -97,14 +97,14 @@ def scenario1_setup(libsys, book_ident):
     """
     libsys.checkout("JohnnyCodewarrior", book_ident, datetime.date.today() - datetime.timedelta(days = 3))
 
-def scenario1(libsys):
+def scenario1():
     """
     Run scenario 1 from CRC exercise on libsys
     :param libsys: LibrarySystem object
     """
     libsys.checkout("JohnnyCodewarrior", "Document, Your job depends on it")
 
-def scenario2_setup(libsys, item_init, overdueJournalName, date_in_the_past, book_name,
+def scenario2_setup(overdueJournalName, date_in_the_past, book_name,
                     earlier_date = datetime.date.today() - datetime.timedelta(days = 3)):
     """
     Setup for scenario 2, add Journal to system, and make it have been borrowed on some past date
@@ -123,7 +123,7 @@ def scenario2_setup(libsys, item_init, overdueJournalName, date_in_the_past, boo
     # there needs to be some mechanism by which users can pay back fines, this should also be used to increase fines
     # for the sake of setting up these scenarios
 
-def scenario2(libsys, overdueJournalName):
+def scenario2(overdueJournalName):
     """
     Run scenario 2 from CRC exercise on libsys
     :param libsys: LibrarySystem object
@@ -133,29 +133,28 @@ def scenario2(libsys, overdueJournalName):
     libsys.checkout("JudyHacker", "Debugging to music")
 
 
-def scenario3(libsys):
+def scenario3():
     """
     Run scenario 3 from CRC exercise on libsys
     :param libsys: LibrarySystem object
     """
-    is_journal_avail = libsys.is_item_available(item_name = "Sleuthing in C#")
+    is_journal_avail = libsys.is_item_available("Sleuthing in C#")
 
     if is_journal_avail:
-        libsys.borrow_item(libsys, username="MissMarple", item_name="Sleuthing in C#")
+        libsys.checkout("MissMarple", "Sleuthing in C#")
 
 
-def scenario4_setup(libsys, item_list, list_of_past_dates):
+def scenario4_setup(item_list, list_of_past_dates):
     """
     Assign items in list to Eric, overdue, in libsys
-    :param libsys: LibrarySystem object
     :param item_list: list of item objects
     :param list_of_past_dates: list of datetime objects of same length
     """
     for date_index, item in enumerate(item_list):
-        libsys.borrow_item(libsys, "EricHalfbee", None, item.name, item.id, list_of_past_dates[date_index])
+        libsys.checkout("EricHalfbee", item.name, list_of_past_dates[date_index])
 
 
-def scenario4(libsys, item_list, dvd, eric_money):
+def scenario4(item_list, dvd, eric_money):
     """
     Run scenario 4 from CRC exercise on libsys
     :param libsys: LibrarySystem object
@@ -165,25 +164,25 @@ def scenario4(libsys, item_list, dvd, eric_money):
     """
     for item in item_list:
 
-        libsys.return_item(libsys, "EricHalfbee", None, item.name, item.id)
+        libsys.return_item("EricHalfbee", item.name)
     # make Eric return all overdue items
     # this will internally increase his accrued fine accordingly
 
-    eric_fine = libsys.find_fine_of_user(username = "EricHalfbee")
+    eric_fine = libsys.find_fine_of_user("EricHalfbee")
 
-    libsys.change_fine_of_user(username="EricHalfbee", fine_reduce_by= min(eric_fine, eric_money))
+    libsys.change_fine_of_user("EricHalfbee", fine_reduce_by= min(eric_fine, eric_money))
     # make Eric pay off as much of his fine as he can with the funds available
 
-    can_Eric_borrow = libsys.can_user_borrow(username = "EricHalfbee", user_id = None)
+    can_Eric_borrow = libsys.can_user_borrow( "EricHalfbee")
 
     if can_Eric_borrow:
 
-        libsys.borrow_item(libsys, "EricHalfbee", None, dvd.name, dvd.id)
+        libsys.checkout(libsys, "EricHalfbee", dvd.name)
         # if he can now borrow, do this
 
 if __name__ == "__main__":
     libsys = setup_libsys({op.normpath("..\data\top100t.txt"): Book})
-    all_scenario_user_setup(libsys)
-    scenario1_setup(libsys, 5)
-    scenario1(libsys)
+    all_scenario_user_setup()
+    scenario1_setup( 5)
+    scenario1()
     print("success")

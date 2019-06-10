@@ -14,7 +14,7 @@ class LibrarySystem:
         self.myitemlist = ItemList() #list of items
         self.myuserlist = UserList() #list of users
 
-    def add_item(self, item):
+    def add_new_item(self, item):
         """
         Add item to itemlist.
         :param item: instance of item
@@ -22,7 +22,7 @@ class LibrarySystem:
         """
         self.myitemList.add_to_list(item)
 
-    def add_user(self, user):
+    def add_new_user(self, user):
         """
         Add user to user list.
         :param user: instance of user
