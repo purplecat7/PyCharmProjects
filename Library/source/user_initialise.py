@@ -1,11 +1,10 @@
 from user import User
-from main import NumbID
-from LibSys import libsys
+from LibSys import LibrarySystem
 
 class UserInitialise:
 
     def __init__(self, library_system):
-
+        from main import NumbID
         self.libsys = library_system
         self.IDgen = NumbID()
 
@@ -23,5 +22,5 @@ class UserInitialise:
         new_user = User(username, self.IDgen.new_id())
         # create object of class User, assigning a unique id number & name
 
-        libsys.add_new_user(new_user)
+        self.libsys.add_new_user(new_user)
         # tell libsys to add object to given UserList
