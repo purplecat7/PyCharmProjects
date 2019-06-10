@@ -11,12 +11,10 @@ class Item:
         self.checkout_date = None
         # initialise attributes common to all items
 
-
     def __del__(self):
 
         # delete an item
         pass
-
 
     def setdate(self, date=datetime.date.today()):
         """
@@ -28,7 +26,6 @@ class Item:
 
         self.checkout_date = date
         # set date that item is checked out
-
 
     def checkin_item(self, date = datetime.date.today()):
         """
@@ -47,7 +44,6 @@ class Item:
         # the method checkin_item will return to the caller the fine which needs to be added to the User's fine accrued
         # if the item was not everdue this will return zero (so may as well be added)
 
-
     def find_days_overdue(self, date=datetime.date.today()):
         """
         Calculate number of days by which item is overdue
@@ -62,7 +58,6 @@ class Item:
 
         return days_overdue.days
         # return float number of days
-
 
     def is_overdue(self, date=datetime.date.today()):
         """
@@ -84,7 +79,6 @@ class Item:
         return overdue
         # if it is positive number of days overdue, then overdue is True
 
-
     def calculate_fine(self, date=datetime.date.today()):
         """
         Determine overdue fine from item at date
@@ -102,7 +96,6 @@ class Item:
             # calculate fine due on item
 
         return fine
-
 
     def is_onloan(self):
         """
@@ -122,7 +115,6 @@ class Item:
         # if it has a checkout date, it is on loan. If it doesn't, it is not
 
 
-
 class Book(Item):
 
     lend_time = datetime.timedelta(weeks = 4)
@@ -134,14 +126,14 @@ class DVD(Item):
 
     lend_time = datetime.timedelta(weeks=1)
     fine_rate = 2
-    # fine rate 2 per day, loan period 1 week
+    # fine rate 200p per day, loan period 1 week
 
 
 class Journal(Item):
 
     lend_time = datetime.timedelta(weeks=2)
     fine_rate = 1
-    # fine rate 1 per day, loan period 2 weeks
+    # fine rate 100p per day, loan period 2 weeks
 
 
 
