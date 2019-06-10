@@ -1,6 +1,6 @@
 # Object of User for library system project
 # Author: Carl Haines
-from item_list import ItemList
+from item_list import ItemList #May need period before item_list
 
 class User:
 
@@ -53,12 +53,12 @@ class User:
         self.accrued_fine += amount
 
 
-    def check_in(self, itemid):
+    def check_in(self, item):
         '''
         asks item list to check in item
-        :param itemid:
+        :param item:
         :return:
         '''
-        fine = self.my_item_list.check_in(itemid)# ask itemlist to check in item
-        self.accrued_fine += fine
+        fine = self.my_item_list.check_in(item)# ask itemlist to check in item
+        self.accrued_fine += fine # add fine to accrued_fine
 
