@@ -115,8 +115,8 @@ def scenario2_setup(overdueJournalName, date_in_the_past, book_name,
     :param book_name: string, name of Book Judy has out
     :param earlier_date: datetime object, date at which Book was borrowed
     """
-    item_init.add_new_item(libsys, Journal, overdueJournalName)
-    item_init.add_new_item(libsys, DVD, "Debugging to music")
+    item_init.load_new_item(libsys, Journal, overdueJournalName)
+    item_init.load_new_item(libsys, DVD, "Debugging to music")
     libsys.checkout("JudyHacker", overdueJournalName, date_in_the_past)
     libsys.checkout("JudyHacker", book_name, earlier_date)
     libsys.change_fine_of_user("JudyHacker", fine_reduce_by = -2)
@@ -177,7 +177,7 @@ def scenario4(item_list, dvd, eric_money):
 
     if can_Eric_borrow:
 
-        libsys.borrow_item(libsys, "EricHalfbee", dvd.name)
+        libsys.checkout(libsys, "EricHalfbee", dvd.name)
         # if he can now borrow, do this
 
 if __name__ == "__main__":
