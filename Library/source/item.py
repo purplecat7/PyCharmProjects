@@ -2,7 +2,7 @@
 import datetime
 # I would like all dates and periods of time as datetime and timedelta objects
 
-class Item():
+class Item:
 
     def __init__(self, name, id):
 
