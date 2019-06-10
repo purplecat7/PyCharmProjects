@@ -27,6 +27,12 @@ class libsys:
         myuserList.add_user(user)
 
     def checkout(self, user, itemid):
-
+        """
+        Accepts user and id of item from input list
+        and passes them to item initialiser
+        :param user: user
+        :param itemid: id of iem
+        :return: user, itemid
+        """
         return user, itemid
 
