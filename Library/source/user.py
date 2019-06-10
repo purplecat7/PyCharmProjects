@@ -33,7 +33,7 @@ class User:
         return can_borrow
 
 
-    def checkout(self, item, date):
+    def checkout(self, item, date=None):
         '''
         Checkout book
         :param item:
