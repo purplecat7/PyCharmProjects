@@ -37,14 +37,18 @@ class ItemList(list):
 
         return retval
 
-    def get_fines(self, date):
+    def get_fines(self):
         """
         ask each item what the fine is
-        :param date:
         :return: total fine
         """
 
-        pass
+        fine = 0
+
+        for item in self:
+            fine += item.calculate_fine()
+
+        return fine
 
     def add_to_list(self, item):
         """
@@ -52,8 +56,6 @@ class ItemList(list):
         :param item: instance of item
         :return:
         """
-
-        pass
 
         self.append(item)
 
@@ -64,34 +66,39 @@ class ItemList(list):
         :return: instance of item
         """
 
-        if self.find_items(itemid):
-
-
-    def find_items(self, itemid):
-        """
-        Check for item?
-        :param itemid: name of item
-        :return:
-        """
-
         for item in self:
-            if item.id == itemid:
-                retval = True
-
-            #ToDo: fix retval to false if the item doesn't exist
+            if isinstance(itemid, str):
+                if item.name == itemid:
+                    retval = item
+            elif isinstance(itemid, int):
+                if item.id == itemid:
+                    retval = item
 
         return retval
 
-    def check_in(self, itemid, date):
+    # def find_items(self, itemid):
+    #     """
+    #     Check for item?
+    #     :param itemid: name of item
+    #     :return:
+    #     """
+    #
+    #     retval = False
+    #
+    #     for item in self:
+    #         retval = retval & item.id == itemid
+    #
+    #     return retval
+
+    def check_in(self, itemid):
         """
         ask item to check itself in
         :param itemid:
-        :param date:
         :return:
         """
 
-        item = self.find_items(itemid)
-        fine = item.checkin_item(date)
+        item = self.get_item(itemid)
+        fine = item.checkin_item()
 
         self.remove(item)
 
@@ -104,6 +111,6 @@ class ItemList(list):
         :return:
         """
 
-        item = self.find_items(itemid)
+        item = self.get_item(itemid)
 
         return item.is_onloan()
