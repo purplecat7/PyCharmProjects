@@ -20,7 +20,7 @@ class LibrarySystem:
         :param item: instance of item
 
         """
-        self.myitemList.add_item(item)
+        self.myitemList.add_to_list(item)
 
     def add_user(self, user):
         """
