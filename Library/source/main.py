@@ -50,6 +50,12 @@ class NumbID:
         NumbID.id_number = 0
 
 
+libsys = LibrarySystem()
+# instantiate Library System
+item_init = ItemInitialise(libsys)
+# instantiate Item Initialiser
+user_init = UserInitialise(libsys)
+
 
 def setup_libsys(initial_catalogue_dictionary):
     """
@@ -60,12 +66,6 @@ def setup_libsys(initial_catalogue_dictionary):
     :return: LibrarySystem object
     """
     #TODO this function is restricted to the loading of files which contain each only one subclass of item
-
-    libsys = LibrarySystem()
-    # instantiate Library System
-
-    item_init = ItemInitialise(libsys)
-    # instantiate Item Initialiser
 
     if initial_catalogue_dictionary:
         # if dictionary is non-empty
@@ -78,13 +78,11 @@ def setup_libsys(initial_catalogue_dictionary):
     return libsys
 
 
-def all_scenario_user_setup(libsys):
+def all_scenario_user_setup():
     """
     Create users for test scenarios
     :param libsys: LibrarySystem object
     """
-    user_init = UserInitialise(libsys)
-
     user_init.add_new_user("JohnnyCodewarrior")
     user_init.add_new_user("JudyHacker")
     user_init.add_new_user("MissMarple")
@@ -97,16 +95,14 @@ def scenario1_setup(libsys, book_ident):
     :param libsys: LibrarySystem object
     :param book_name: string, name of book; or integer, int
     """
-    libsys.borrow_item(libsys, "JohnnyCodewarrior", book_ident, datetime.date.today() - datetime.timedelta(days = 3))
-
+    libsys.checkout("JohnnyCodewarrior", book_ident, datetime.date.today() - datetime.timedelta(days = 3))
 
 def scenario1(libsys):
     """
     Run scenario 1 from CRC exercise on libsys
     :param libsys: LibrarySystem object
     """
-    libsys.borrow_item(libsys, "JohnnyCodewarrior", "Document, Your job depends on it")
-
+    libsys.checkout("JohnnyCodewarrior", "Document, Your job depends on it")
 
 def scenario2_setup(libsys, item_init, overdueJournalName, date_in_the_past, book_name,
                     earlier_date = datetime.date.today() - datetime.timedelta(days = 3)):
@@ -121,12 +117,11 @@ def scenario2_setup(libsys, item_init, overdueJournalName, date_in_the_past, boo
     """
     item_init.load_new_item(libsys, Journal, overdueJournalName)
     item_init.load_new_item(libsys, DVD, "Debugging to music")
-    libsys.borrow_item("JudyHacker", overdueJournalName, date_in_the_past)
-    libsys.borrow_item("JudyHacker", book_name, earlier_date)
+    libsys.checkout("JudyHacker", overdueJournalName, date_in_the_past)
+    libsys.checkout("JudyHacker", book_name, earlier_date)
     libsys.change_fine_of_user("JudyHacker", fine_reduce_by = -2)
     # there needs to be some mechanism by which users can pay back fines, this should also be used to increase fines
     # for the sake of setting up these scenarios
-
 
 def scenario2(libsys, overdueJournalName):
     """
@@ -134,8 +129,8 @@ def scenario2(libsys, overdueJournalName):
     :param libsys: LibrarySystem object
     :param overdueJournalName: string, name of Journal
     """
-    libsys.return_item(username = "JudyHacker", item_name = overdueJournalName)
-    libsys.borrow_item("JudyHacker", None, "Debugging to music", None)
+    libsys.return_item("JudyHacker", overdueJournalName)
+    libsys.checkout("JudyHacker", "Debugging to music")
 
 
 def scenario3(libsys):
