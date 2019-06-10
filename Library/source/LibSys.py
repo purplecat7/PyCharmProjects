@@ -27,4 +27,7 @@ class libsys:
         """
         myuserList.add_user(user)
 
-        
+    def checkout(self, user, itemid):
+
+        return user, itemid
+
