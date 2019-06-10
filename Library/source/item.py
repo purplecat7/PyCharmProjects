@@ -15,6 +15,7 @@ class Item:
     def __del__(self):
 
         # delete an item
+        pass
 
 
     def setdate(self, date=datetime.date.today()):
@@ -133,14 +134,14 @@ class DVD(Item):
 
     lend_time = datetime.timedelta(weeks=1)
     fine_rate = 2
-    # fine rate £2 per day, loan period 1 week
+    # fine rate 2 per day, loan period 1 week
 
 
 class Journal(Item):
 
     lend_time = datetime.timedelta(weeks=2)
     fine_rate = 1
-    # fine rate £1 per day, loan period 2 weeks
+    # fine rate 1 per day, loan period 2 weeks
 
 
 
