@@ -105,3 +105,6 @@ venv.bak/
 
 # Important core ignore (is this the right way to phrase?)
 core.
+
+# .idea ignore
+.idea
