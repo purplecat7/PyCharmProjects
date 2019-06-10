@@ -22,7 +22,7 @@ class LibrarySystem:
         """
         self.myitemList.add_item(item)
 
-    def add_user(self, user):
+    def add_new_user(self, user):
         """
         Add user to user list.
         :param user: instance of user
