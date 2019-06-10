@@ -16,24 +16,26 @@ class Item:
         # delete an item
         pass
 
-    def setdate(self, date=datetime.date.today()):
+    def setdate(self, date=None):
         """
         Set the date attribute of item to given date (on which item is checked out)
         :param date: datetime object of today's date
         """
-
-        # possibly raise exception if date is not None
+        if date == None:
+            date = datetime.date.today()
 
         self.checkout_date = date
         # set date that item is checked out
 
-    def checkin_item(self, date = datetime.date.today()):
+    def checkin_item(self, date=None):
         """
         Calculate fine resultant from item being overdue (if any)
         Set checkout_date to None, as item is no longer checked out
         :param date: datetime object of today's date
         :return: float, fine in pounds to be added to user's accrued fine due to the overdue return of this item
         """
+        if date == None:
+            date = datetime.date.today()
 
         fine = self.calculate_fine(date)
 
@@ -44,13 +46,15 @@ class Item:
         # the method checkin_item will return to the caller the fine which needs to be added to the User's fine accrued
         # if the item was not everdue this will return zero (so may as well be added)
 
-    def find_days_overdue(self, date=datetime.date.today()):
+    def find_days_overdue(self, date=None):
         """
         Calculate number of days by which item is overdue
         If item is not overdue returns zero
         :param date: datetime object of today's date
         :return: float, number of days overdue
         """
+        if date == None:
+            date = datetime.date.today()
 
         days_overdue = (date - self.checkout_date) - self.lend_time
         # calculate number of days item is overdue (may be negative)
@@ -59,12 +63,14 @@ class Item:
         return days_overdue.days
         # return float number of days
 
-    def is_overdue(self, date=datetime.date.today()):
+    def is_overdue(self, date=None):
         """
         Determine whether item is overdue
         :param date: datetime object of today's date
         :return: bool, if item is overdue
         """
+        if date == None:
+            date = datetime.date.today()
 
         days_overdue = self.find_days_overdue(date)
 
@@ -79,12 +85,14 @@ class Item:
         return overdue
         # if it is positive number of days overdue, then overdue is True
 
-    def calculate_fine(self, date=datetime.date.today()):
+    def calculate_fine(self, date=None):
         """
         Determine overdue fine from item at date
         :param date: datetime object of today's date
         :return: float, fine in pounds due to overdue
         """
+        if date == None:
+            date = datetime.date.today()
 
         days_overdue = self.find_days_overdue(self, date)
 
