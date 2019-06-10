@@ -86,7 +86,7 @@ class UserList():
         # the the last one will be returned - write in an exception
         # to give a proper error.
 
-        for possible_user in self.availble_users:
+        for possible_user in self.available_users:
             # each user has an attribute that is a user id
             # and if it is the right one - return it
             
