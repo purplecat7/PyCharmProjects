@@ -2,9 +2,9 @@ from item import Book, DVD, Journal
 
 class ItemInitialise():
 
-    def __init__(self):
+    def __init__(self, library_system):
 
-        pass
+        self.libsys = library_system
 
 
     def __del__(self):
@@ -24,7 +24,7 @@ class ItemInitialise():
 
             # create object of class item_type for each name, assigning a unique id number & name
 
-            # add object to given itemlist
+            # tell libsys to add object to given itemlist
 
 
     def load_new_item(self, itemlist, item_name, item_type):
@@ -37,5 +37,5 @@ class ItemInitialise():
 
         # create object of class item_type, assigning a unique id number & name
 
-        # add object to given itemlist
+        # tell libsys to add object to given itemlist
 

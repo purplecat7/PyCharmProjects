@@ -2,9 +2,9 @@ from user import User
 
 class UserInitialise():
 
-    def __init__(self):
+    def __init__(self, library_system):
 
-        pass
+        self.libsys = library_system
 
 
     def __del__(self):
@@ -21,4 +21,4 @@ class UserInitialise():
 
         # create object of class User, assigning a unique id number & name
 
-        # add object to given UserList
+        # tell libsys to add object to given UserList
