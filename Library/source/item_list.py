@@ -21,6 +21,12 @@ class ItemList(list):
         :return: pass on message from item
         """
 
+    def get_fines(self):
+        """
+        ask each item what the fine is
+        :return: total fine
+        """
+
     def add_to_list(self, item):
         """
         adds the given item to the list
