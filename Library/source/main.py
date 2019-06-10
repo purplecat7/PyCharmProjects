@@ -181,7 +181,7 @@ def scenario4(item_list, dvd, eric_money):
         # if he can now borrow, do this
 
 if __name__ == "__main__":
-    libsys = setup_libsys({op.normpath("..\data\top100t.txt"): Book})
+    libsys = setup_libsys({op.normpath("../data/top100t.txt"): Book})
     all_scenario_user_setup()
     scenario1_setup( 5)
     scenario1()
