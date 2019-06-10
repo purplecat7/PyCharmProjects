@@ -45,4 +45,12 @@ class User:
         pass
 
 
+    def ammend_fine(self, amount):
+        '''
+        add amount to self.accrued fine
+        :param amount:
+        :return:
+        '''
+        pass
+
 
