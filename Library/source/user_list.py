@@ -1,5 +1,5 @@
 import datetime as dt
-
+from user import User
 
 class UserList():
     """
@@ -45,9 +45,22 @@ class UserList():
 
         # second pass all the usefull items to the User handler.
         # Karls_function(user_to_pass)
-
+        # if passed_date == None:
+        #    passed_date = dt.date.today()
+        # User.can_borrow(user_to_pass)
+        
         pass
+  
 
+    def checkout_item(self, matching_item):
+        
+        # some code to pass an item object to the user so it can be 
+        # added to the users list of borrowed items.
+        
+        # User.checkout_item(matching_item)
+        
+        pass
+    
     def _find_user(self, user_name):
         """
         A function to return the class of the person.
@@ -62,6 +75,5 @@ class UserList():
             # if possible_user meets some requirment that matches
             # it to the user_name:
                 # return possible_user
-
         pass
 
