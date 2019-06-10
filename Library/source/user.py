@@ -1,4 +1,5 @@
 # Object of User for library system project
+# Author: Carl Haines
 from item_list import ItemList
 
 class User:
@@ -11,11 +12,9 @@ class User:
         self.max_borrow = 5
         self.max_fine = 50
         # Make an instance of ItemList
-        pass
 
 
-    def __del__(self):
-        # destructor
+    def __del__(self): # destructor
         pass
 
 
@@ -25,10 +24,10 @@ class User:
         :return:
         '''
         len_items = ItemList.len_items()# ask ItemList for length of list
-        if len_items < self.max_borrow & self.accrued_fine<self.max_fine:# check length of list against max_borrow
+        if len_items < self.max_borrow & self.accrued_fine < self.max_fine: # check length of list against max_borrow
                                                                             # Check accrued fine less than max_fine
-            is_overdue = ItemList.is_overdue()# Ask ItemList if any items on ItemList are overdue TODO ask Laura if ITemList.is_overdue() checks all items in itemlist or just one
-            can_borrow = not is_overdue
+            is_overdue = ItemList.is_overdue()# Ask ItemList if any items on ItemList are overdue
+            can_borrow = not is_overdue # Flip False to True and True to False
         else:
             can_borrow = False
         return can_borrow
@@ -43,7 +42,6 @@ class User:
         '''
 
         ItemList.add_to_list(itemid, date)# Ask ItemList to add item to list
-
 
 
     def ammend_fine(self, amount):
@@ -61,8 +59,6 @@ class User:
         :param itemid:
         :return:
         '''
-        ItemList.check_in(itemid, date)# ask itemlist to check in item
-
-
-
+        fine = ItemList.check_in(itemid, date)# ask itemlist to check in item
+        self.accrued_fine += fine
 
