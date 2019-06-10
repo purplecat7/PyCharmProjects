@@ -11,7 +11,7 @@ class ItemList(list):
     def len_items(self):
         """
         number of items in the list
-        :return: length of self
+        :return: int
         """
 
         return len(self)
@@ -21,7 +21,7 @@ class ItemList(list):
         asks the item if it is overdue
         :param itemid: id of item
         :param date:
-        :return: pass on message from item
+        :return: nothing
         """
 
         pass
@@ -29,7 +29,7 @@ class ItemList(list):
     def is_any_overdue(self):
         """
         loops over all items and checks if any are overdue
-        :return:
+        :return: bool
         """
         retval = False
         for item in self:
@@ -40,7 +40,7 @@ class ItemList(list):
     def get_fines(self):
         """
         ask each item what the fine is
-        :return: total fine
+        :return: float
         """
 
         fine = 0
@@ -54,7 +54,7 @@ class ItemList(list):
         """
         adds the given item to the list
         :param item: instance of item
-        :return:
+        :return: nothing
         """
 
         self.append(item)
@@ -94,7 +94,7 @@ class ItemList(list):
         """
         ask item to check itself in
         :param itemid:
-        :return:
+        :return: float
         """
 
         item = self.get_item(itemid)
@@ -108,7 +108,7 @@ class ItemList(list):
         """
 
         :param itemid:
-        :return:
+        :return: bool
         """
 
         item = self.get_item(itemid)
