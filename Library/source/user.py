@@ -53,12 +53,12 @@ class User:
         self.accrued_fine += amount
 
 
-    def check_in(self, itemid, date):
+    def check_in(self, itemid):
         '''
         asks item list to check in item
         :param itemid:
         :return:
         '''
-        fine = ItemList.check_in(itemid, date)# ask itemlist to check in item
+        fine = ItemList.check_in(itemid)# ask itemlist to check in item
         self.accrued_fine += fine
 
