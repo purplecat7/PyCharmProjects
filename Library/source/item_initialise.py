@@ -22,7 +22,7 @@ class ItemInitialise:
         :param item_type: class, subclass of Item, type of item in file
         """
         file = open(filename, 'r')
-        for item_name in file:
+        for item_name in file.readlines():
         # iterate over names of items in file
             new_item = item_type(item_name, self.IDgen.new_id())
             # create object of class item_type for each name, assigning a unique id number & name
