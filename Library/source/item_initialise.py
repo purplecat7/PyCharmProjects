@@ -1,10 +1,12 @@
 from item import Book, DVD, Journal
+from main import NumbID
 
 class ItemInitialise():
 
-    def __init__(self):
+    def __init__(self, library_system):
 
-        pass
+        self.libsys = library_system
+        self.IDgen = NumbID()
 
 
     def __del__(self):
@@ -12,22 +14,23 @@ class ItemInitialise():
         pass
 
 
-    def load_items(self, itemlist, filename, item_type):
+    def load_items(self, filename, item_type):
         """
         Takes list of files and their type and adds to library_system itemlist
-        :param itemlist: ItemList object to add items to
         :param filename: string, name of file of names of items
         :param item_type: class, subclass of Item, type of item in file
         """
-
+        file = open(filename, 'r')
+        for item_name in file:
         # iterate over names of items in file
-
+            new_item = item_type(item_name, self.IDgen.new_id())
             # create object of class item_type for each name, assigning a unique id number & name
+            libsys.add_new_item(new_item)
+            # tell libsys to add object to itemlist
+        file.close()
 
-            # add object to given itemlist
 
-
-    def load_new_item(self, itemlist, item_name, item_type):
+    def load_new_item(self, item_name, item_type):
         """
         Creates single item of specified type and adds to list
         :param itemlist: ItemList object to add items to
@@ -35,7 +38,9 @@ class ItemInitialise():
         :param item_type: class, subclass of Item, type of item in file
         """
 
+        new_item = item_type(item_name, self.IDgen.new_id())
         # create object of class item_type, assigning a unique id number & name
 
-        # add object to given itemlist
+        libsys.add_new_item(new_item)
+        # tell libsys to add object to given itemlist
 
