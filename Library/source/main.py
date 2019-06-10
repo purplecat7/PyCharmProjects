@@ -173,16 +173,16 @@ def scenario4(item_list, dvd, eric_money):
     libsys.change_fine_of_user("EricHalfbee", fine_reduce_by= min(eric_fine, eric_money))
     # make Eric pay off as much of his fine as he can with the funds available
 
-    can_Eric_borrow = libsys.can_user_borrow(username = "EricHalfbee", user_id = None)
+    can_Eric_borrow = libsys.can_user_borrow( "EricHalfbee")
 
     if can_Eric_borrow:
 
-        libsys.borrow_item(libsys, "EricHalfbee", None, dvd.name, dvd.id)
+        libsys.borrow_item(libsys, "EricHalfbee", dvd.name)
         # if he can now borrow, do this
 
 if __name__ == "__main__":
     libsys = setup_libsys({op.normpath("..\data\top100t.txt"): Book})
-    all_scenario_user_setup(libsys)
-    scenario1_setup(libsys, 5)
-    scenario1(libsys)
+    all_scenario_user_setup()
+    scenario1_setup( 5)
+    scenario1()
     print("success")
