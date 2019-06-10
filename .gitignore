@@ -108,3 +108,7 @@ core.
 
 # .idea ignore
 .idea
+.idea/*
+
+# and another
+*.pyc
