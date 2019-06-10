@@ -51,5 +51,6 @@ class User:
         :param amount:
         :return:
         '''
+        pass
 
 
