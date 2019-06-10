@@ -11,7 +11,7 @@ class ItemList(list):
     def len_items(self):
         """
         number of items in the list
-        :return: length of self
+        :return: int
         """
 
         return len(self)
@@ -21,7 +21,7 @@ class ItemList(list):
         asks the item if it is overdue
         :param itemid: id of item
         :param date:
-        :return: pass on message from item
+        :return: nothing
         """
 
         pass
@@ -29,7 +29,7 @@ class ItemList(list):
     def is_any_overdue(self):
         """
         loops over all items and checks if any are overdue
-        :return:
+        :return: bool
         """
         retval = False
         for item in self:
@@ -37,23 +37,25 @@ class ItemList(list):
 
         return retval
 
-    def get_fines(self, date):
+    def get_fines(self):
         """
         ask each item what the fine is
-        :param date:
-        :return: total fine
+        :return: float
         """
 
-        pass
+        fine = 0
+
+        for item in self:
+            fine += item.calculate_fine()
+
+        return fine
 
     def add_to_list(self, item):
         """
         adds the given item to the list
         :param item: instance of item
-        :return:
+        :return: nothing
         """
-
-        pass
 
         self.append(item)
 
@@ -64,34 +66,39 @@ class ItemList(list):
         :return: instance of item
         """
 
-        if self.find_items(itemid):
-
-
-    def find_items(self, itemid):
-        """
-        Check for item?
-        :param itemid: name of item
-        :return:
-        """
-
         for item in self:
-            if item.id == itemid:
-                retval = True
-
-            #ToDo: fix retval to false if the item doesn't exist
+            if isinstance(itemid, str):
+                if item.name == itemid:
+                    retval = item
+            elif isinstance(itemid, int):
+                if item.id == itemid:
+                    retval = item
 
         return retval
 
-    def check_in(self, itemid, date):
+    # def find_items(self, itemid):
+    #     """
+    #     Check for item?
+    #     :param itemid: name of item
+    #     :return:
+    #     """
+    #
+    #     retval = False
+    #
+    #     for item in self:
+    #         retval = retval & item.id == itemid
+    #
+    #     return retval
+
+    def check_in(self, itemid):
         """
         ask item to check itself in
         :param itemid:
-        :param date:
-        :return:
+        :return: float
         """
 
-        item = self.find_items(itemid)
-        fine = item.checkin_item(date)
+        item = self.get_item(itemid)
+        fine = item.checkin_item()
 
         self.remove(item)
 
@@ -101,9 +108,9 @@ class ItemList(list):
         """
 
         :param itemid:
-        :return:
+        :return: bool
         """
 
-        item = self.find_items(itemid)
+        item = self.get_item(itemid)
 
         return item.is_onloan()

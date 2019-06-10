@@ -58,14 +58,12 @@ class UserList():
         
         User.checkout_item(matching_item, checkout_date)
 
-    def checkin_item(self, user_id, item_id):
+    def checkin_item(self, item_obj):
         """
         A method to deal with when a user brings back an item.
         This will tell the user to remove the item from the
         users list of objects.
-        :param user: the id of the user who wants to bring back
-                     the item
-        :param item_id: the if of the item
+        :item_obj: an object for the item to add to the user object
         """
 
         # first find the user fro the list
@@ -73,7 +71,7 @@ class UserList():
 
         # then tell the user to checkin the item to the user
         # using Carls Code
-        User.check_in(user_to_act_on, item_id)
+        User.check_in(item_obj)
 
     def _find_user(self, user_id):
         """
@@ -91,6 +89,7 @@ class UserList():
         for possible_user in self.availble_users:
             # each user has an attribute that is a user id
             # and if it is the right one - return it
+            
             if type(user_id) == int:
                 if possible_user.user_id == user_id:
                     ret_val = possible_user
