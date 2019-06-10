@@ -50,7 +50,17 @@ class UserList():
         # User.can_borrow(user_to_pass)
         
         pass
+  
 
+    def checkout_item(self, matching_item):
+        
+        # some code to pass an item object to the user so it can be 
+        # added to the users list of borrowed items.
+        
+        # User.checkout_item(matching_item)
+        
+        pass
+    
     def _find_user(self, user_name):
         """
         A function to return the class of the person.
