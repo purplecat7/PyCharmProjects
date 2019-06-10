@@ -33,7 +33,7 @@ class User:
         return can_borrow
 
 
-    def checkout(self, item, date=None):
+    def checkout(self, item, date):
         '''
         Checkout book
         :param item:
@@ -51,6 +51,19 @@ class User:
         :param amount:
         :return:
         '''
+
+        self.accrued_fine += amount
         pass
+
+
+    def check_in(self, itemid, date):
+        '''
+        asks item list to add item  to list
+        :param itemid:
+        :return:
+        '''
+        ItemList.add_to_list(itemid, date)# ask itemlist to add item
+        pass
+
 
 
