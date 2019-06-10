@@ -30,7 +30,7 @@ class Item:
         # set date that item is checked out
 
 
-    def checkin_item(self, date=datetime.date.today()):
+    def checkin_item(self, date = datetime.date.today()):
         """
         Calculate fine resultant from item being overdue (if any)
         Set checkout_date to None, as item is no longer checked out
