@@ -84,10 +84,20 @@ class UserList():
         """
         # loops through all the users in self.user_list
         # and returns the class of the desired person.
+        #TODO if there are two users with identical identifiers
+        # the the last one will be returned - write in an exception
+        # to give a proper error.
 
         for possible_user in self.availble_users:
             # each user has an attribute that is a user id
             # and if it is the right one - return it
-            if possible_user.user_id == user_id:
-                return possible_user
+            if type(user_id) == int:
+                if possible_user.user_id == user_id:
+                    ret_val = possible_user
+            if type(user_id) == str:
+                if possible_user.name == user_id:
+                    ret_val = possible_user
+
+        return ret_val
+
 
