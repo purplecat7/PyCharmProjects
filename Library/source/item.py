@@ -14,7 +14,6 @@ class Item:
 
     def __del__(self):
 
-        pass
         # delete an item
 
 
