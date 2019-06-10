@@ -47,7 +47,7 @@ class UserList():
         # Karls_function(user_to_pass)
         # if passed_date == None:
         #    passed_date = dt.date.today()
-        # User.can_borrow(user_to_pass)
+        # User.can_borrow(user_to_pass, passed_date)
         
         pass
   
