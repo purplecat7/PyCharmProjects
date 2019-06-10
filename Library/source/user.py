@@ -27,22 +27,23 @@ class User:
         len_items = ItemList.len_items()# ask ItemList for length of list
         if len_items < self.max_borrow & self.accrued_fine<self.max_fine:# check length of list against max_borrow
                                                                             # Check accrued fine less than max_fine
-            can_borrow = ItemList.is_overdue()# Ask ItemList if any items on ItemList are overdue TODO ask Laura if ITemList.is_overdue() checks all items in itemlist or just one
+            is_overdue = ItemList.is_overdue()# Ask ItemList if any items on ItemList are overdue TODO ask Laura if ITemList.is_overdue() checks all items in itemlist or just one
+            can_borrow = not is_overdue
         else:
             can_borrow = False
         return can_borrow
 
 
-    def checkout(self, item, date):
+    def checkout(self, itemid, date):
         '''
         Checkout book
         :param item:
         :param date:
         :return:
         '''
-        # Set the borrowing date to item
-        # Ask ItemList to add item to list
-        pass
+
+        ItemList.add_to_list(itemid, date)# Ask ItemList to add item to list
+
 
 
     def ammend_fine(self, amount):
@@ -51,19 +52,17 @@ class User:
         :param amount:
         :return:
         '''
-
         self.accrued_fine += amount
-        pass
 
 
     def check_in(self, itemid, date):
         '''
-        asks item list to add item  to list
+        asks item list to check in item
         :param itemid:
         :return:
         '''
-        ItemList.add_to_list(itemid, date)# ask itemlist to add item
-        pass
+        ItemList.check_in(itemid, date)# ask itemlist to check in item
+
 
 
 
