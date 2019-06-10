@@ -1,7 +1,8 @@
 from user import User
 from main import NumbID
+from LibSys import libsys
 
-class UserInitialise():
+class UserInitialise:
 
     def __init__(self, library_system):
 

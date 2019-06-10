@@ -26,16 +26,16 @@ class ItemList(list):
 
         pass
 
-    def is_any_overdue(self, date):
+    def is_any_overdue(self):
         """
         loops over all items and checks if any are overdue
-        :param date:
         :return:
         """
-
-
+        retval = False
         for item in self:
-            item.is_overdue(date)
+            retval = retval or item.is_overdue()
+
+        return retval
 
     def get_fines(self, date):
         """
@@ -64,9 +64,8 @@ class ItemList(list):
         :return: instance of item
         """
 
-        # User super's get item?
+        if self.find_items(itemid):
 
-        pass
 
     def find_items(self, itemid):
         """
@@ -75,7 +74,13 @@ class ItemList(list):
         :return:
         """
 
-        pass
+        for item in self:
+            if item.id == itemid:
+                retval = True
+
+            #ToDo: fix retval to false if the item doesn't exist
+
+        return retval
 
     def check_in(self, itemid, date):
         """
@@ -86,7 +91,11 @@ class ItemList(list):
         """
 
         item = self.find_items(itemid)
-        item.checkin_item(date)
+        fine = item.checkin_item(date)
+
+        self.remove(item)
+
+        return fine
 
     def check_loan(self, itemid):
         """
@@ -94,3 +103,7 @@ class ItemList(list):
         :param itemid:
         :return:
         """
+
+        item = self.find_items(itemid)
+
+        return item.is_onloan()
