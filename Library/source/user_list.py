@@ -26,12 +26,10 @@ class UserList():
 
         self.available_users.append(user_to_add)
 
-    def can_borrow(self, user_name, item_name):
+    def can_borrow(self, user_id):
         """
 
         :param user_name: the name of the person
-        :param item_name: the name of the item the person
-                          wants to borrow.
         :return: a message to the library system to allow
                  borrowing.
         """
@@ -39,12 +37,12 @@ class UserList():
         # some code that delegates the user to Carls code.
 
         # first link to _find_user
-        user_to_pass = self._find_user(user_name)
+        user_to_pass = self._find_user(user_id)
 
         # second pass all the usefull items to the User handler.
         # Karls_function(user_to_pass)
 
-        User.can_borrow(user_to_pass, item_name)
+        user_to_pass.can_borrow()
   
 
     def checkout_item(self, user_id,matching_item, checkout_date = None):
