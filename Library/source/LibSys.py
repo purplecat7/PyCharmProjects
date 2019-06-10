@@ -21,14 +21,14 @@ class LibrarySystem:
         :param item: instance of item
 
         """
-        self.myitemList.add_to_list(item)
+        self.myitemlist.add_to_list(item)
 
     def add_new_user(self, user):
         """
         Add user to user list.
         :param user: instance of user
         """
-        self.myuserList.add_user(user)
+        self.myuserlist.add_user(user)
 
     def checkout(self, user, itemid, date):
         """
@@ -39,7 +39,7 @@ class LibrarySystem:
         :return: user, itemid
         """
 
-        if self.myuserList.can_borrow(user):
+        if self.myuserlist.can_borrow(user):
             the_item = self.myitemlist.get_item(itemid)
             the_item.setdate(date=datetime.date.today())
             self.myuserlist.checkout_item(user, the_item)
