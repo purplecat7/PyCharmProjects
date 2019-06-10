@@ -50,13 +50,6 @@ class NumbID:
         NumbID.id_number = 0
 
 
-libsys = LibrarySystem()
-# instantiate Library System
-item_init = ItemInitialise(libsys)
-# instantiate Item Initialiser
-user_init = UserInitialise(libsys)
-
-
 def setup_libsys(initial_catalogue_dictionary):
     """
     Function to initially create a library system, optionally with a dictionary of items to initialise system with
@@ -75,13 +68,10 @@ def setup_libsys(initial_catalogue_dictionary):
             item_init.load_items(filename = key, item_type = initial_catalogue_dictionary[key])
             # load items from specified file to the Library System
 
-    return libsys
 
-
-def all_scenario_user_setup():
+def all_scenario_user_setup(user_init):
     """
     Create users for test scenarios
-    :param libsys: LibrarySystem object
     """
     user_init.add_new_user("JohnnyCodewarrior")
     user_init.add_new_user("JudyHacker")
@@ -89,7 +79,7 @@ def all_scenario_user_setup():
     user_init.add_new_user("EricHalfbee")
 
 
-def scenario1_setup(book_ident):
+def scenario1_setup(libsys, book_ident):
     """
     Johnny has one outstanding book, not overdue
     :param libsys: LibrarySystem object
@@ -97,14 +87,14 @@ def scenario1_setup(book_ident):
     """
     libsys.checkout("JohnnyCodewarrior", book_ident, datetime.date.today() - datetime.timedelta(days = 3))
 
-def scenario1():
+def scenario1(libsys):
     """
     Run scenario 1 from CRC exercise on libsys
     :param libsys: LibrarySystem object
     """
     libsys.checkout("JohnnyCodewarrior", "Document, Your job depends on it")
 
-def scenario2_setup(overdueJournalName, date_in_the_past, book_name,
+def scenario2_setup(libsys, item_init, overdueJournalName, date_in_the_past, book_name,
                     earlier_date = datetime.date.today() - datetime.timedelta(days = 3)):
     """
     Setup for scenario 2, add Journal to system, and make it have been borrowed on some past date
@@ -181,11 +171,16 @@ def scenario4(item_list, dvd, eric_money):
         # if he can now borrow, do this
 
 if __name__ == "__main__":
-    libsys = setup_libsys({op.normpath("../data/top100t.txt"): Book})
-    all_scenario_user_setup()
-    scenario1_setup(5)
-    scenario1()
-    scenario2_setup("Twilight", datetime.datetime(1998, 4, 11), "The Broker")
-    scenario2("Twilight")
-    scenario3()
+    libsys = LibrarySystem()
+    # instantiate Library System
+    item_init = ItemInitialise(libsys)
+    # instantiate Item Initialiser
+    user_init = UserInitialise(libsys)
+    setup_libsys({op.normpath("../data/top100t.txt"): Book})
+    all_scenario_user_setup(user_init)
+    scenario1_setup(libsys, 5)
+    scenario1(libsys)
+    scenario2_setup(libsys, item_init, "Example_Journal", datetime.datetime(1998, 4, 11), "The Broker")
+    scenario2(libsys, "Example_Journal")
+    scenario3(libsys)
     print("success")
