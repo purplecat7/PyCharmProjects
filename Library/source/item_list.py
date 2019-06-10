@@ -16,15 +16,15 @@ class ItemList(list):
 
         return len(self)
 
-    def is_overdue(self, itemid, date):
-        """
-        asks the item if it is overdue
-        :param itemid: id of item
-        :param date:
-        :return: nothing
-        """
-
-        pass
+    # def is_overdue(self, itemid, date):
+    #     """
+    #     asks the item if it is overdue
+    #     :param itemid: id of item
+    #     :param date:
+    #     :return: nothing
+    #     """
+    #
+    #     pass
 
     def is_any_overdue(self):
         """
@@ -89,6 +89,18 @@ class ItemList(list):
     #         retval = retval & item.id == itemid
     #
     #     return retval
+
+    def check_out(self, item, date=None):
+        """
+
+        :param item: instance of an item
+        :param date: date to set as
+        :return: nothing
+        """
+
+        item.setdate(date)
+        self.append(item)
+
 
     def check_in(self, itemid):
         """
