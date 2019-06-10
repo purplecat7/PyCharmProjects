@@ -183,6 +183,9 @@ def scenario4(item_list, dvd, eric_money):
 if __name__ == "__main__":
     libsys = setup_libsys({op.normpath("../data/top100t.txt"): Book})
     all_scenario_user_setup()
-    scenario1_setup( 5)
+    scenario1_setup(5)
     scenario1()
+    scenario2_setup("Twilight", datetime.datetime(1998, 4, 11), "The Broker")
+    scenario2("Twilight")
+    scenario3()
     print("success")
