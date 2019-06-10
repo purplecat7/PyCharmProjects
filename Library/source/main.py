@@ -2,17 +2,17 @@
 Main "actor" for Library
 Assumes a LibrarySystem object with methods:
 
-borrow_item(username, user_id, item_name, item_id, date)
-return_item(username, user_id, item_name, item_id, date)
-change_fine_of_user
-is_item_available
-add_new_item
-add_new_user
-find_fine_of_user
-can_user_borrow
+borrow_item(username, user_id, item_name, item_id, date = datetime.date.today())
+return_item(username, user_id, item_name, item_id, date = datetime.date.today())
+change_fine_of_user(fine_reduce_by, username = None, user_id = None)
+is_item_available(item_name = None, item_id = None)
+add_new_item(item_type, name)
+add_new_user(username)
+find_fine_of_user(username, user_id, date = datetime.date.today())
+can_user_borrow(username, user_id, date = datetime.date.today())
 """
 
-from libsys import LibrarySystem
+from LibSys import libsys as LibrarySystem
 from item_initialise import  ItemInitialise
 from user_initialise import UserInitialise
 from item import Book, DVD, Journal

@@ -1,7 +1,8 @@
 from item import Book, DVD, Journal
+from LibSys import libsys
 from main import NumbID
 
-class ItemInitialise():
+class ItemInitialise:
 
     def __init__(self, library_system):
 

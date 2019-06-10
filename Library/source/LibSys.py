@@ -10,7 +10,7 @@ class libsys:
         """
         self.myitemlist = ItemList() #list of items
         self.myuserlist = UserList() #list of users
-        # add for fun
+
     def add_item(self, item):
         """
         Add item to itemlist.
@@ -26,4 +26,13 @@ class libsys:
         """
         myuserList.add_user(user)
 
-        
+    def checkout(self, user, itemid):
+        """
+        Accepts user and id of item from input list
+        and passes them to item initialiser
+        :param user: user
+        :param itemid: id of iem
+        :return: user, itemid
+        """
+        return user, itemid
+

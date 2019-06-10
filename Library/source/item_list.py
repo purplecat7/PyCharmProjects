@@ -14,20 +14,33 @@ class ItemList(list):
         :return: length of self
         """
 
-        pass
+        return len(self)
 
-    def is_overdue(self, item):
+    def is_overdue(self, itemid, date):
         """
         asks the item if it is overdue
-        :param item: name of item
+        :param itemid: id of item
+        :param date:
         :return: pass on message from item
         """
 
         pass
 
-    def get_fines(self):
+    def is_any_overdue(self):
+        """
+        loops over all items and checks if any are overdue
+        :return:
+        """
+        retval = False
+        for item in self:
+            retval = retval or item.is_overdue()
+
+        return retval
+
+    def get_fines(self, date):
         """
         ask each item what the fine is
+        :param date:
         :return: total fine
         """
 
@@ -42,24 +55,55 @@ class ItemList(list):
 
         pass
 
-        # self.add(item)
+        self.append(item)
 
-    def get_item(self, item):
+    def get_item(self, itemid):
         """
         returns the item asked for
-        :param item: name of item
+        :param itemid: name of item
         :return: instance of item
         """
 
-        # User super's get item?
+        if self.find_items(itemid):
 
-        pass
 
-    def find_items(self, item):
+    def find_items(self, itemid):
         """
         Check for item?
-        :param item: name of item
+        :param itemid: name of item
         :return:
         """
 
-        pass
+        for item in self:
+            if item.id == itemid:
+                retval = True
+
+            #ToDo: fix retval to false if the item doesn't exist
+
+        return retval
+
+    def check_in(self, itemid, date):
+        """
+        ask item to check itself in
+        :param itemid:
+        :param date:
+        :return:
+        """
+
+        item = self.find_items(itemid)
+        fine = item.checkin_item(date)
+
+        self.remove(item)
+
+        return fine
+
+    def check_loan(self, itemid):
+        """
+
+        :param itemid:
+        :return:
+        """
+
+        item = self.find_items(itemid)
+
+        return item.is_onloan()
