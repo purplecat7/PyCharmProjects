@@ -63,9 +63,9 @@ class UserList():
         A method to deal with when a user brings back an item.
         This will tell the user to remove the item from the
         users list of objects.
-        :param user: the id of the user who wants to bring back
+        :param user_id: the id of the user who wants to bring back
                      the item
-        :param item_id: the if of the item
+        :item_obj: an object for the item to add to the user object
         """
 
         # first find the user fro the list
