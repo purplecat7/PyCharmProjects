@@ -1,6 +1,6 @@
 from user_list import UserList
 from item_list import ItemList
-
+import datetime
 class LibrarySystem:
     
     """
@@ -34,7 +34,7 @@ class LibrarySystem:
         Accepts user and id of item from input list
         and passes them to user list
         :param user: user
-        :param itemid: id of iem
+        :param itemid: id of item
         :return: user, itemid
         """
 
@@ -50,15 +50,15 @@ class LibrarySystem:
 
     def return_item(self, user, itemid):
         """
-        :param user:
-        :param itemid:
-        :return:
+        Checks in item when returned
+        :param user: user
+        :param itemid: id of item
+        :return: user, itemid
         """
 
-        if self.myuserList.can_borrow(user):
-            the_item = self.myitemlist.get_item(itemid)
+        the_item = self.myitemlist.get_item(itemid)
 
-            self.myuserlist.checkin_item(user, the_item)
+        self.myuserlist.checkin_item(user, the_item)
 
         # JB here you need to give the user_id to the user_list so they can fin the user & check in the book
         # also might want the option to use a different date so that books can be assigned already overdue (possibly with a default value of datetime.date.today())
@@ -66,11 +66,6 @@ class LibrarySystem:
         return user, itemid
 """
 
-# the following are just some ideas of methods we might want in LibSys, JB
-        # feel free to delete these if it's just annoying
-
-#return_item(user_identifier, item_identifier)
-        # user_list
 
 #change_fine_of_user(fine_reduce_by, user_identifier)
 
