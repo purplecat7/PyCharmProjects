@@ -13,7 +13,7 @@ can_user_borrow(user_identifier, date = datetime.date.today())
 """
 
 import os.path as op
-from LibSys import LibrarySystem
+from library_system import LibrarySystem
 from item_initialise import  ItemInitialise
 from user_initialise import UserInitialise
 from item import Book, DVD, Journal

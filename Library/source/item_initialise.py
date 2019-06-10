@@ -1,5 +1,5 @@
 from item import Book, DVD, Journal
-from LibSys import LibrarySystem
+from library_system import LibrarySystem
 
 
 class ItemInitialise:
