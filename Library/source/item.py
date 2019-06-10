@@ -38,15 +38,7 @@ class Item():
         :return: float, fine in pounds to be added to user's accrued fine due to the overdue return of this item
         """
 
-        days_overdue = self.find_days_overdue(self, date)
-
-        fine = 0
-
-        if days_overdue > 0:
-            # if item is overdue
-
-            fine = self.fine_rate * days_overdue
-            # calculate fine due on item
+        fine = self.calculate_fine(date)
 
         self.checkout_date = None
         # now item is returned reset checkout date to None
@@ -79,7 +71,7 @@ class Item():
         :return: bool, if item is overdue
         """
 
-        days_overdue = self.find_days_overdue(self, date)
+        days_overdue = self.find_days_overdue(date)
 
         if days_overdue > 0:
 
@@ -91,6 +83,25 @@ class Item():
 
         return overdue
         # if it is positive number of days overdue, then overdue is True
+
+
+    def calculate_fine(self, date=datetime.date.today()):
+        """
+        Determine overdue fine from item at date
+        :param date: datetime object of today's date
+        :return: float, fine in pounds due to overdue
+        """
+
+        days_overdue = self.find_days_overdue(self, date)
+
+        fine = 0
+
+        if self.is_overdue(date):
+
+            fine = self.fine_rate * days_overdue
+            # calculate fine due on item
+
+        return fine
 
 
     def is_onloan(self):
