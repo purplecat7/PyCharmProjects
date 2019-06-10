@@ -60,7 +60,18 @@ class UserList():
         # User.checkout_item(matching_item)
         
         pass
-    
+
+    def checkin_item(self, user, item_id):
+
+        # a method that gives an item to return the item to the system
+
+        # first find the user fro the list
+        # user_to_act_on = _find_user(user, item_id)
+
+        # then tell the user to checkin the item to the user
+        # using Carls Code
+        # User.check_in(user_to_act_on)
+
     def _find_user(self, user_name):
         """
         A function to return the class of the person.
