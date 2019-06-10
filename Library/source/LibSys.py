@@ -7,7 +7,7 @@ class LibrarySystem:
     Library System Management
     """
     
-    def __init__(self, Itemlist, UserList):
+    def __init__(self):
         """
         Constructor of libsys class
         """
@@ -29,7 +29,7 @@ class LibrarySystem:
         """
         self.myuserList.add_user(user)
 
-    def checkout(self, user, itemid):
+    def checkout(self, user, itemid, date):
         """
         Accepts user and id of item from input list
         and passes them to user list
@@ -40,25 +40,24 @@ class LibrarySystem:
 
         if self.myuserList.can_borrow(user):
             the_item = self.myitemlist.get_item(itemid)
-            self.myuserlist.checkin_item(user, the_item)
+            the_item.setdate(date=datetime.date.today())
+            self.myuserlist.checkout_item(user, the_item)
 
         # JB here you need to give the user_id to the user_list so they can fin the user & check in the book
         # also might want the option to use a different date so that books can be assigned already overdue (possibly with a default value of datetime.date.today())
 
         return user, itemid
-"""
-    def return_item(self, user, itemid):
 
-        
-        Accepts user and id of item from input list
-        and passes them to item initialiser
-        :param user: user
-        :param itemid: id of iem
-        :return: user, itemid
-        
+    def return_item(self, user, itemid):
+        """
+        :param user:
+        :param itemid:
+        :return:
+        """
 
         if self.myuserList.can_borrow(user):
             the_item = self.myitemlist.get_item(itemid)
+
             self.myuserlist.checkin_item(user, the_item)
 
         # JB here you need to give the user_id to the user_list so they can fin the user & check in the book
