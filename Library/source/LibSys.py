@@ -30,7 +30,7 @@ class LibrarySystem:
         """
         self.myuserlist.add_user(user)
 
-    def checkout(self, user, itemid, date):
+    def checkout(self, user, itemid, date=None):
         """
         Accepts user and id of item from input list
         and passes them to user list
