@@ -47,7 +47,7 @@ class UserList():
         User.can_borrow(user_to_pass, item_name)
   
 
-    def checkout_item(self, matching_item):
+    def checkout_item(self, matching_item, checkout_date):
         """
         A method to add the new item to a users list of taken out
         items, using Carls code.
@@ -56,7 +56,7 @@ class UserList():
         # some code to pass an item object to the user so it can be 
         # added to the users list of borrowed items.
         
-        User.checkout_item(matching_item)
+        User.checkout_item(matching_item, checkout_date)
 
     def checkin_item(self, user_id, item_id):
         """
