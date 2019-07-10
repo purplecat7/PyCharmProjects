@@ -105,15 +105,16 @@ def scenario2_setup(libsys, item_init, overdueJournalName, date_in_the_past, boo
     :param book_name: string, name of Book Judy has out
     :param earlier_date: datetime object, date at which Book was borrowed
     """
-    item_init.load_new_item(libsys, Journal, overdueJournalName)
-    item_init.load_new_item(libsys, DVD, "Debugging to music")
+    item_init.load_new_item(overdueJournalName, Journal)
+    item_init.load_new_item("Debugging to music", DVD)
     libsys.checkout("JudyHacker", overdueJournalName, date_in_the_past)
     libsys.checkout("JudyHacker", book_name, earlier_date)
-    libsys.change_fine_of_user("JudyHacker", fine_reduce_by = -2)
+#    libsys.change_fine_of_user("JudyHacker", fine_reduce_by = -2)
+    # TODO library_system and user_list currently have no way of changing users' fine
     # there needs to be some mechanism by which users can pay back fines, this should also be used to increase fines
     # for the sake of setting up these scenarios
 
-def scenario2(overdueJournalName):
+def scenario2(libsys, overdueJournalName):
     """
     Run scenario 2 from CRC exercise on libsys
     :param libsys: LibrarySystem object
@@ -123,7 +124,7 @@ def scenario2(overdueJournalName):
     libsys.checkout("JudyHacker", "Debugging to music")
 
 
-def scenario3():
+def scenario3(libsys):
     """
     Run scenario 3 from CRC exercise on libsys
     :param libsys: LibrarySystem object
@@ -134,9 +135,10 @@ def scenario3():
         libsys.checkout("MissMarple", "Sleuthing in C#")
 
 
-def scenario4_setup(item_list, list_of_past_dates):
+def scenario4_setup(libsys, item_list, list_of_past_dates):
     """
     Assign items in list to Eric, overdue, in libsys
+    :param libsys: LibrarySystem object
     :param item_list: list of item objects
     :param list_of_past_dates: list of datetime objects of same length
     """
@@ -144,7 +146,7 @@ def scenario4_setup(item_list, list_of_past_dates):
         libsys.checkout("EricHalfbee", item.name, list_of_past_dates[date_index])
 
 
-def scenario4(item_list, dvd, eric_money):
+def scenario4(libsys, item_list, dvd, eric_money):
     """
     Run scenario 4 from CRC exercise on libsys
     :param libsys: LibrarySystem object
@@ -163,7 +165,7 @@ def scenario4(item_list, dvd, eric_money):
     libsys.change_fine_of_user("EricHalfbee", fine_reduce_by= min(eric_fine, eric_money))
     # make Eric pay off as much of his fine as he can with the funds available
 
-    can_Eric_borrow = libsys.can_user_borrow( "EricHalfbee")
+    can_Eric_borrow = libsys.can_user_borrow("EricHalfbee")
 
     if can_Eric_borrow:
 
