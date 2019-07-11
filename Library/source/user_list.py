@@ -55,7 +55,7 @@ class UserList():
         user_to_act_on = self._find_user(user_id)
 
         # now add the new item to the person
-        user_to_act_on.checkout_item(matching_item, checkout_date)
+        user_to_act_on.checkout(matching_item, checkout_date)
 
 
     def checkin_item(self, user_id, item_obj):
