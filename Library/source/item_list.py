@@ -1,3 +1,5 @@
+from invalid_item_error import InvalidItemError
+
 class ItemList(list):
     """
     This is a list that holds a number of items
@@ -66,6 +68,8 @@ class ItemList(list):
         :return: instance of item
         """
 
+        retval = None
+
         for item in self:
             if isinstance(itemid, str):
                 if item.name == itemid:
@@ -73,6 +77,9 @@ class ItemList(list):
             elif isinstance(itemid, int):
                 if item.id == itemid:
                     retval = item
+
+        if retval is None:
+            raise InvalidItemError(itemid)
 
         return retval
 
@@ -102,14 +109,13 @@ class ItemList(list):
         self.append(item)
 
 
-    def check_in(self, itemid):
+    def check_in(self, item):
         """
         ask item to check itself in
         :param itemid:
         :return: float
         """
 
-        item = self.get_item(itemid)
         fine = item.checkin_item()
 
         self.remove(item)
