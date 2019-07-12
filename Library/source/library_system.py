@@ -19,7 +19,6 @@ class LibrarySystem:
         """
         Add item to itemlist.
         :param item: instance of item
-
         """
         self.myitemlist.add_to_list(item)
 
@@ -50,6 +49,21 @@ class LibrarySystem:
         return user, itemid
 
     def return_item(self, user, itemid):
+        """
+        Checks in item when returned
+        :param user: user
+        :param itemid: id of item
+        :return: user, itemid
+        """
+
+        self.myuserlist.checkin_item(user, itemid)
+
+        # JB here you need to give the user_id to the user_list so they can fin the user & check in the book
+        # also might want the option to use a different date so that books can be assigned already overdue (possibly with a default value of datetime.date.today())
+
+        return user, itemid
+
+    def change_fine_of_user(self, user, itemid):
         """
         Checks in item when returned
         :param user: user
