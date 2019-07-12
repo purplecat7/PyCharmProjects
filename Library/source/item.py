@@ -94,7 +94,7 @@ class Item:
         if date == None:
             date = datetime.date.today()
 
-        days_overdue = self.find_days_overdue(self, date)
+        days_overdue = self.find_days_overdue(date)
 
         fine = 0
 

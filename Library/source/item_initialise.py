@@ -1,5 +1,5 @@
 from item import Book, DVD, Journal
-from LibSys import LibrarySystem
+from library_system import LibrarySystem
 
 
 class ItemInitialise:
@@ -24,6 +24,8 @@ class ItemInitialise:
         file = open(filename, 'r')
         for item_name in file.readlines():
         # iterate over names of items in file
+            item_name = item_name[:-1]
+            #TODO Ugly fix to remove the '/n' from the end of lines
             new_item = item_type(item_name, self.IDgen.new_id())
             # create object of class item_type for each name, assigning a unique id number & name
             self.libsys.add_new_item(new_item)

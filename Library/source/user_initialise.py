@@ -1,5 +1,5 @@
 from user import User
-from LibSys import LibrarySystem
+from library_system import LibrarySystem
 
 class UserInitialise:
 

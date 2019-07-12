@@ -1,4 +1,3 @@
-import datetime as dt
 from user import User
 
 class UserList():
@@ -19,7 +18,7 @@ class UserList():
         """
         A method to add the input user to the self.user_list
         :param user_to_add:
-        :return:
+        :return: nothing - just adds a new user to my userlist
         """
         # some code here that appends the current user to
         # the self.available_users on initialisation.
@@ -31,7 +30,7 @@ class UserList():
 
         :param user_name: the name of the person
         :return: a message to the library system to allow
-                 borrowing.
+                 borrowing. True/False
         """
 
         # some code that delegates the user to Carls code.
@@ -39,10 +38,9 @@ class UserList():
         # first link to _find_user
         user_to_pass = self._find_user(user_id)
 
-        # second pass all the usefull items to the User handler.
-        # Karls_function(user_to_pass)
+        # then actually find out if it can borrow
 
-        user_to_pass.can_borrow()
+        return user_to_pass.can_borrow()
   
 
     def checkout_item(self, user_id,matching_item, checkout_date = None):
@@ -57,7 +55,7 @@ class UserList():
         user_to_act_on = self._find_user(user_id)
 
         # now add the new item to the person
-        user_to_act_on.checkout_item(matching_item, checkout_date)
+        user_to_act_on.checkout(matching_item, checkout_date)
 
 
     def checkin_item(self, user_id, item_obj):
@@ -88,7 +86,7 @@ class UserList():
         # the the last one will be returned - write in an exception
         # to give a proper error.
 
-        for possible_user in self.availble_users:
+        for possible_user in self.available_users:
             # each user has an attribute that is a user id
             # and if it is the right one - return it
             

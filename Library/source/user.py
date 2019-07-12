@@ -24,13 +24,13 @@ class User:
         :return:
         '''
         len_items = self.my_item_list.len_items()# ask ItemList for length of list
-        if len_items < self.max_borrow & self.accrued_fine < self.max_fine: # check length of list against max_borrow
+        if ((len_items < self.max_borrow) and (self.accrued_fine < self.max_fine)): # check length of list against max_borrow
                                                                             # Check accrued fine less than max_fine
             is_any_overdue = self.my_item_list.is_any_overdue() # Ask ItemList if any items on ItemList are overdue
-            can_borrow = not is_any_overdue # Flip False to True and True to False
+            can_borrow_ = not is_any_overdue # Flip False to True and True to False
         else:
-            can_borrow = False
-        return can_borrow
+            can_borrow_ = False
+        return can_borrow_
 
 
     def checkout(self, item, date=None):
