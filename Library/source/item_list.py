@@ -79,7 +79,7 @@ class ItemList(list):
                     retval = item
 
         if retval is None:
-            raise InvalidItemError
+            raise InvalidItemError(itemid)
 
         return retval
 
@@ -109,14 +109,13 @@ class ItemList(list):
         self.append(item)
 
 
-    def check_in(self, itemid):
+    def check_in(self, item):
         """
         ask item to check itself in
         :param itemid:
         :return: float
         """
 
-        item = self.get_item(itemid)
         fine = item.checkin_item()
 
         self.remove(item)
