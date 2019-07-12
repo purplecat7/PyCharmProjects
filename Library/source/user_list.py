@@ -1,4 +1,5 @@
 from user import User
+from user_error import UserError
 
 class UserList():
     """
@@ -86,6 +87,9 @@ class UserList():
         # the the last one will be returned - write in an exception
         # to give a proper error.
 
+        # set a clicker that will show if the user has been found
+        found_the_user = False
+
         for possible_user in self.available_users:
             # each user has an attribute that is a user id
             # and if it is the right one - return it
@@ -93,10 +97,19 @@ class UserList():
             if type(user_id) == int:
                 if possible_user.user_id == user_id:
                     ret_val = possible_user
+                    found_the_user = True
             if type(user_id) == str:
                 if possible_user.name == user_id:
                     ret_val = possible_user
+                    found_the_user = True
 
-        return ret_val
+        if found_the_user:
+
+            return ret_val
+
+        else:
+
+            raise UserError()
+
 
 
