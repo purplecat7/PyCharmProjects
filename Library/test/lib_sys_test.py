@@ -1,12 +1,12 @@
-from class_code.classAcode import ClassA
+#from class_code.classAcode import ClassA
 import nose.tools as ns
-from library_system import LibrarySystem
+from ..source.library_system import LibrarySystem
 import time
 
 # Writing to stdout to record behaviour - one would never usually print from tests.
 # In run configuration, need to add '--nocapture' as nosetest parameter.
 
-class TestA(object):
+class TestLibSys(object):
     @classmethod
     def setup_class(cls):
         """This method is run once for each class before any tests are run"""
@@ -34,8 +34,8 @@ class TestA(object):
     def test_init(self):
         print('test_init method\n')
         lib_sys = LibrarySystem()
-        ns.assert_is_instance(self.myitemlist, list)
-        ns.assert_is_instance(self.myuserlist, list)
+        ns.assert_is_instance(lib_sys.myitemlist, list)
+        ns.assert_is_instance(lib_sys.myuserlist.available_users, list)
 
     def test_return_true(self):
         print('test_return_true method\n')

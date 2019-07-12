@@ -38,7 +38,7 @@ class TestUser(object):
     def test_checkout(self):
         pass
 
-    def test_ammend_fine(self):
+    def test_amend_fine(self):
         pass
 
     def test_check_in(self):
