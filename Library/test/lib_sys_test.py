@@ -11,24 +11,24 @@ class TestA(object):
     def setup_class(cls):
         """This method is run once for each class before any tests are run"""
         # ns.assert_true(False, "setup_class run")
-        print('setup_class\n')
+        pass
 
     @classmethod
     def teardown_class(cls):
         """This method is run once for each class _after_ all tests are run"""
         # ns.assert_true(False, "teardown_class run")
-        print('teardown_class\n')
+        pass
 
 
     def setUp(self):
         """This method is run once before _each_ test method is executed"""
         # use self.attribute to keep anything which needs to be accessed later
-        print('setUp method\n')
+        pass
 
 
     def tearDown(self):
         """This method is run once after _each_ test method is executed"""
-        print('tearDown method\n')
+        pass
 
 
     def test_init(self):
