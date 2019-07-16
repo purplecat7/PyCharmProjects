@@ -17,6 +17,8 @@ from library_system import LibrarySystem
 from item_initialise import  ItemInitialise
 from user_initialise import UserInitialise
 from item import Book, DVD, Journal
+from invalid_item_error import InvalidItemError
+from user_error import UserError
 import datetime
 
 class NumbID:
@@ -60,7 +62,7 @@ def setup_items(libsys):
     item_init.load_new_item("Dad's Army", DVD)
     item_init.load_new_item("Debugging to music", DVD)
 
-    print ('Total number of items: ', NumbID.id_number)
+    #print ('Total number of items: ', NumbID.id_number)
 
 
 def setup_libsys(item_init, initial_catalogue_dictionary):
@@ -99,11 +101,15 @@ def scenario1(libsys, book_ident):
     Run scenario 1 from CRC exercise on libsys
     :param libsys: LibrarySystem object
     """
-    libsys.checkout("JohnnyCodewarrior", book_ident, datetime.date.today() - datetime.timedelta(days = 3))
-    # Give Johnny book, not overdue
-    libsys.checkout("JohnnyCodewarrior", "Document, Your job depends on it")
-    # run scenario
-
+    try:
+        libsys.checkout("JohnnyCodewarrior", book_ident, datetime.date.today() - datetime.timedelta(days = 3))
+        # Give Johnny book, not overdue
+        libsys.checkout("JohnnyCodewarrior", "Document, Your job depends on it")
+        # run scenario
+        libsys.checkout("JohnnyCodewarrior", 200)
+        libsys.checkout("Donald", 6)
+    except (UserError, InvalidItemError) as e:
+        print(e)
 
 def scenario2(libsys, overdueJournalName, date_in_the_past,book_name, earlier_date = datetime.date.today() - datetime.timedelta(days = 3)):
     """
