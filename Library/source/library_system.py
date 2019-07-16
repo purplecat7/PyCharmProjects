@@ -35,16 +35,15 @@ class LibrarySystem:
         and passes them to user list
         :param user: user
         :param itemid: id of item
+        :param date: optional date for the book to be checked out
         :return: user, itemid
         """
 
         if self.myuserlist.can_borrow(user):
             the_item = self.myitemlist.get_item(itemid)
-            the_item.setdate(date=datetime.date.today())
-            self.myuserlist.checkout_item(user, the_item)
+            self.myuserlist.checkout_item(user, the_item, date)
 
         # JB here you need to give the user_id to the user_list so they can fin the user & check in the book
-        # also might want the option to use a different date so that books can be assigned already overdue (possibly with a default value of datetime.date.today())
 
         return user, itemid
 
