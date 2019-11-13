@@ -23,6 +23,7 @@ def main(filename, ecv, operation, plot_type):
 
     # lastly, get it plotted
     # do_plot(plottable_data, variable_name, plot_type)
+    pass
 
 
 if __name__ == '__main__':
@@ -30,3 +31,4 @@ if __name__ == '__main__':
     # pass in arguments for the file location & name, the variable you
     # want to extract, the operation to carry out and the plot to produce.
     # call main() with the arguments
+    pass
