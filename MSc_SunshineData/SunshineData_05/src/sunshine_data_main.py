@@ -91,7 +91,7 @@ def add_sunshine_per_day(file_contents):
 if __name__ == '__main__':
     # if command switch != t
     # set file path/name here not in the reader, so it's easier to change later
-    filename = '..\MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv'
+    filename = '..\..\MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv'
     # call FileReader.loadFile(filepath) to return data in suitable variables
     file_contents = file_reader.loadfile(filename)
     # use functions here to process data
