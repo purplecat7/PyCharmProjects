@@ -4,7 +4,7 @@ Tasks:
 1 - Take a look at file_reader.py: note the simplicity, the docstrings and the comments
 2 - There are three runtime errors in the function adding sunshine data, what are they?
     How could you find them? Should you be testing for them...? (Hint: the answer is YES!!!)
-3 - How are those print() calls working in lines 54 and 56?
+3 - How are those print() calls working in lines 53 and 55?
 '''
 # -------------------------------------------------------------------------------
 # Name:        SunshineData_main
@@ -64,7 +64,7 @@ def add_sunshine_per_day(file_contents):
 
 def main():
     # set file path/name here not in the reader, so it's easier to change later
-    filename = '..\MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv'
+    filename = '..\..\MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv'
     # call FileReader.loadFile(filepath) to return data in suitable variables
     file_contents = file_reader.loadfile(filename)
     # use functions here to process data
