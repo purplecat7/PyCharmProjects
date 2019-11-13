@@ -3,7 +3,7 @@ __author__ = 'Jane'
 Tasks:
 1 - Note the insertion of docstrings and comments
 2 - We have delegated file handling to a different module to keep things simple here - how is this done?
-3 - What's less than ideal about line 45?
+3 - What's less than ideal about line 38?
 4 - Open file_reader.py and follow its tasks
 '''
 # -------------------------------------------------------------------------------
