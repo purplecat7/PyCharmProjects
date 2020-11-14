@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Feb 19 08:54:27 2015
-This version creates two separate dictionaries: one for windspeed and one for pressure
+This version creates one dictionary: containing both windspeed and pressure
 Note that there are runtime warnings: these must be resolved.
 @author: Jane
 """
 import numpy as np
 import sys
+import os
 
 
 def load_data(the_file):
@@ -23,18 +24,18 @@ def load_data(the_file):
     return the_data
 
 
-def extract_field(the_data, the_field):
+def extract_fields(the_data):
     """
     Function to parse the loaded data and construct a local datatype from it.
     This will be a dictionary with the storm serial number as the key, and its
-    named field in a list as the value. Note that the function expects data relating to
-    a single storm to be contiguous.
+    windspeeds and pressures in a list of lists as the value. Note that the function
+    expects data relating to a single storm to be contiguous.
     :param the_data: loaded data extracted from file
-    :param the_field: one of 'wind' or 'press'
-    :return: dictionary with storm serial number key and list of wind/press as value
+    :return: dictionary with storm serial number key and list of lists of wind/press as value
     """
     # create empty list and empty dictionary
-    data_list = []  # or use list()
+    wind_list = []  # or use list()
+    press_list = []  # or use list()
     data_dict = {}  # or use dict()
     # get first serial number and save it
     serial_number = the_data['id'][0]
@@ -43,21 +44,28 @@ def extract_field(the_data, the_field):
         # if new serial number == saved one
         if item['id'] == serial_number:
             # append data to list unless == -999
-            if item[the_field] != -999:
-                data_list.append(item[the_field])
+            if item['wind'] != -999:
+                wind_list.append(item['wind'])
+            if item['press'] != -999:
+                press_list.append(item['press'])
         else:
             # add old serial number and list to dictionary
-            data_dict[serial_number] = data_list
+            data_dict[serial_number] = [wind_list, press_list]
             # save new serial number, append data to new list (unless -999)
             serial_number = item['id']
-            if item[the_field] != -999:
-                data_list = [item[the_field]]
+            if item['wind'] != -999:
+                wind_list.append(item['wind'])
             else:
-                data_list = []
+                wind_list = []
+
+            if item['press'] != -999:
+                press_list.append(item['press'])
+            else:
+                press_list = []
     return data_dict
 
 
-def get_average_for_storm(storm_details):
+def get_average_for_storm(storm_details, index):
     """
     Function which calculates the mean of the variable for each storm
     :param storm_details: the dictionary of variable lists by storm serial number
@@ -82,7 +90,7 @@ def write_result(avg_dict, variable_name):
     :param variable_name: text to describe mean data
     :return: no return
     """
-    # output result to screen & file
+    # ooutput result to screen & file
     # note - could be given a set of storm ids and do a plot
     filename = "results_" + variable_name + ".txt"
     with open(filename, 'w') as text_file:
@@ -100,32 +108,29 @@ def main():
         if len(sys.argv) >= 2:
             the_file = sys.argv[1]
         else:
-            #TODO make file path OS independent
-            the_file = str("../data/ibtracs_storms.dat")
+            #file path OS independent
+            filepath = os.path.normpath("../data/ibtracs_storms.dat")
+            the_file = str(filepath)
 
         # open data file, get data in memory
         loaded_data = load_data(the_file)
 
         # read data in memory and construct local datatype
-        storm_wind_details = extract_field(loaded_data, 'wind')
+        storm_details = extract_fields(loaded_data)
 
         # process local datatype
         # note - could have user input for which storm they're interested in
-        avg_wind = get_average_for_storm(storm_wind_details)
+        #TODO Note that we have to hard-code the index into the dictionary to get pressure or windspeed information... this seems wrong!
+        avg_wind = get_average_for_storm(storm_details, 0)
 
         # produce results
         write_result(avg_wind, 'windspeed')
 
-        # read data in memory and construct local datatype
-        storm_press_details = extract_field(loaded_data, 'press')
-
-        avg_press = get_average_for_storm(storm_press_details)
+        avg_press = get_average_for_storm(storm_details, 1)
 
         write_result(avg_press, 'pressure')
     except TypeError as te:
         print te.message
-
-
 
 if __name__ == '__main__':
     main()

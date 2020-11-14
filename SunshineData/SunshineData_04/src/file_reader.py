@@ -1,12 +1,12 @@
 __author__ = 'Jane'
 # -------------------------------------------------------------------------------
 # Name:        FileReader
-# Purpose:     Demonstration for MSc welcome week
+# Purpose:     Exercise for Scenario/DTP training.
 #
-# Author:      Jane Lewis xw904346
+# Author:      Jane Lewis to104469
 #
 # Created:     25/08/2015
-# Copyright:   (c) xw904346 2015
+# Copyright:   (c) to104469 2015
 # -------------------------------------------------------------------------------
 
 """
@@ -29,7 +29,7 @@ def loadfile(filename):
     Reads a csv format file.
 
     Uses the second line of the file to name the columns. Converts fields to datetimes
-    as appropriate. Expects a file containing date, time, value, value, value from line 3
+    as appropriate. Expects a file containing date, time, value, value, value, from line 3
     onwards.
 
     Args:

@@ -8,12 +8,12 @@ Tasks:
 '''
 # -------------------------------------------------------------------------------
 # Name:        SunshineData_main
-# Purpose:     Demonstration for MSc welcome week
+# Purpose:     Exercise for Scenario/DTP training.
 #
-# Author:      Jane Lewis xw904346
+# Author:      Jane Lewis to104469
 #
 # Created:     25/08/2015
-# Copyright:   (c) xw904346 2015
+# Copyright:   (c) to104469 2015
 # -------------------------------------------------------------------------------
 
 """
@@ -79,8 +79,8 @@ def add_sunshine_per_day(file_contents):
             # ERROR 3: don't forget to reset the date comparison variable
             current_date = next_date
 
-    print(sunshine_hours)
-    print(type(sunshine_hours[0][0]))
+    # print(sunshine_hours)
+    # print(type(sunshine_hours[0][0]))
     # funny values? see https://docs.python.org/3/tutorial/floatingpoint.html
 
     # And send back a numpy array of the results
@@ -91,7 +91,7 @@ def add_sunshine_per_day(file_contents):
 if __name__ == '__main__':
     # if command switch != t
     # set file path/name here not in the reader, so it's easier to change later
-    filename = '..\MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv'
+    filename = '..\..\MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv'
     # call FileReader.loadFile(filepath) to return data in suitable variables
     file_contents = file_reader.loadfile(filename)
     # use functions here to process data

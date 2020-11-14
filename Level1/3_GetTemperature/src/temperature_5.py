@@ -36,6 +36,7 @@ def read_config(config_file):
     data_file = section.get('data_file')
     return data_file
 
+
 def is_valid(the_input):
     """
     Function to check validity of user entry.

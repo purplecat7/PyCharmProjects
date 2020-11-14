@@ -3,17 +3,17 @@ __author__ = 'Jane'
 Tasks:
 1 - Note the insertion of docstrings and comments
 2 - We have delegated file handling to a different module to keep things simple here - how is this done?
-3 - What's less than ideal about line 45?
+3 - What's less than ideal about line 38?
 4 - Open file_reader.py and follow its tasks
 '''
 # -------------------------------------------------------------------------------
 # Name:        SunshineData_main
-# Purpose:     Demonstration for MSc welcome week
+# Purpose:     Exercise for Scenario/DTP training.
 #
-# Author:      Jane Lewis xw904346
+# Author:      Jane Lewis to104469
 #
 # Created:     25/08/2015
-# Copyright:   (c) xw904346 2015
+# Copyright:   (c) to104469 2015
 # -------------------------------------------------------------------------------
 
 """

@@ -15,7 +15,8 @@ def extract_windspeed():
     """
     Function to parse the loaded data and construct a local datatype from it.
     This will be a dictionary with the storm serial number as the key, and its
-    windspeeds in a list as the value.
+    windspeeds in a list as the value. Note that the function expects data relating to
+    a single storm to be contiguous.
     """
     # create empty list and empty dictionary
     # get first serial number and save it and windspeed (unless -999)

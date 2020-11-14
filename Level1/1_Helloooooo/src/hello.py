@@ -1,5 +1,6 @@
 """
-
+File: hello.py
+Illustrate basic control flow and mutable function argument.
 """
 
 import random as rd
@@ -38,7 +39,7 @@ def do_a_while():
     the_limit = rd.randint(1, 10)
     while flag:
         count += 1
-        if count <= the_limit:
+        if count >= the_limit:
             flag = False
     return count
 
@@ -55,6 +56,19 @@ def do_a_repeat_until():
     return count
 
 
+def foobar(arg_string="abc", arg_list=[]):
+    """
+    Function to illustrate mutable data
+    :param arg_string: input string. Default is "abc"
+    :param arg_list: input array. Default is empty array
+    :raise IndexError: if stupid vslue
+    :return:
+    """
+    print("string arg: "+ arg_string + "\t\tlist arg: " + str(arg_list))
+    arg_string = arg_string + "xyz"
+    arg_list.append("F")
+
+
 ###########################################
 def main():
     """
@@ -66,6 +80,8 @@ def main():
     print 'while result: ' + str(count_result)
     count_result = do_a_repeat_until()
     print 'repeat_until result: ' + str(count_result)
+    for i in range(4):
+        foobar()
 
 ############################################
 if __name__ == '__main__':

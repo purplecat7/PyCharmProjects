@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Feb 19 08:54:27 2015
-
+This version extracts only windspeed per storm
 @author: Jane
 """
 import numpy as np
@@ -22,12 +22,38 @@ def load_data(the_file):
     return the_data
 
 
+def extract_windspeed_alternate(storm_data):
+    """
+    Parse loaded data and construct windspeed dictionary keyed by storm id
+    Written by Bethan Harris 2018
+    :param the_data: loaded data
+    :return: dictionary of stormid and windspeeds
+    """
+    # create empty dictionary
+    storm_dictionary = {}
+
+    # for each line
+    for line in storm_data:
+        # get serial number and wind speed
+        serial_number = line['id']
+        wind_speed = line['wind']
+        if wind_speed != -999:
+            # if the serial number is already a dict key, append the wind speed to its list
+            if serial_number in storm_dictionary.keys():
+                storm_dictionary[serial_number].append(wind_speed)
+            else:
+                # create new list under serial number key containing wind speed
+                storm_dictionary[serial_number] = [wind_speed]
+    return storm_dictionary
+
 def extract_windspeed(the_data):
     """
     Function to parse the loaded data and construct a local datatype from it.
     This will be a dictionary with the storm serial number as the key, and its
-    windspeeds in a list as the value.
+    windspeeds in a list as the value. Note that the function expects data relating to
+    a single storm to be contiguous.
     :param the_data: loaded data extracted from file
+    :return: dictionary of stormid and windspeeds
     """
     # create empty list and empty dictionary
     data_list = []  # or use list()

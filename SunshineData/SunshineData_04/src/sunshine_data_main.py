@@ -4,16 +4,16 @@ Tasks:
 1 - Take a look at file_reader.py: note the simplicity, the docstrings and the comments
 2 - There are three runtime errors in the function adding sunshine data, what are they?
     How could you find them? Should you be testing for them...? (Hint: the answer is YES!!!)
-3 - How are those print() calls working in lines 54 and 56?
+3 - How are those print() calls working in lines 53 and 55?
 '''
 # -------------------------------------------------------------------------------
 # Name:        SunshineData_main
-# Purpose:     Demonstration for MSc welcome week
+# Purpose:     Exercise for Scenario/DTP training.
 #
-# Author:      Jane Lewis xw904346
+# Author:      Jane Lewis to104469
 #
 # Created:     25/08/2015
-# Copyright:   (c) xw904346 2015
+# Copyright:   (c) to104469 2015
 # -------------------------------------------------------------------------------
 
 """
@@ -28,8 +28,6 @@ FUNCTIONS
 
 """
 # TODO runtime options
-# option: have a command line switch to run tests... -t
-#       (or better still, use a test framework such as 'nosetests'
 # option: take file name from command line argument
 import file_reader
 import numpy as np
@@ -64,18 +62,19 @@ def add_sunshine_per_day(file_contents):
             hours = 0
     print(sunshine_hours)
 
+def main():
+    # set file path/name here not in the reader, so it's easier to change later
+    filename = '..\..\MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv'
+    # call FileReader.loadFile(filepath) to return data in suitable variables
+    file_contents = file_reader.loadfile(filename)
+    # use functions here to process data
+    add_sunshine_per_day(file_contents)
+    # send processed data to Plotting.* methods to draw graphs
+    # else:
+    # call methods in tests.py
 
 if __name__ == '__main__':
-    # if command switch != t
-        # set file path/name here not in the reader, so it's easier to change later
-    filename = '..\MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv'
-        # call FileReader.loadFile(filepath) to return data in suitable variables
-    file_contents = file_reader.loadfile(filename)
-        # use functions here to process data
-    add_sunshine_per_day(file_contents)
-        # send processed data to Plotting.* methods to draw graphs
-    # else:
-        # call methods in tests.py
+    main()
 
 
 

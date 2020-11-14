@@ -9,12 +9,12 @@ Tasks:
 '''
 # -------------------------------------------------------------------------------
 # Name:        SunshineData_main
-# Purpose:     Demonstration for MSc welcome week
+# Purpose:     Exercise for Scenario/DTP training.
 #
-# Author:      Jane Lewis xw904346
+# Author:      Jane Lewis to104469
 #
 # Created:     25/08/2015
-# Copyright:   (c) xw904346 2015
+# Copyright:   (c) to104469 2015
 # -------------------------------------------------------------------------------
 
 """

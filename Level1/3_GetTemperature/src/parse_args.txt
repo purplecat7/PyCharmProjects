@@ -1,0 +1,26 @@
+to use operating system independent file paths:
+    import os
+    os.path.normpath("the_file_path_and_name")
+use \\ rather than \ because of special characters
+
+
+PARSING COMMAND LINE ARGUMENTS
+
+    import argparse
+
+to create a parser:
+    def create_parser(args=None):
+        parser = argparse.ArgumentParser(description='something helpful')
+        parser.add_argument('-some_name', '-s',     <----where 's' is the shorthand version
+                        default=a_default_string_or_number,
+                        nargs='?',                  <----where '?' means to expect any number of args
+                                                         look up other options
+                        help="something helpful")
+        # add as many other options as you like
+
+        return parser.parse_args(args=args)
+
+
+to use the parser:
+    my_parser = create_parser()
+    my_parser.some_name             <----gives you the value which was entered on the command line
