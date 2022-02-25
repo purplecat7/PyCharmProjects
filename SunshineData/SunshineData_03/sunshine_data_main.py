@@ -3,9 +3,10 @@ __author__ = 'Jane'
 Tasks:
 1 - Note the addition of a new function to do the data processing. If it gets big and complex, it should be broken down
     and put in its own separate module.
-2 - Run the program and call FileReader.loadfile1, 2 & 3 in turn. Follow the tasks in file_reader.py.
-3 - Note that we now have a placeholder for calling the new processing function once we have the data loading sorted out.
+2 - Follow the tasks in file_reader.py.
+3 - Also we now have a placeholder for calling the new processing function once we have the data loading sorted out.
     How are we able to print out some information from it?
+NOTE: rudimentary docstring, file header augmented
 '''
 # -------------------------------------------------------------------------------
 # Name:        SunshineData_main
@@ -28,34 +29,35 @@ FUNCTIONS
        Iterate over hourly sunshine data and accumulate total daily hours.
 
 """
-# TODO runtime options
-# option: have a command line switch to run tests... -t
-#       (or better still, use a test framework such as 'nosetests'
-# option: take file name from command line argument
+# TODO runtime options: filename, variable, operation, plot_type
+
+import os
 import file_reader
 
-def add_sunshine_per_day(file_contents):
-    """
 
-    :param file_contents:
-    :return:
+def add_sunshine_per_day(extracted_data):
+    """
+    Function to process the extracted data. It will sum each day's sunshine hours
+    :param extracted_data: file contents accessible in a #TODO data type
+    :return: summed data as a #TODO data type
     """
     return 'add_sunshine_per_day has been called'
 
-
-
-
 if __name__ == '__main__':
-    # if command switch != t
-        # set file path/name here not in the reader, so it's easier to change later
-    filename = '..\MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv'
-        # call FileReader.loadFile(filepath) to return data in suitable variables
-    file_contents = file_reader.loadfile1(filename)
-    #file_contents = file_reader.loadfile2(filename)
-    #file_contents = file_reader.loadfile3(filename)
-        # use functions here to process data
-    result = add_sunshine_per_day(file_contents)
+    # set file path/name here not in the reader, so it's easier to change later
+    filename = str(os.getcwd() + os.sep + '..' + os.sep + 'MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv')
+    # call FileReader.loadFile(filepath) to return data in a suitable variable
+    # TODO extracted_data = file_reader.loadfile(filename, variable_wanted)
+    extracted_data = file_reader.loadfile(filename)
+    # use functions here to process data
+    result = add_sunshine_per_day(extracted_data)
     print(result)
-        # send processed data to Plotting.* methods to draw graphs
-    # else:
-        # call methods in tests.py
+    # send processed data to Plotting.* methods to draw graphs
+
+
+
+
+
+
+# Answers:
+# 3 - we get it to return a string for now just to check it's wired in

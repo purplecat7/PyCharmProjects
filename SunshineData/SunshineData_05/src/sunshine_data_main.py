@@ -27,13 +27,14 @@ FUNCTIONS
        Iterate over hourly sunshine data and accumulate total daily hours.
 
 """
-# TODO runtime options
-# option: have a command line switch to run tests... -t
-#       (or better still, use a test framework such as 'nosetests'
-# option: take file name from command line argument
+# TODO runtime options: filename, variable, operation, plot_type
+
+import numpy as np
+import os
 import file_reader
 import plotting
-import numpy as np
+import data_names as d
+
 
 def add_sunshine_per_day(file_contents):
     """
@@ -50,18 +51,18 @@ def add_sunshine_per_day(file_contents):
     sunshine_hours = []
 
     # So first, get the first row and its date, put its sunshine hours in an accumulator
-    current_date = file_contents[0]['UTC']
-    hours = file_contents[0]['h']
+    current_date = file_contents[0][f"{d.ColNames.UTC}"]
+    hours = file_contents[0][f"{d.ColNames.hrs}"]
     # loop through the data, row by row
     # we can do this with a counter for the index which goes from 2nd to the end
     # (don't forget indexes start at 0 though)
     for index in range(1, len(file_contents)):
         # Get the date, and get each subsequent one until it changes, adding up the hours as we go along
-        next_date = file_contents[index]['UTC']
+        next_date = file_contents[index][f"{d.ColNames.UTC}"]
         if next_date.date() == current_date.date():
             # ERROR 1: We don't want 'missing values' denoted by 9999.9
-            if file_contents[index]['h'] < 9999.9:
-                hours += file_contents[index]['h']
+            if file_contents[index][f"{d.ColNames.hrs}"] < 9999.9:
+                hours += file_contents[index][f"{d.ColNames.hrs}"]
 
     # 2 - What difference does the dtype during data extraction make?
     # Try np.int16, np.float16, np.float32 and np.float64
@@ -75,7 +76,7 @@ def add_sunshine_per_day(file_contents):
             # and add this sub array to the main one
             sunshine_hours.append(temp_data)
             # ERROR 2: reset the accumulator - WITHOUT losing the current row's hours
-            hours = file_contents[index]['h']
+            hours = file_contents[index][f"{d.ColNames.hrs}"]
             # ERROR 3: don't forget to reset the date comparison variable
             current_date = next_date
 
@@ -86,17 +87,37 @@ def add_sunshine_per_day(file_contents):
     # And send back a numpy array of the results
     return np.array(sunshine_hours)
 
-
-
-if __name__ == '__main__':
-    # if command switch != t
-    # set file path/name here not in the reader, so it's easier to change later
-    filename = '..\..\MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv'
-    # call FileReader.loadFile(filepath) to return data in suitable variables
+def main(filename):
+    # TODO def main(filename, ecv, operation, plot_type):
+    '''
+    Function to create a plot from a data file with user specified calculations and climate variable.
+    :param filename: fully qualified file name of the input data
+    :param ecv: the name of the climate variable to operate on
+    :param operation: the operation to carry out, may be one of 'average' or 'summation'
+    :param plot_type: the type of plot to produce, may be one of 'bar', 'line' or 'pie'
+    :return: no return
+    '''
+    # call FileReader.loadFile(filename) to return data in a suitable variable
+    # TODO extracted_data = readfile(filename, ecv)
     file_contents = file_reader.loadfile(filename)
-    # use functions here to process data
+    # process data
     hours_per_day = add_sunshine_per_day(file_contents)
     # send processed data to Plotting.* methods to draw graphs
     plotting.plot_daily_sunshine(hours_per_day)
-#    # else:
-#        # call methods in tests.py
+
+if __name__ == '__main__':
+    # set file path/name here not in the reader, so it's easier to change later
+    filename = str(
+        os.getcwd() + os.sep + '..' + os.sep + '..' + os.sep + 'MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv')
+    main(filename)
+
+
+
+
+
+
+# Answers:
+# 1 - Testing
+# 2 - You'll find that you get different datatypes which then take up different amounts of memory space.
+# 3 - Have fun :)
+# 4 - Write nosetests!

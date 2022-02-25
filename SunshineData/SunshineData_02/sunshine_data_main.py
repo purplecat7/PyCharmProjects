@@ -1,10 +1,10 @@
 __author__ = 'Jane'
 '''
 Tasks:
-1 - Note the insertion of docstrings and comments
-2 - We have delegated file handling to a different module to keep things simple here - how is this done?
-3 - What's less than ideal about line 38?
-4 - Open file_reader.py and follow its tasks
+1 - We have delegated file handling to a different module to keep things simple here - how is this done?
+2 - What's less than ideal about line 37?
+3 - Open file_reader.py and follow its tasks
+NOTE: addition of a file header...
 '''
 # -------------------------------------------------------------------------------
 # Name:        SunshineData_main
@@ -26,19 +26,28 @@ FUNCTIONS
    NONE
 
 """
-# TODO runtime options
-# option: have a command line switch to run tests... -t
-#       (or better still, use a test framework such as 'nosetests'
-# option: take file name from command line argument
+# TODO runtime options: filename, variable, operation, plot_type
+
 import file_reader
 
+
 if __name__ == '__main__':
-    # if command switch != t
-        # set file path/name here not in the reader, so it's easier to change later
-    filename = '..\MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv'
-        # call FileReader.loadFile(filepath) to return data in suitable variables
-    file_reader.loadfile(filename)
-        # use functions here to process data
-        # send processed data to Plotting.* methods to draw graphs
-    # else:
-        # call methods in tests.py
+    # set file path/name here not in the reader, so it's easier to change later
+    filename = '..//MODE3_2015-08-25_2014-09-01_2015-08-25_d447917LU.csv'
+    # call FileReader.loadFile(filepath) to return data in a suitable variable
+    # TODO extracted_data = readfile(filename, variable_wanted)
+    extracted_data = file_reader.loadfile(filename)
+    # get the data to plot
+    # plottable_data = process_data(extracted_data, operation)
+    # send processed data to Plotting.* methods to draw graphs
+    # do_plot(plottable_data, variable_name, plot_type)
+
+
+
+
+
+
+# Answers:
+# 1 - Function written in another module and imported
+# 2 - host machine operating system specific file/folder separators
+# 3 - :)

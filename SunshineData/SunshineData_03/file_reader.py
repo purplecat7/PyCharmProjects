@@ -1,9 +1,10 @@
 __author__ = 'Jane'
 '''
 Tasks:
-1 - 3 in loadfile1() function
-4 - 8 in loadfile2() function
-9 - 12 in loadfile3() function
+Run the program and call read_csv_file1, 2 & 3 in turn.
+1 - 3 in read_csv_file1() function
+4 - 8 in read_csv_file2() function
+9 - 13 in read_csv_file3() function
 '''
 # -------------------------------------------------------------------------------
 # Name:        FileReader
@@ -29,29 +30,39 @@ FUNCTIONS
 import numpy as np
 import datetime as dt
 
-def loadfile1(filename):
+def loadfile(filename):
+    '''
+    Main entry function which takes any file type and calls appropriate specific loader.
+    :param: filename: full filepath to data file (string)
+    :returns: loaded data as 2D array
+    '''
+    # use 'if' statements to see what the filename extension is and then pass on the actual reading to a
+    # dedicated function.
+    # this is an example of a 'wrapper' function... the calling function, main(), defers responsibility to this
+    # function to sort out how the file is read so doesn't need to know about different formats itself.
+    # if it's csv
+    if str(filename).endswith('csv'):
+        extracted_data = read_csv_file1(filename)
+        # extracted_data = read_csv_file2(filename)
+        # extracted_data = read_csv_file3(filename)
+    # etc.
+    return extracted_data
 
-    """
-    Reads a csv format file.
-
-    Args:
-        filename: full filepath to csv file (string)
-
-    Returns:
-        2D array of file data without header lines
-
-    Raises:
-        generic runtime exception with notification to user
-
-    """
-    # 1 - We've given up on csv.file reader, it's clunky and there are better options
+def read_csv_file1(filename):
+    '''
+    Function to read a csv format file
+    :param: filename: full filepath to csv file (string)
+    :returns: 2D array of file data without header lines
+    :raise: runtime exception
+    '''
+    # 1 - We've given up on csv.file_reader, it's clunky and there are better options
     # Examine the output from this numpy function and see if it's what we're after
     # (remember to look it up the help to give you a few clues)
     file_contents = np.genfromtxt(filename, delimiter=',', skip_header=2)
 
     # 2 - What if we try this instead? What does the 'dtype' argument do?
-    # (comment out line 50, and uncomment the one below)
-    #file_contents = np.genfromtxt(filename, dtype=None, delimiter=',', skip_header=2)
+    # (comment out line 56, and uncomment the one below)
+    file_contents = np.genfromtxt(filename, dtype=None, delimiter=',', skip_header=2)
 
     print(len(file_contents))
 
@@ -63,7 +74,7 @@ def loadfile1(filename):
     return file_contents
 
 
-def loadfile2(filename):
+def read_csv_file2(filename):
     file_contents = np.genfromtxt(filename, dtype=None, delimiter=',', skip_header=2)
     #new_contents = list()
 
@@ -86,8 +97,8 @@ def loadfile2(filename):
 
     # 5 - Can we substitute it back? What happens?
     # Uncomment the following two lines
-        #line[0] = mydate
-        #line[1] = mytime
+    #     line[0] = mydate
+    #     line[1] = mytime
 
         # But this is all getting quite hard now...
         # Perhaps we should have tried the 'strptime' method
@@ -100,7 +111,7 @@ def loadfile2(filename):
         #print(mytime)
 
     # 7 - So we should give up on that, it's not helping. Instead, let's recreate the data rather than trying to
-    # substitute it, comment out lines 97-98 above, and uncomment 106-107, 111
+    # substitute it, comment out the strptime() attempt above, and uncomment 112, 113, 117 below
     # We're trying to use a new holder for the data though, to it'll need to be declared first...
     # find the line to uncomment.
         #newline = (mydate, mytime, line[2], line[3], line[4])
@@ -112,7 +123,7 @@ def loadfile2(filename):
 
     # WE REALLY ARE GOING ABOUT THIS THE WRONG WAY, WHY NOT INGEST THE RIGHT TYPES STRAIGHT OFF?
 
-def loadfile3(filename):
+def read_csv_file3(filename):
     # Let's look this up and hatch a better plan:
     # http://docs.scipy.org/doc/numpy/user/basics.io.genfromtxt.html
     # We'll use the 'names' facility by reading line 2 of the data,
@@ -132,16 +143,20 @@ def loadfile3(filename):
 
     # 10 - What are the types of our dates and times? Is this right?
 
-    # 11 - uncomment the rest of this code and check the results. Try querying the loaded data in 'file_contents'
+    # 11 - Run the rest of this code and check the results. Try querying the loaded data in 'file_contents'
     # We should use the 'converters' argument available in genfromtxt() but this also means we have to make sure
     # we know where to apply it: this makes use of the 'names' argument - look up what it does.
     # (see http://stackoverflow.com/questions/13869966/numpy-genfromtxt-with-datetime-strptime-converter)
-    convertdatefunc = lambda x: dt.datetime.strptime(x,'%Y%m%d')
-    converttimefunc = lambda y: dt.datetime.strptime(y,'%H%M')
+    convertdatefunc = lambda x: dt.datetime.strptime(x, '%Y%m%d')
+    converttimefunc = lambda y: dt.datetime.strptime(y, '%H%M')
+    # 12 - we need to convert the bytes so that strptime() will work. Comment out the two lines above and use
+    # the two below instead.
+    # convertdatefunc = lambda x: dt.datetime.strptime(x.decode("utf-8"), '%Y%m%d')
+    # converttimefunc = lambda y: dt.datetime.strptime(y.decode("utf-8"), '%H%M')
     file_contents = np.genfromtxt(filename, dtype=(dt.datetime, dt.datetime, np.int16, np.float16, np.float32),
                                   delimiter=',', skip_header=1, names=True,
                                   converters={"UTC":convertdatefunc, "hhmm":converttimefunc})
-    # 12 - BUT WHAT'S NOTICEABLY NOT GOOD ABOUT THIS from a design point of view?
+    # 13 - BUT WHAT'S NOTICEABLY NOT GOOD ABOUT THIS from a design point of view?
 
     # Let's just check it's what we're expecting
     for n in range(0,5):
@@ -158,3 +173,27 @@ def loadfile3(filename):
 
     # Send the data back to the calling function
     return file_contents
+
+
+
+
+
+
+
+
+# Answers:
+# 1 - Well it's a nice 2D array but everything is to 5 decimal places including the date!
+# 2 - It's an array of tuples, and it's all numbers without decimal padding
+# 3 - We're getting the first element, then iterating through its contents
+# 4 - Given we have the contents, now we're trying to get them in the right format and datetime is the way to go.
+#     Slice up the date portion, and the time portion - but the leading zero has gone so 0100 ends up as 10am
+# 5 - Since we have a tuple, no we cannot write it back... tuples are immutable
+# 6 - strptime() does not work on numbers, only on strings
+# 7 - Uncomment line 74
+# 8 - There's an exception as soon as an hour isn't 0..23, and that's because we lost the leading zero.
+# 9 - type(file_contents[4][0]) and type(file_contents[4][1])
+#     for n in range(14, 21): print(file_contents[n])
+# 10- They're byte objects and no, that's not what we want
+# 11- Trying to use the converters on the byte objects fails so we will need to convert into a string
+# 12- It should now work.
+# 13- There are hard-coded column names.
