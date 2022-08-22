@@ -17,9 +17,9 @@ def nearest_idx(value, value_array):
    return idx
 
 
-data = nc.Dataset("C:/Users/xw904346/Documents/06_ReSC_data/20100601120000-ESACCI-L4_GHRSST-SSTdepth-OSTIA-GLOB_LT-v02.0-fv01.0.nc")
-print data.dimensions
-print data.variables
+data = nc.Dataset("/home/jane/Documents/06_ReSC_data/20100601120000-ESACCI-L4_GHRSST-SSTdepth-OSTIA-GLOB_LT-v02.0-fv01.0.nc")
+print(f"DIMENSIONS:\n{data.dimensions}\n")
+print(f"VARIABLES:\n{data.variables}\n\n")
 
 given_lat = -38
 given_lon = -178
@@ -27,16 +27,15 @@ given_lon = -178
 # these lines find out how big the dimensions are i.e. the data's resolution
 lat_dims = len(data.dimensions['lat'])
 lon_dims = len(data.dimensions['lon'])
-print lat_dims
-print lon_dims
+print(f"Latitude dimensions: {lat_dims}")
+print(f"Longitude dimensions: {lon_dims}")
 
 lat_idx = nearest_idx(given_lat, data.variables['lat'][:])
 lon_idx = nearest_idx(given_lon, data.variables['lon'][:])
 time_idx = 0
-print lat_idx
-print lon_idx
+print(f"Latitude index: {lat_idx}")
+print(f"Longitude index: {lon_idx}")
 
 the_sst = data.variables['analysed_sst'][time_idx, lat_idx, lon_idx]
 
-print ("SST is ")
-print (the_sst)
+print (f"SST is {the_sst}")

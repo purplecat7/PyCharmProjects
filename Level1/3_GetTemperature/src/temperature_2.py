@@ -46,21 +46,21 @@ def nearest_idx(value, value_array):
     return idx
 
 
-data = nc.Dataset("C:/Users/xw904346/Documents/06_ReSC_data/20100601120000-ESACCI-L4_GHRSST-SSTdepth-OSTIA-GLOB_LT-v02.0-fv01.0.nc")
+data = nc.Dataset("/home/jane/Documents/06_ReSC_data/20100601120000-ESACCI-L4_GHRSST-SSTdepth-OSTIA-GLOB_LT-v02.0-fv01.0.nc")
 time_idx = 0
 
 keep_going = True
 while (keep_going == True):
-    given_lat = raw_input("Please type a latitude, or x to end, followed by 'enter'")
+    given_lat = input("Please type a latitude, or x to end, followed by 'enter'")
     if isValid(given_lat):
         if given_lat != 'x':
-            given_lon = raw_input("Please type a longitude followed by 'enter'")
+            given_lon = input("Please type a longitude followed by 'enter'")
             if isValid(given_lon) and given_lon != 'x':
                 # get the SST
                 lat_idx = nearest_idx(given_lat, data.variables['lat'])
                 lon_idx = nearest_idx(given_lon, data.variables['lon'])
                 the_sst = data.variables['analysed_sst'][time_idx, lat_idx, lon_idx]
-                print the_sst
+                print(the_sst)
         else:
             keep_going = False
     else:

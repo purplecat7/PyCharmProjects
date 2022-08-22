@@ -22,7 +22,7 @@ def create_parser(args=None):
 
     # TODO make file path OS independent
     parser.add_argument('-input', '-i',
-                        default=str("C:/Users/xw904346/Documents/06_ReSC_data/20100601120000-ESACCI-L4_GHRSST-SSTdepth-OSTIA-GLOB_LT-v02.0-fv01.0.nc"),
+                        default=str("/home/jane/Documents/06_ReSC_data/20100601120000-ESACCI-L4_GHRSST-SSTdepth-OSTIA-GLOB_LT-v02.0-fv01.0.nc"),
                         nargs='?',
                         help="Name of data file to load")
     return parser.parse_args(args=args)
@@ -77,18 +77,18 @@ def main():
     # TODO improve 'while' test: while keep_going, while keep_going is True, while True=keep_going
     while (keep_going == True):
         # TODO ensure only decimal lat/lon allowed
-        given_lat = raw_input("Please type a latitude, or x to end, followed by 'enter'")
+        given_lat = input("Please type a latitude, or x to end, followed by 'enter'")
         if is_valid(given_lat):
             # TODO remove 'x' to a constants module, or parameterise
             if given_lat != 'x':
-                given_lon = raw_input("Please type a longitude followed by 'enter'")
+                given_lon = input("Please type a longitude followed by 'enter'")
                 # TODO check lat/lon in allowed range
                 if is_valid(given_lon) and given_lon != 'x':
                     # get the SST
                     lat_idx = nearest_idx(given_lat, data.variables['lat'])
                     lon_idx = nearest_idx(given_lon, data.variables['lon'])
                     the_sst = data.variables['analysed_sst'][time_idx, lat_idx, lon_idx]
-                    print the_sst
+                    print(the_sst)
             else:
                 keep_going = False
         else:

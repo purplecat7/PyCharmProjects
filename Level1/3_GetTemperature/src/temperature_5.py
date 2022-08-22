@@ -34,7 +34,7 @@ def read_config(config_file):
     configparser.ConfigParser().read_file(f)
     section = configparser.ConfigParser()['Personal']
     data_file = section.get('data_file')
-    return data_file
+    return os.path.normpath(data_file)
 
 
 def is_valid(the_input):
@@ -89,18 +89,18 @@ def main():
     # TODO improve 'while' test: while keep_going, while keep_going is True, while True=keep_going
     while (keep_going == True):
         # TODO ensure only decimal lat/lon allowed
-        given_lat = raw_input("Please type a latitude, or x to end, followed by 'enter'")
+        given_lat = input("Please type a latitude, or x to end, followed by 'enter'")
         if is_valid(given_lat):
             # TODO remove 'x' to a constants module, or parameterise
             if given_lat != 'x':
-                given_lon = raw_input("Please type a longitude followed by 'enter'")
+                given_lon = input("Please type a longitude followed by 'enter'")
                 # TODO check lat/lon in allowed range
                 if is_valid(given_lon) and given_lon != 'x':
                     # get the SST
                     lat_idx = nearest_idx(given_lat, data.variables['lat'])
                     lon_idx = nearest_idx(given_lon, data.variables['lon'])
                     the_sst = data.variables['analysed_sst'][time_idx, lat_idx, lon_idx]
-                    print the_sst
+                    print(the_sst)
             else:
                 keep_going = False
         else:

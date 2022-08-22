@@ -54,9 +54,9 @@ def main():
     else:
         print ('boo')
 
-    print my_func('ducks')
-    print my_double2('hello')
-    print is_multiple_of('piglets', 4)
+    print (my_func('ducks'))
+    print (my_double2('hello'))
+    print (is_multiple_of('piglets', 4))
 
 if __name__ == '__main__':
     main()

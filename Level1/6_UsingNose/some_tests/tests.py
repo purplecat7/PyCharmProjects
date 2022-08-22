@@ -42,19 +42,21 @@ def test_my_func_true():
 
 # TODO you can find this in the 6:TODO view pane
 def test_my_func_false():
-    result = f.my_func(2)
+    result = f.my_func(4)
     ns.assert_false(result)
 
 
 def test_my_other_func():
     result = f.my_other_func(2, 3)
-    ns..assert_equals(result, 7)
+    ns.assert_equals(result, 7)
 
+
+@ns.with_setup(setup=my_setup, teardown=my_teardown)
+def test_setup_teardown():
+    print('test_setup_teardown called\n')
+    
 
 @ns.raises(SystemExit)
 def test_sys_exit():
     f.sys_exit()
 
-@ns.with_setup(setup=my_setup, teardown=my_teardown)
-def test_setup_teardown():
-    print('test_setup_teardown called\n')

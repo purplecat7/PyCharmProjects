@@ -130,7 +130,7 @@ def main():
 
         write_result(avg_press, 'pressure')
     except TypeError as te:
-        print te.message
+        print(te.message)
 
 if __name__ == '__main__':
     main()

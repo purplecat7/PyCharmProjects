@@ -117,7 +117,7 @@ def main():
             if os.path.isfile(the_file):
                 break
             else:
-                the_file = raw_input("Please give valid file for analysis: ")
+                the_file = input("Please give valid file for analysis: ")
         except Exception:
             pass
 
