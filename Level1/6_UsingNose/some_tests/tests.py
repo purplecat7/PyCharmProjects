@@ -42,19 +42,29 @@ def test_my_func_true():
 
 # TODO you can find this in the 6:TODO view pane
 def test_my_func_false():
-    result = f.my_func(4)
+    result = f.my_func(2)
     ns.assert_false(result)
 
 
 def test_my_other_func():
     result = f.my_other_func(2, 3)
     ns.assert_equals(result, 7)
+    ns.assert_equals(result, 5)
+
+def test_my_array_func_integers():
+    data=[1, 2, 3]
+    result = f.my_array_func(data)
+    ns.assert_equal(result, 6)
+
+@ns.raises(TypeError)
+def test_my_array_func_letters():
+    data=['a','b','c']
+    f.my_array_func(data)
 
 
 @ns.with_setup(setup=my_setup, teardown=my_teardown)
 def test_setup_teardown():
     print('test_setup_teardown called\n')
-    
 
 @ns.raises(SystemExit)
 def test_sys_exit():
