@@ -40,3 +40,6 @@ class ItemList:
         """ This function add checked-out items to users item list
         Return: value of fines"""
         pass
+
+if __name__ == '__main__':
+    pass
