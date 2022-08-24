@@ -1,12 +1,20 @@
+from src.userlist import UserList
+from src.itemlist import ItemList
+
 class Library():
 
-    def __init__(self):
-        # Initialises empty UserList and ItemList 
-        pass
+    def __init__(self, max_loans, max_fines):
+        # Initialises empty UserList and ItemList
+        # Also set max_loans and max_fines from input
+        self.users = UserList()
+        self.items = ItemList()
+        self.max_laons = max_loans
+        self.max_fines = max_fines
 
     def __del__(self):
         # Removes the constructed UserList and ItemList
-        pass
+        self.users = None
+        self.items = None
 
     def add_users(self, users):
         # Method takes UserList from UserBuilder and adds to the Library UserList
