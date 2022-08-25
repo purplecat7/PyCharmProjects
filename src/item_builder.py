@@ -9,8 +9,7 @@ from src.main import NumID
 
 class ItemBuilder:
 
-    def __init__(self, file_path):
-        self.file_path = file_path
+    def __init__(self):
         self.file_data = None
         self.library = None
         self.item_list = ItemList()
@@ -22,18 +21,18 @@ class ItemBuilder:
         """
         self.library = library
 
-    def load_file(self):
+    def load_books_in_file(self, file_path):
         """
         Loads and creates a list of items the contents of file path given
         :return: Optional - Returns the full file contents - a title list - if desired
         """
-        with open(self.file_path) as f:
-            self.file_data = f.readlines()
+        with open(file_path) as f:
+            file_data = f.readlines()
 
-        for title in self.file_data:
+        for title in file_data:
             self.create_book(title)
 
-        return self.file_data  # Optional return
+        return file_data  # Optional return
 
     def create_book(self, title):
         """
