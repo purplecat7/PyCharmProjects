@@ -39,7 +39,7 @@ class Library():
         # TODO: add functionality to append to the Library ItemList rather than create anew
         self.items = items
 
-    def check_user_can_checkout(self, user_id):
+    def can_checkout(self, user_id):
         """
         Method checks whether the user can checkout an item
 
