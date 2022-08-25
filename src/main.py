@@ -1,7 +1,6 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from src.library import Library
+from src.item_builder import ItemBuilder
+from src.user_builder import UserBuilder
 
 
 class NumbID:
@@ -34,14 +33,52 @@ class NumbID:
     def reset_id():
         NumbID.id_number = 0
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+
+def scenario_jonny_codewarrior():
+    pass
 
 
-# Press the green button in the gutter to run the script.
+def scenario_judy_hacker():
+    pass
+
+
+def scenario_miss_marple():
+    pass
+
+
+def scenario_eric_halfbee():
+    pass
+
+
+def build_library(library):
+    item_builder = ItemBuilder()
+
+    item_builder.set_library(library)
+
+    item_builder.load_books_in_file("top100t.txt")
+    item_builder.create_dvd("Pirates of the Caribbean")
+    item_builder.create_journal("Pirates of the Caribbean: The Journal")
+
+    item_builder.populate_library()
+
+
+def build_users(library):
+    user_builder = UserBuilder()
+    user_builder.set_library(library)
+
+    # TODO: Generate users from Enums instead of for loop
+    for i in range(0, 4):
+        user_builder.create_user()
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    print("Welcome to Alexandria")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
-# Marimel's tests
+    lib_controller = Library(max_loans=5, max_fines=50)
+
+    build_library(lib_controller)
+
+    build_users(lib_controller)
+
+
+
