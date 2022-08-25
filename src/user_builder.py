@@ -20,6 +20,5 @@ class UserBuilder:
     def create_user(self):
         """
         Creates a user and gives it to the target library
-        :param title: A string
         """
         self.library.add_user(User(NumbID.new_id()))
