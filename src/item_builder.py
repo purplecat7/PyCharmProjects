@@ -4,7 +4,7 @@ Used to initialise the library with a list of items (books, DVDs, journals)
 from src.library import Library
 from src.item_list import ItemList
 from src.item_children import Book, DVD, Journal
-from src.main import NumID
+from src.main import NumbID
 
 
 class ItemBuilder:
@@ -39,7 +39,7 @@ class ItemBuilder:
         Creates an book from data given, and appends to the library
         :param title: A string
         """
-        self.item_list.add_item(Book(NumID.new_id(), title))
+        self.item_list.add_item(Book(NumbID.new_id(), title))
         pass
 
     def create_dvd(self, title):
@@ -47,14 +47,14 @@ class ItemBuilder:
         Creates an dvd from data given, and appends to the library
         :param title: A string
         """
-        self.item_list.add_item(DVD(NumID.new_id(), title))
+        self.item_list.add_item(DVD(NumbID.new_id(), title))
 
     def create_journal(self, title):
         """
         Creates an journal from data given, and appends to the library
         :param title: A string
         """
-        self.item_list.add_item(Journal(NumID.new_id*(), title))
+        self.item_list.add_item(Journal(NumbID.new_id*(), title))
 
     def populate_library(self):
         """
