@@ -3,7 +3,7 @@ Used to initialise the library with a list of items (books, DVDs, journals)
 """
 from src.item_list import ItemList
 from src.item_children import Book, DVD, Journal
-from src.main import NumbID
+from src.numbid import NumbID
 
 
 class ItemBuilder:
@@ -60,3 +60,4 @@ class ItemBuilder:
         Sets the item list of the library with the ItemList() generated
         """
         self.library.add_items(self.item_list)
+        NumbID.reset_id()

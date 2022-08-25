@@ -1,4 +1,6 @@
 import datetime
+
+
 class UserList(list):
     """A list of library users"""
 
@@ -26,6 +28,9 @@ class UserList(list):
         :type max_loans: int
         :param max_fine: Maximum fine set by library. User can only borrow if their total fine is below max_fine
         :type max_fine: float
+        :param max_overdue: Maximum overdue items set by library. User can only borrow if their total overdue items
+        is below max_overdue
+        :type max_overdue: int
         :return: True if user is able to borrow, else False
         :rtype: bool
         """
