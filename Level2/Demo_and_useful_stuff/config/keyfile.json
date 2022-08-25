@@ -1,0 +1,6 @@
+{
+    "url"   : "127.0.0.1",
+    "port"  : "8081",
+    "pwd"   : "an_encrypted_password",
+    "login" : "jane.lewis@reading.ac.uk"
+}

@@ -12,13 +12,13 @@ class MyError(Exception):
         
 class MySpecificError(MyError):
     def __init__(self, val, info):
-        print ('init MySpecificError')
+        print('init MySpecificError')
         self.value = val
         self.message = info
         
     def __str__(self):
-        print ('str')
-        print super(MySpecificError, self).__str__()
+        print('str method called on MySpecificError')
+        print( super(MySpecificError, self).__str__())
         return repr(self.message)
 
 
@@ -30,7 +30,7 @@ def aFunction(fileArg):
     except IOError:
         print("IOERROR, cannot open ", fileArg)
     except TypeError as te:
-        print(te.message)
+        print(str(te))
         raise te
     except:
         raise TypeError
@@ -51,8 +51,11 @@ def main():
         print('boo!!')
         raise MySpecificError(2, "ouch")     
     except MySpecificError as e:
-        print (e)
-        print (e.message)
+        print(e)
+        print(e.message)
+        print(str(e))
+
+
 
 
 if __name__ == '__main__':
