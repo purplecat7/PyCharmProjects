@@ -2,26 +2,34 @@
 File contains the user class for the alexandria library
 """
 from item_list import ItemList
-# TODO need to import the library to know what the max fines etc are? or will this info be passed to the user
 
 class User:
+    """
+    Class containing attributes and methods for the user.
+    Attributes: - user_ID, unique user ID
+                - pot, accumulative fine pot for the user
+                - myitems, ItemList unique to the user
+    Methods: - find_item
+             - total_fines, total_borrowed, total_overdue
+             - list_borrowed, list_overdue
+             - add_to_fine_pot, subtract_from_fine_pot
+             - ok_to_checkout, checkout_item
+    """
 
     # class attributes
-    def __init__(self, user_ID): #constructor
+    def __init__(self, user_ID : int): #constructor
         """
         Attibutes of the class
         """
         # initialise instance attributes
-        # ID, name
         self.user_ID = user_ID
         self.pot = 0
         self.myitems = ItemList()
-        #self.user_name = None
 
     # METHODS
 
     # find an item from item_list
-    def find_item(self, item_title):
+    def find_item(self, item_title : str):
         """
         Find an item on the user's item-list
         Inputs:
@@ -29,8 +37,7 @@ class User:
         - item_title, title of item (book, dvd or journal)
         Output: object of the item
         """
-        # find an item in the user's item_list
-        return self.myitems.find_item(self, item_title)
+        return self.myitems.find_item(item_title)
 
     # collect total fines from item_list
     def total_fines(self):
@@ -38,31 +45,19 @@ class User:
         Collect the total fines of the user from the user's item-list
         Inputs:
         - self, class
-        Output:
-        - total of all fines
+        Output: total of all user fines
         """
         #find total fines from user's item list
-        return self.myitems.check_all_fines(self, self.user_ID)
+        return self.myitems.check_all_fines(self.user_ID)
 
     # collect total number of items borrowed from item_list
-    def total_borrowed(self):
+    def total_borrowed(self): #TODO check with ITEM LIST
         """
         Collect the total number of borrowed items from the user's item-list
         Inputs:
         - self, class
         Output:
         - total number of items borrowed
-        """
-        pass
-
-    # collect list of items borrowed from item_list
-    def list_borrowed(self):
-        """
-        Collect the list of borrowed items from the user's item-list
-        Inputs:
-        - self, class
-        Output:
-        - list of borrowed items
         """
         pass
 
@@ -75,17 +70,25 @@ class User:
         Output:
         - total number of items overdue
         """
-        # find total number of overdue items from user's item list
-        return self.myitems.check_overdue(self, self.user_ID)
+        return self.myitems.check_overdue(self.user_ID)
 
     # collect list of items borrowed from item_list
-    def list_overdue(self):
+    def list_borrowed(self): #TODO check with ITEM LIST
+        """
+        Collect the list of borrowed items from the user's item-list
+        Inputs:
+        - self, class
+        Output: list of borrowed items
+        """
+        pass
+
+    # collect list of items borrowed from item_list
+    def list_overdue(self): #TODO check with ITEM LIST
         """
         Collect the list of overdue items from the user's item-list
         Inputs:
         - self, class
-        Output:
-        - list of overdue items
+        Output: list of overdue items
         """
         pass
 
@@ -93,12 +96,24 @@ class User:
     def add_to_fine_pot(self, amount):
         """
         Add fines to the accumulative pot of fines for the user
+        Inputs: self, class
+        - amount, fine to add to fine pot
         """
         self.pot +=amount
         pass
 
+    # subtracting fines from the accumulative pot
+    def subtract_from_fine_pot(self, amount):
+        """
+        Subtract fines from the accumulative pot of fines for the user
+        Inputs: - self, class
+                - amount, fine to add to fine pot
+        """
+        self.pot -= amount
+        pass
+
     # ask item_list to remove item is this for a returned item?
-    def remove_item(self, item_title):
+    def remove_item(self, item_title):   #TODO check with ITEM LIST
         """
         Remove an item from the user's item-list
         Inputs:
@@ -108,15 +123,7 @@ class User:
         # add fines to pot
         #' get fine for the particular item
         # remove from item_list
-        self.myitems.remove_item(self, self.user_ID,item_title)
-        pass
-
-    # subtracting fines from the accumulative pot
-    def subtract_from_fine_pot(self, amount):
-        """
-        Add fines to the accumulative pot of fines for the user
-        """
-        self.pot -= amount
+        self.myitems.remove_item(self, self.user_ID,item_title) #check vitor function
         pass
 
     # check pot plus fine amount against given amount from library
@@ -157,9 +164,15 @@ class User:
         - True, below max amount
         - False, not below
         """
-        # get amount borrowed from item_list
+        # get amount overdue from item_list
+        borrowed_total = self.total_borrowed()
         # compare with max_borrowed
         # return true if below, false if not
+        if borrowed_total < max_borrowed:
+            return True
+        else:
+            return False
+
 
     # check overdue amount against given amount from library
     def check_overdue(self, max_overdue):
@@ -173,8 +186,13 @@ class User:
         - False, not below
         """
         # get amount overdue from item_list
+        overdue_total = self.total_overdue()
         # compare with max_overdue
         # return true if below, false if not
+        if overdue_total <= max_overdue:
+            return True
+        else:
+            return False
 
     # ok to checkout
     def ok_to_checkout(self, max_fines, max_borrowed, max_overdue):
@@ -196,16 +214,17 @@ class User:
             return False
 
     # checkout an item
-    def checkout_item(self, item_title):
+    def checkout_item(self, item_title, date):
         """
         Checkout an item from the library and add to the user's item-list
         Inputs:
         - self, class
-        - item_title, title of item (book, dvd or journal)
+        - item_title, title of item (book, dvd or journal) : str
+        -
         """
         # give item_list title of item
         # item_list should add item to the item_list
-        ItemList.add_user_list(self, item_title)
+        ItemList.add_user_list(self, item_title, date) #TODO vitor add date
         pass
 
 
