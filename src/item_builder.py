@@ -1,7 +1,6 @@
 """
 Used to initialise the library with a list of items (books, DVDs, journals)
 """
-from src.library import Library
 from src.item_list import ItemList
 from src.item_children import Book, DVD, Journal
 from src.main import NumbID
