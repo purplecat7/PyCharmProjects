@@ -1,7 +1,6 @@
 """
 Used to add users to the library
 """
-from src.library import Library
 from src.user import User
 from src.main import NumbID
 
