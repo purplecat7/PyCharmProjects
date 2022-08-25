@@ -4,7 +4,7 @@ File contains the user class for the alexandria library
 from item_list import ItemList
 # TODO need to import the library to know what the max fines etc are? or will this info be passed to the user
 
-class UserClass:
+class User:
 
     # class attributes
     def __init__(self, user_ID): #constructor
@@ -15,6 +15,7 @@ class UserClass:
         # ID, name
         self.user_ID = user_ID
         self.pot = 0
+        self.myitems = ItemList()
         #self.user_name = None
 
     # METHODS
@@ -29,8 +30,7 @@ class UserClass:
         Output: object of the item
         """
         # find an item in the user's item_list
-        item = ItemList.item_title # not the case
-        return item
+        return self.myitems.find_item(self, item_title)
 
     # collect total fines from item_list
     def total_fines(self):
@@ -41,7 +41,8 @@ class UserClass:
         Output:
         - total of all fines
         """
-        pass
+        #find total fines from user's item list
+        return self.myitems.check_all_fines(self, self.user_ID)
 
     # collect total number of items borrowed from item_list
     def total_borrowed(self):
@@ -74,7 +75,8 @@ class UserClass:
         Output:
         - total number of items overdue
         """
-        pass
+        # find total number of overdue items from user's item list
+        return self.myitems.check_overdue(self, self.user_ID)
 
     # collect list of items borrowed from item_list
     def list_overdue(self):
@@ -92,7 +94,8 @@ class UserClass:
         """
         Add fines to the accumulative pot of fines for the user
         """
-        # TODO: need to know we've removed the item??
+        self.pot +=amount
+        pass
 
     # ask item_list to remove item is this for a returned item?
     def remove_item(self, item_title):
@@ -102,6 +105,10 @@ class UserClass:
         - self, class
         - item_title, title of item (book, dvd or journal)
         """
+        # add fines to pot
+        #' get fine for the particular item
+        # remove from item_list
+        self.myitems.remove_item(self, self.user_ID,item_title)
         pass
 
     # subtracting fines from the accumulative pot
@@ -109,9 +116,8 @@ class UserClass:
         """
         Add fines to the accumulative pot of fines for the user
         """
-        # TODO: need to know we've removed the item??
-
-    # check pot amount against given amount from library, is this necessary?
+        self.pot -= amount
+        pass
 
     # check pot plus fine amount against given amount from library
     def check_fines(self, max_fines):
@@ -125,7 +131,7 @@ class UserClass:
         - False, not below
         """
         # get fines from item_list
-        fines = UserClass.total_fines(self)
+        fines = self.total_fines(self)
 
         # get fines from accumulated pot
         pot_fines = self.pot
@@ -171,7 +177,7 @@ class UserClass:
         # return true if below, false if not
 
     # ok to checkout
-    def ok_to_checkout(self):
+    def ok_to_checkout(self, max_fines, max_borrowed, max_overdue):
         """
         Check if an account is ok to check out. Check previous functions are true?
         Outputs:
@@ -183,6 +189,11 @@ class UserClass:
         # check_borrowed
         # check_overdue
         # return true if ok, false if not
+        if self.check_fines(self, max_fines) == True and self.check_overdue(self, max_overdue) == True \
+                and self.check_borrowed(self, max_borrowed) == True:
+            return True
+        else:
+            return False
 
     # checkout an item
     def checkout_item(self, item_title):
@@ -194,6 +205,7 @@ class UserClass:
         """
         # give item_list title of item
         # item_list should add item to the item_list
+        ItemList.add_user_list(self, item_title)
         pass
 
 
