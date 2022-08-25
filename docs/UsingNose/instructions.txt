@@ -1,0 +1,28 @@
+Nosetests may be run from the command line or from PyCharm run configuration.
+1 - command line:
+    nosetests <target>
+    where 'target' may be a files, module or specific test
+    (see http://nose.readthedocs.io/en/latest/man.html)
+
+2 - PyCharm:
+    Choose Run->Edit Configurations (or use the run/debug selection dropdown) to display dialogue.
+    Add a new PythonTests -> nosetests configuration.
+    Set the target, interpreter and working directory, and save with a sensible name.
+    Optionally use '--nocapture' in additional arguments if you have print statements in the tests which you would like to see in the console.
+
+Logging
+There are standard logging options which are part of nosetests, but there is also a plugin which provides more flexibility: http://nose.readthedocs.io/en/latest/plugins/logcapture.html
+EMail alerts
+One can override the nosetest.TestResult implementation to send emails on failure
+(https://stackoverflow.com/questions/21457665/python-run-test-send-email-if-it-fails)
+
+Or we should use a CI server such as Jenkins/Travis
+(https://stackoverflow.com/questions/26900964/how-can-pytest-send-emails-to-the-test-case-submitter)
+
+No plugin appears to have yet been written:
+https://groups.google.com/forum/#!topic/nose-users/BsMOnRkq_Yg
+
+
+
+Nose (unittest) cheat sheet
+https://kapeli.com/cheat_sheets/Python_unittest_Assertions.docset/Contents/Resources/Documents/index
