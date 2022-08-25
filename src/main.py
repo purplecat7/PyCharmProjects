@@ -7,10 +7,10 @@ from datetime import datetime, timedelta
 def scenario_jonny_codewarrior(library):
     # 0 = Jonny
     # One outstanding book, not overdue
-    library.checkout_item(0, "Angels and Demons", date=datetime.now() - timedelta(days=1))
+    library.checkout_item(1, "Angels and Demons", date=datetime.now() - timedelta(days=1))
     # Check out book, "Document, Your Job depends on it"
-    if library.check_user_can_checkout(0):
-        library.checkout_item(0, "Document, Your Job depends on it")
+    if library.check_user_can_checkout(1):
+        library.checkout_item(1, "Document, Your Job depends on it")
     else:
         print("Unable to check out item... :(")
 
@@ -21,19 +21,19 @@ def scenario_judy_hacker(library):
     would like a DVD “Debugging to music”,
     does have a book out (not overdue) and is bringing back an overdue journal.
     """
-    library.checkout_item(1, "New Moon", date=datetime.now() - timedelta(days=32))
-    library.return_item(1, "New Moon")
-    library.checkout_item(1, "Twilight")
-    library.checkout_item(1, "Debugging to music")
-    library.return_item(1, "Pirates of the Caribbean: The Journal")
+    library.checkout_item(2, "New Moon", date=datetime.now() - timedelta(days=32))
+    library.return_item(2, "New Moon")
+    library.checkout_item(2, "Twilight")
+    library.checkout_item(2, "Debugging to music")
+    library.return_item(2, "Pirates of the Caribbean: The Journal")
 
 
 def scenario_miss_marple(library):
     # 2 = Miss
-    library.checkout_item(0, "Sleuthing in C#", date=datetime.now() - timedelta(days=8271))  # C# first appeared in 2000
+    library.checkout_item(1, "Sleuthing in C#", date=datetime.now() - timedelta(days=8271))  # C# first appeared in 2000
     # Miss marple tries to check out journal 'Sleuthing in C#'
     if library.check_user_can_checkout(2):
-        library.checkout_item(2, "Sleuthing in C#")
+        library.checkout_item(3, "Sleuthing in C#")
     else:
         print("Unable to check out item... :(")
 
@@ -44,16 +44,16 @@ def scenario_eric_halfbee(library):
     but doesn’t know if he has enough money to pay off his debts.
     If he has, he’d like a borrow a DVD.
     """
-    library.checkout_item(3, "Life of Pi", date=datetime.now() - timedelta(days=40))
-    library.checkout_item(3, "Labyrinth", date=datetime.now() - timedelta(days=40))
-    library.checkout_item(3, "The Tales of Beedle the Bard", date=datetime.now() - timedelta(days=40))
-    library.return_item(3, "Life of Pi")
-    library.return_item(3, "Labyrinth")
-    library.return_item(3, "The Tales of Beedle the Bard")
-    fine = library.get_total_fine(3)
+    library.checkout_item(4, "Life of Pi", date=datetime.now() - timedelta(days=40))
+    library.checkout_item(4, "Labyrinth", date=datetime.now() - timedelta(days=40))
+    library.checkout_item(4, "The Tales of Beedle the Bard", date=datetime.now() - timedelta(days=40))
+    library.return_item(4, "Life of Pi")
+    library.return_item(4, "Labyrinth")
+    library.return_item(4, "The Tales of Beedle the Bard")
+    fine = library.get_total_fine(4)
     print(f"Outstanding fine: £{fine:.2f}")
-    library.pay_fine(3, 10)
-    library.checkout_item(3, "Pirates of the Caribbean")
+    library.pay_fine(4, 10)
+    library.checkout_item(4, "Pirates of the Caribbean")
 
 
 def build_library(library):
