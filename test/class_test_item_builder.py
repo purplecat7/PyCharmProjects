@@ -50,7 +50,7 @@ class TestItemBuilder(object):
         ns.assert_is_instance(item_builder.library, Library)
 
     def test_load_books_in_file(self):
-        print('test_create_user method\n')
+        print('test_load_books_in_file method\n')
         item_builder = ItemBuilder()
         item_builder.set_library(self.lib_controller)
         item_builder.load_books_in_file("../src/top100t.txt")
@@ -77,7 +77,7 @@ class TestItemBuilder(object):
             item_builder.item_list.get_item_from_title("Hi"), DVD)
 
     def test_create_journal(self):
-        print('test_create_DVD method\n')
+        print('test_create_journal method\n')
         item_builder = ItemBuilder()
         item_builder.set_library(self.lib_controller)
         item_builder.create_journal("Hi")
@@ -85,7 +85,7 @@ class TestItemBuilder(object):
             item_builder.item_list.get_item_from_title("Hi"), Journal)
 
     def test_populate_library(self):
-        print('test_create_DVD method\n')
+        print('test_populate_library method\n')
         item_builder = ItemBuilder()
         item_builder.set_library(self.lib_controller)
         item_builder.create_journal("Hi")
