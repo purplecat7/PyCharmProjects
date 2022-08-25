@@ -38,16 +38,38 @@ def scenario_jonny_codewarrior():
     pass
 
 
-def scenario_judy_hacker():
-    pass
-
+def scenario_judy_hacker(library):
+    """
+    Judy Hacker, has fines of £2 outstanding,
+    would like a DVD “Debugging to music”,
+    does have a book out (not overdue) and is bringing back an overdue journal.
+    """
+    library.checkout_item(1, "New Moon", date=datetime.now() - timedelta(days=32))
+    library.return_item(1, "New Moon")
+    library.checkout_item(1, "Twilight")
+    library.checkout_item(1, "Debugging to music")
+    library.return_item(1, "Pirates of the Caribbean: The Journal")
 
 def scenario_miss_marple():
     pass
 
 
-def scenario_eric_halfbee():
-    pass
+def scenario_eric_halfbee(library):
+    """
+    Eric Halfbee comes in with a pile of overdue items,
+    but doesn’t know if he has enough money to pay off his debts.
+    If he has, he’d like a borrow a DVD.
+    """
+    library.checkout_item(3, "Life of Pi", date=datetime.now() - timedelta(days=40))
+    library.checkout_item(3, "Labyrinth", date=datetime.now() - timedelta(days=40))
+    library.checkout_item(3, "The Tales of Beedle the Bard", date=datetime.now() - timedelta(days=40))
+    library.return_item(3, "Life of Pi")
+    library.return_item(3, "Labyrinth")
+    library.return_item(3, "The Tales of Beedle the Bard")
+    fine = library.get_total_fine(3)
+    print(f"Outstanding fine: £{fine:.2f}")
+    library.pay_fine(3, 10)
+    library.checkout_item(3, "Pirates of the Caribbean")
 
 
 def build_library(library):
