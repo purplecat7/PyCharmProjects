@@ -3,7 +3,7 @@ Used to add users to the library
 """
 from src.library import Library
 from src.user import User
-from src.main import NumID
+from src.main import NumbID
 
 
 class UserBuilder:
@@ -23,4 +23,4 @@ class UserBuilder:
         Creates a user and gives it to the target library
         :param title: A string
         """
-        self.library.add_user(User(NumID.new_id()))
+        self.library.add_user(User(NumbID.new_id()))
