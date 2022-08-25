@@ -1,3 +1,4 @@
+import datetime
 class UserList(list):
     """A list of library users"""
 
@@ -31,20 +32,22 @@ class UserList(list):
         this_user = self._find_user(user_id)
         return this_user.ok_to_checkout(max_borrowed=max_loans, max_fines=max_fine, max_overdue=max_overdue)
 
-    def checkout_item(self, user_id, item_title, date):
+    def checkout_item(self, user_id, item_object, date=None):
         """
         Checks out the requested item for the user
         :param user_id: User ID number
         :type user_id: int
-        :param item_title: Requested item title for checking out
-        :type item_title: str
+        :param item_object: Requested item object for checking out
+        :type item_object: Item
         :param date: Checkout date
-        :type date: datetime or str? #TODO: Decide on date format
+        :type date: datetime
         :return: Nothing
         :rtype: Nothing
         """
+        if date is None:
+            date = datetime.datetime.today()
         this_user = self._find_user(user_id)
-        this_user.checkout_item(item_title=item_title, date=date)
+        this_user.checkout_item(item_object=item_object, date=date)
 
     def return_item(self, user_id, item_title):
         """
