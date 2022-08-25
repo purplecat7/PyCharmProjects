@@ -1,6 +1,5 @@
 # Libraries
-from item import Item
-from user import UserClass
+
 
 
 class ItemList:
@@ -30,7 +29,7 @@ class ItemList:
         :return: item
         """
         for item in self._list:
-            item_identifier = item.get_title(identifier)
+            item_identifier = item.get_title()
             if identifier == item_identifier:
                 return item
 
@@ -41,7 +40,7 @@ class ItemList:
         :return: item
         """
         for item in self._list:
-            item_identifier = item.get_id(identifier)
+            item_identifier = item.get_id()
             if identifier == item_identifier:
                 return item
 

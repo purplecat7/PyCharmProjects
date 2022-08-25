@@ -29,7 +29,7 @@ class ItemBuilder:
             file_data = f.readlines()
 
         for title in file_data:
-            self.create_book(title)
+            self.create_book(title.replace('\n', ''))
 
         return file_data  # Optional return
 
@@ -38,7 +38,8 @@ class ItemBuilder:
         Creates an book from data given, and appends to the library
         :param title: A string
         """
-        self.item_list.add_item(Book(NumbID.new_id(), title))
+        new_thing = Book(NumbID.new_id(), title)
+        self.item_list.add_item(new_thing)
         pass
 
     def create_dvd(self, title):
@@ -53,7 +54,7 @@ class ItemBuilder:
         Creates an journal from data given, and appends to the library
         :param title: A string
         """
-        self.item_list.add_item(Journal(NumbID.new_id*(), title))
+        self.item_list.add_item(Journal(NumbID.new_id(), title))
 
     def populate_library(self):
         """

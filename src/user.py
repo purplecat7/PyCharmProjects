@@ -26,7 +26,7 @@ class User:
         self.pot = 0
         self.myitems = ItemList()
 
-    @classmethod
+    #METHODS
 
     # find an item from item_list
     def find_item(self, item_title : str):
@@ -51,7 +51,7 @@ class User:
         Collect the total number of borrowed items from the user's item-list
         Output: total number of items borrowed
         """
-        self.myitems.number_0f items()
+        self.myitems.number_of_items()
         pass
 
     # collect total number of items overdue from item_list
@@ -91,7 +91,7 @@ class User:
         self.add_to_fine_pot(fine)
         #' get fine for the particular item
         # remove from item_list
-        self.myitems.return_item(self, item)
+        self.myitems.return_item(item)
 
     # check pot plus fine amount against given amount from library
     def check_fines(self, max_fines):
@@ -102,7 +102,7 @@ class User:
                  - False, not below
         """
         # get fines from item_list
-        fines = self.total_fines(self)
+        fines = self.total_fines()
 
         # get fines from accumulated pot
         pot_fines = self.pot
@@ -161,20 +161,20 @@ class User:
         """
         # check that all the following are true: check_fines, check_borrowed, check_overdue
         # return true if ok, false if not
-        if self.check_fines(self, max_fines) == True and self.check_overdue(self, max_overdue) == True \
-                and self.check_borrowed(self, max_borrowed) == True:
+        if self.check_fines(max_fines) == True and self.check_overdue(max_overdue) == True \
+                and self.check_borrowed(max_borrowed) == True:
             return True
         else:
             return False
 
-    def checkout_item(self, item):
+    def checkout_item(self, item, date):
         """
         Checkout an item from the library and add to the user's item-list
         Input: item_title, title of item (book, dvd or journal) : str
         """
         # give item_list title of item
         # item_list should add item to the item_list
-        self.myitems.checkout_item(self, item)
+        self.myitems.checkout_item(item, date)
 
 
 
