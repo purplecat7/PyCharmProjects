@@ -8,7 +8,7 @@ class Library():
         # Also set max_loans and max_fines from input
         self.users = UserList()
         self.items = ItemList()
-        self.max_laons = max_loans
+        self.max_loans = max_loans
         self.max_fines = max_fines
 
     def __del__(self):
