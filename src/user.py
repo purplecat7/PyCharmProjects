@@ -160,8 +160,9 @@ class User:
         """
         # check that all the following are true: check_fines, check_borrowed, check_overdue
         # return true if ok, false if not
-        if self.check_fines(max_fines) == True and self.check_overdue(max_overdue) == True \
-                and self.check_borrowed(max_borrowed) == True:
+        if (self.are_fines_ok(max_fines)
+            and self.able_to_borrow(max_borrowed)
+            and self.are_all_in_date(max_overdue)):
             return True
         else:
             return False
