@@ -167,14 +167,14 @@ class User:
         else:
             return False
 
-    def checkout_item(self, item):
+    def checkout_item(self, item, date):
         """
         Checkout an item from the library and add to the user's item-list
         Input: item_title, title of item (book, dvd or journal) : str
         """
         # give item_list title of item
         # item_list should add item to the item_list
-        self.myitems.checkout_item(self, item)
+        self.myitems.checkout_item(self, item, date)
 
 
 
