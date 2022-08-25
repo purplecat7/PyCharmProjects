@@ -37,30 +37,6 @@ class User:
         """
         return self.myitems.get_item_from_title(item_title)
 
-    # collect total fines from item_list
-    def total_fines(self):
-        """
-        Collect the total fines of the user from the user's item-list.
-        Output: total of all the user's fines
-        """
-        return self.myitems.get_total_fines()
-
-    # collect total number of items borrowed from item_list
-    def total_borrowed(self):
-        """
-        Collect the total number of borrowed items from the user's item-list
-        Output: total number of items borrowed
-        """
-        return self.myitems.number_of_items()
-
-    # collect total number of items overdue from item_list
-    def total_overdue(self):
-        """
-        Collect the total number of overdue items from the user's item-list.
-        Output: total number of items overdue
-        """
-        return self.myitems.check_overdue()
-
     # adding fines to the accumulative pot after item is removed from item list
     def add_to_fine_pot(self, amount):
         """
@@ -91,6 +67,73 @@ class User:
         #' get fine for the particular item
         # remove from item_list
         self.myitems.return_item(item)
+
+    def ok_to_checkout(self, max_fines, max_borrowed, max_overdue):
+        """
+        Check if an account is ok to check out.
+        Inputs: - max_fines, fine maximum amount given by library
+                - max_borrowed, maximum borrowing amount given by library
+                - max_overdue, maximum overdue amount given by library
+        Outputs: - True, ok to checkout
+                 - False, not ok
+        """
+        # get total fines
+        fines = self.myitems.get_total_fines()
+        # get fines from accumulated pot
+        pot_fines = self.pot
+        # add amounts
+        total_fines = fines + pot_fines
+
+        # get total borrowed
+        total_borrowed = self.myitems.number_of_items()
+
+        # get total overdue
+        #total_overdue = self.myitems.check_overdue() #TODO: NEED ITEMLIST FUNCTION TO BE MADE
+        #self.myitems.number_of_items()
+
+        # check that all the following are true: check_fines, check_borrowed, check_overdue
+        # return true if ok, false if not
+        if total_fines < max_fines and total_borrowed < max_borrowed: #and total_overdue <= max_overdue:
+            return True
+        else:
+            return False
+
+    def checkout_item(self, item, date=None):
+        """
+        Checkout an item from the library and add to the user's item-list
+        Input: item_title, title of item (book, dvd or journal) : str
+        """
+        # give item_list title of item
+        # item_list should add item to the item_list
+        self.myitems.checkout_item(item, date=date)
+
+########################################################################################################################
+# NOT NECESSARILY NECESSARY METHODS
+
+# collect total fines from item_list
+    def total_fines(self):
+        """
+        Collect the total fines of the user from the user's item-list.
+        Output: total of all the user's fines
+        """
+        return self.myitems.get_total_fines()
+
+    # collect total number of items borrowed from item_list
+    def total_borrowed(self):
+        """
+        Collect the total number of borrowed items from the user's item-list
+        Output: total number of items borrowed
+        """
+        return self.myitems.number_of_items()
+
+    # collect total number of items overdue from item_list
+    def total_overdue(self):
+        """
+        Collect the total number of overdue items from the user's item-list.
+        Output: total number of items overdue
+        """
+        return self.myitems.check_overdue()
+
 
     # check pot plus fine amount against given amount from library
     def are_fines_ok(self, max_fines):
@@ -149,7 +192,7 @@ class User:
         else:
             return False
 
-    def ok_to_checkout(self, max_fines, max_borrowed, max_overdue):
+    def ok_to_checkout_bad(self, max_fines, max_borrowed, max_overdue):
         """
         Check if an account is ok to check out.
         Inputs: - max_fines, fine maximum amount given by library
@@ -166,16 +209,4 @@ class User:
             return True
         else:
             return False
-
-    def checkout_item(self, item, date=None):
-        """
-        Checkout an item from the library and add to the user's item-list
-        Input: item_title, title of item (book, dvd or journal) : str
-        """
-        # give item_list title of item
-        # item_list should add item to the item_list
-        self.myitems.checkout_item(item, date=date)
-
-
-
 
