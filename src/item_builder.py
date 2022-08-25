@@ -3,12 +3,15 @@ Used to initialise the library with a list of items (books, DVDs, journals)
 """
 from src.library import Library
 from src.item_list import ItemList
+from src.item_children import Book, DVD, Journal
+from src.main import NumID
 
 
 class ItemBuilder:
 
     def __init__(self, file_path):
         self.file_path = file_path
+        self.file_data = None
         self.library = None
         self.item_list = ItemList()
 
@@ -22,45 +25,40 @@ class ItemBuilder:
     def load_file(self):
         """
         Loads and creates a list of items the contents of file path given
-        :return:
+        :return: Optional - Returns the full file contents - a title list - if desired
         """
-        # file to read is self.file_path
-        # call self.create(book) for each title
-        return self.file_data
+        with open(self.file_path) as f:
+            self.file_data = f.readlines()
 
-    def create_book(self, item_data):
+        for title in self.file_data:
+            self.create_book(title)
+
+        return self.file_data  # Optional return
+
+    def create_book(self, title):
         """
         Creates an book from data given, and appends to the library
-        :param item_data: A row or dict of information used to create an item
+        :param title: A string
         """
-        # Use NumID.new_id() on book
-        # create book using title 'item_data' and id
-        # append to self.item_list
+        self.item_list.add_item(Book(NumID.new_id(), title))
         pass
 
-    def create_dvd(self, item_data):
+    def create_dvd(self, title):
         """
         Creates an dvd from data given, and appends to the library
-        :param item_data: A row or dict of information used to create an item
+        :param title: A string
         """
-        # Use NumID.new_id() on dvd
-        # create dvd using title 'item_data' and id
-        # append to self.item_list
-        pass
+        self.item_list.add_item(DVD(NumID.new_id(), title))
 
-    def create_journal(self, item_data):
+    def create_journal(self, title):
         """
         Creates an journal from data given, and appends to the library
-        :param item_data: A row or dict of information used to create an item
+        :param title: A string
         """
-        # Use NumID.new_id() on journal
-        # create journal using title 'item_data' and id
-        # append to self.item_list
-        pass
+        self.item_list.add_item(Journal(NumID.new_id*(), title))
 
     def populate_library(self):
         """
         Sets the item list of the library with the ItemList() generated
         """
-        # self.library.add_items(self.item_list)
-        pass
+        self.library.add_items(self.item_list)
