@@ -13,6 +13,7 @@ class Library():
         self.items = ItemList()
         self.max_loans = max_loans
         self.max_fines = max_fines
+        self.max_overdue = 0
 
     def __del__(self):
         # Removes the constructed UserList and ItemList
@@ -51,7 +52,7 @@ class Library():
         Returns:
             borrow_check (bool): Boolean of whether the user can checkout items
         """
-        borrow_check = self.users.able_to_borrow(user_id, self.max_loans, self.max_fines)
+        borrow_check = self.users.able_to_borrow(user_id, self.max_loans, self.max_fines, self.max_overdue)
         return borrow_check
 
     def get_item(self, item_title):
@@ -69,7 +70,7 @@ class Library():
         matching_item = self.items.get_item_from_title(item_title)
         return matching_item
 
-    def checkout_item(self, user_id, item_title, date):
+    def checkout_item(self, user_id, item_title, date=None):
         """
         Method performs checkout of the given item_title
 
@@ -77,8 +78,8 @@ class Library():
             user_id (float): ID of the user which wants to checkout an item
             item_title (str): Title of the item which the user wants to checkout
         """
-        item = self.get_item(item_title)
-        self.users.checkout_item(user_id, item, date)
+        item = self.items.get_item_from_title(item_title)
+        self.users.checkout_item(user_id, item, date=date)
 
     def return_item(self, user_id, item_id):
         """

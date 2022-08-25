@@ -9,11 +9,11 @@ def scenario_jonny_codewarrior(library):
     # One outstanding book, not overdue
     library.checkout_item(1, "Angels and Demons", date=datetime.now() - timedelta(days=1))
     # Check out book, "Document, Your Job depends on it"
-    if library.check_user_can_checkout(1):
-        library.checkout_item(1, "Document, Your Job depends on it")
+    if library.can_checkout(1):
+        library.checkout_item(1, "Document, Your job depends on it")
     else:
         print("Unable to check out item... :(")
-
+    print('HUZZAH!!!')
 
 def scenario_judy_hacker(library):
     """

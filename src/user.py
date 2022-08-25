@@ -43,7 +43,7 @@ class User:
         Collect the total fines of the user from the user's item-list.
         Output: total of all the user's fines
         """
-        return self.myitems.get_total_fines(self.user_ID)
+        return self.myitems.get_total_fines()
 
     # collect total number of items borrowed from item_list
     def total_borrowed(self):
@@ -51,8 +51,7 @@ class User:
         Collect the total number of borrowed items from the user's item-list
         Output: total number of items borrowed
         """
-        self.myitems.number_of_items()
-        pass
+        return self.myitems.number_of_items()
 
     # collect total number of items overdue from item_list
     def total_overdue(self):
@@ -94,7 +93,7 @@ class User:
         self.myitems.return_item(item)
 
     # check pot plus fine amount against given amount from library
-    def check_fines(self, max_fines):
+    def are_fines_ok(self, max_fines):
         """
         Check if the fines are below the maximum fine amount prescribed by the library
         Input: max_fines, amount given by library
@@ -118,10 +117,10 @@ class User:
             return False
 
     # check borrowed amount against given amount from library
-    def check_borrowed(self, max_borrowed):
+    def able_to_borrow(self, max_borrowable):
         """
         Check if the number of books borrowed is below the maximum amount prescribed by the library
-        Input: max_borrowed, amount given by library
+        Input: max_borrowable, amount given by library
         Outputs: - True, below max amount
                  - False, not below
         """
@@ -129,12 +128,12 @@ class User:
         borrowed_total = self.total_borrowed()
         # compare with max_borrowed
         # return true if below, false if not
-        if borrowed_total < max_borrowed:
+        if borrowed_total < max_borrowable:
             return True
         else:
             return False
 
-    def check_overdue(self, max_overdue):
+    def are_all_in_date(self, max_overdue):
         """
         Check if the number of books overdue is below the maximum amount prescribed by the library
         Input: max_overdue, amount given by library
@@ -167,14 +166,14 @@ class User:
         else:
             return False
 
-    def checkout_item(self, item, date):
+    def checkout_item(self, item, date=None):
         """
         Checkout an item from the library and add to the user's item-list
         Input: item_title, title of item (book, dvd or journal) : str
         """
         # give item_list title of item
         # item_list should add item to the item_list
-        self.myitems.checkout_item(item, date)
+        self.myitems.checkout_item(item, date=date)
 
 
 
