@@ -8,7 +8,7 @@ from src.main import NumID
 
 class UserBuilder:
 
-    def __init__(self, file_path):
+    def __init__(self):
         self.library = None
 
     def set_library(self, library):
