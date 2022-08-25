@@ -38,7 +38,8 @@ class ItemBuilder:
         Creates an book from data given, and appends to the library
         :param title: A string
         """
-        self.item_list.add_item(Book(NumbID.new_id(), title))
+        new_thing = Book(NumbID.new_id(), title)
+        self.item_list.add_item(new_thing)
         pass
 
     def create_dvd(self, title):
@@ -53,7 +54,7 @@ class ItemBuilder:
         Creates an journal from data given, and appends to the library
         :param title: A string
         """
-        self.item_list.add_item(Journal(NumbID.new_id*(), title))
+        self.item_list.add_item(Journal(NumbID.new_id(), title))
 
     def populate_library(self):
         """

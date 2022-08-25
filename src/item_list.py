@@ -1,6 +1,5 @@
 # Libraries
-from item import Item
-from user import UserClass
+
 
 
 class ItemList:

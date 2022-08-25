@@ -1,11 +1,12 @@
-import arrow
+# import arrow
+from datetime import datetime, timedelta
 
 class Item:
 
     # Initialise instance attributes
-    def __init__(self, ID, Title):
-        self.ID = ID
-        self.Title = Title
+    def __init__(self, id, title):
+        self.id = id
+        self.title = title
         self.checkout_date = None
         self.finerate = None
         self.loantime = None
@@ -18,21 +19,21 @@ class Item:
         :param past_date
         """
         if past_date is not None:
-            self.checkout_date = arrow.utcnow()
+            self.checkout_date = datetime.now()
         else:
             self.checkout_date = past_date
 
-    def get_ID(self):
+    def get_id(self):
         """
         :return: ID
         """
-        return self.ID
+        return self.id
 
-    def get_Title(self):
+    def get_title(self):
         """
         :return: Title
         """
-        return self.Title
+        return self.title
 
     def reset_checkoutdate(self):
         """
@@ -56,7 +57,7 @@ class Item:
         :return:
         """
         if return_date is None:
-            return_date = arrow.utcnow()
+            return_date = datetime.now()
         loan_length = return_date - self.checkout_date
         return loan_length
 
