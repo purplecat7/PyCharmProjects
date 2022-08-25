@@ -1,4 +1,4 @@
-from class_code.classAcode import ClassA
+from  ..class_code.classAcode import ClassA
 import nose.tools as ns
 import time
 
