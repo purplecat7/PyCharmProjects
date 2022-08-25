@@ -70,7 +70,7 @@ class Library():
         matching_item = self.items.find_item(item_title)
         return matching_item
 
-    def checkout_item(self, user_id, matching_item):
+    def checkout_item(self, user_id, item_title, date):
         """
         Method performs checkout of the given item_title
 
@@ -78,7 +78,8 @@ class Library():
             user_id (float): ID of the user which wants to checkout an item
             item_title (str): Title of the item which the user wants to checkout
         """
-        self.users.checkout_item(user_id, matching_item)
+        item = self.get_item(item_title)
+        self.users.checkout_item(user_id, item, date)
 
     def return_item(self, user_id, item_id):
         """
@@ -109,3 +110,10 @@ class Library():
             amount (float): The amount which the user wants to pay
         """
         self.users.pay_fine(user_id, amount)
+
+    def check_item_availability(self, item):
+        """_summary_
+
+        Args:
+            item (_type_): _description_
+        """
