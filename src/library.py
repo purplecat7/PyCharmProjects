@@ -67,7 +67,7 @@ class Library():
         """
         # TODO: handle the case when the item was unable to be found in the Library ItemList
         # For now, assume that the item is definitely in the Library ItemList
-        matching_item = self.items.find_item(item_title)
+        matching_item = self.items.get_item_from_title(item_title)
         return matching_item
 
     def checkout_item(self, user_id, item_title, date):
