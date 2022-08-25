@@ -1,67 +1,58 @@
-""" Creating classes for DVD's, books and Journals. """
+""" Defining classes for DVD, books and Journals. """
 
 
-# ---------------------------------------------------------------------------------------------------------------
-class journal:
-    # Defining class attribute: fine rate to be paid once overdue instance attribute: title, checkout date
-    Attributes_dict = {}
+class Journal:
+    # Defining class attributes: fine rate (£ per day) and max_loan_time (days)
+    fine_rate = 1.0
+    max_loan_time = 14
 
     # Method to be called whenever new instance is created
     def __init__(self):
-        # Initialise instance attributes
-        self.__privateAttribute = 0
-        self.__privateAttribute = list()
+
+        pass
 
     # Method called when object destroyed
     def __del__(self):
-        self.__privateList = None
 
-    # Method to compute fine once overdue
-    def compute_fine(self, fine_rate, checkout_date, current_date):
-        """ Computes fine accrued for a given instance based upon how long after the checkout date the current date is
-    """
+        pass
+
 
 # ------------------------------------------------------------------------------------------------------------
 class DVD:
 
-    # Defining class attribute: fine rate to be paid once overdue instance attribute: title, checkout date
-    Attributes_dict = {}
+    # Defining class attributes: fine rate (£ per day) and max_loan_time (days)
+    fine_rate = 2.0
+    max_loan_time = 7
 
     # Method to be called whenever new instance is created
     def __init__(self):
-        # Initialise instance attributes
-        self.__privateAttribute = 0
-        self.__privateAttribute = list()
+
+        pass
 
     # Method called when object destroyed
     def __del__(self):
-        self.__privateList = None
 
-    # Method to compute fine once overdue
-    def compute_fine(self, fine_rate, checkout_date, current_date):
-        """ Computes fine accrued for a given instance based upon how long after the checkout date the current date is
-    """
+        pass
 
-# ------------------------------------------------------------------------------------------------------------------
-class book:
 
-    # Defining class attribute: fine rate to be paid once overdue instance attribute: title, checkout date
-    Attributes_dict = {}
+# -----------------------------------------------------------------------------------------------------------------
+class Book:
+
+    # Defining class attributes: fine rate (£ per day) and max_loan_time (days)
+    fine_rate = 0.5
+    max_loan_time = 28
 
     # Method to be called whenever new instance is created
     def __init__(self):
-        # Initialise instance attributes
-        self.__privateAttribute = 0
-        self.__privateAttribute = list()
+
+        pass
 
     # Method called when object destroyed
     def __del__(self):
-        self.__privateList = None
 
-    # Method to compute fine once overdue
-    def compute_fine(self, fine_rate, checkout_date, current_date):
-        """ Computes fine accrued for a given instance based upon how long after the checkout date the current date is
-    """
+        pass
+
+
 
 
 
