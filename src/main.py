@@ -1,6 +1,7 @@
 from src.library import Library
 from src.item_builder import ItemBuilder
 from src.user_builder import UserBuilder
+from datetime import datetime, timedelta
 
 
 class NumbID:
@@ -34,8 +35,15 @@ class NumbID:
         NumbID.id_number = 0
 
 
-def scenario_jonny_codewarrior():
-    pass
+def scenario_jonny_codewarrior(library):
+    # 0 = Jonny
+    # One outstanding book, not overdue
+    library.checkout_item(0, "Angels and Demons", date=datetime.now() - timedelta(days=1))
+    # Check out book, "Document, Your Job depends on it"
+    if library.check_user_can_checkout(0):
+        library.checkout_item(0, "Document, Your Job depends on it")
+    else:
+        print("Unable to check out item... :(")
 
 
 def scenario_judy_hacker(library):
@@ -50,8 +58,15 @@ def scenario_judy_hacker(library):
     library.checkout_item(1, "Debugging to music")
     library.return_item(1, "Pirates of the Caribbean: The Journal")
 
-def scenario_miss_marple():
-    pass
+
+def scenario_miss_marple(library):
+    # 2 = Miss
+    library.checkout_item(0, "Sleuthing in C#", date=datetime.now() - timedelta(days=8271))  # C# first appeared in 2000
+    # Miss marple tries to check out journal 'Sleuthing in C#'
+    if library.check_user_can_checkout(2):
+        library.checkout_item(2, "Sleuthing in C#")
+    else:
+        print("Unable to check out item... :(")
 
 
 def scenario_eric_halfbee(library):
@@ -80,6 +95,7 @@ def build_library(library):
     item_builder.load_books_in_file("top100t.txt")
     item_builder.create_dvd("Pirates of the Caribbean")
     item_builder.create_journal("Pirates of the Caribbean: The Journal")
+    item_builder.create_journal("Sleuthing in C#")
 
     item_builder.populate_library()
 
@@ -102,5 +118,9 @@ if __name__ == '__main__':
 
     build_users(lib_controller)
 
-
+    # Run scenario's
+    scenario_jonny_codewarrior(lib_controller)
+    scenario_judy_hacker(lib_controller)
+    scenario_miss_marple(lib_controller)
+    scenario_eric_halfbee(lib_controller)
 
