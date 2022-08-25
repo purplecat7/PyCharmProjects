@@ -26,7 +26,7 @@ class User:
         self.pot = 0
         self.myitems = ItemList()
 
-    @classmethod
+    #METHODS
 
     # find an item from item_list
     def find_item(self, item_title : str):
