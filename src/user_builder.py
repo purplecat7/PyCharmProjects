@@ -2,7 +2,7 @@
 Used to add users to the library
 """
 from src.user import User
-from src.main import NumbID
+from src.numbid import NumbID
 
 
 class UserBuilder:

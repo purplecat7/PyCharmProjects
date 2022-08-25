@@ -3,7 +3,7 @@ Used to initialise the library with a list of items (books, DVDs, journals)
 """
 from src.item_list import ItemList
 from src.item_children import Book, DVD, Journal
-from src.main import NumbID
+from src.numbid import NumbID
 
 
 class ItemBuilder:
@@ -38,7 +38,8 @@ class ItemBuilder:
         Creates an book from data given, and appends to the library
         :param title: A string
         """
-        self.item_list.add_item(Book(NumbID.new_id(), title))
+        new_thing = Book(NumbID.new_id(), title)
+        self.item_list.add_item(new_thing)
         pass
 
     def create_dvd(self, title):
@@ -53,10 +54,11 @@ class ItemBuilder:
         Creates an journal from data given, and appends to the library
         :param title: A string
         """
-        self.item_list.add_item(Journal(NumbID.new_id*(), title))
+        self.item_list.add_item(Journal(NumbID.new_id(), title))
 
     def populate_library(self):
         """
         Sets the item list of the library with the ItemList() generated
         """
         self.library.add_items(self.item_list)
+        NumbID.reset_id()

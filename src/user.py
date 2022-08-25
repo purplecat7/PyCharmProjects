@@ -51,7 +51,7 @@ class User:
         Collect the total number of borrowed items from the user's item-list
         Output: total number of items borrowed
         """
-        self.myitems.number_0f items()
+        self.myitems.number_of_items()
         pass
 
     # collect total number of items overdue from item_list
