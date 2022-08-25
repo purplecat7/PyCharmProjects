@@ -29,7 +29,7 @@ class ItemBuilder:
             file_data = f.readlines()
 
         for title in file_data:
-            self.create_book(title)
+            self.create_book(title.replace('\n', ''))
 
         return file_data  # Optional return
 
