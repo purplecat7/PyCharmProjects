@@ -16,7 +16,7 @@ class UserList(list):
         """
         self.append(new_user)
 
-    def able_to_borrow(self, user_id, max_loans, max_fine):
+    def able_to_borrow(self, user_id, max_loans, max_fine, max_overdue):
         """
         Checks if the user is able to borrow an item
         :param user_id: User ID
@@ -29,35 +29,35 @@ class UserList(list):
         :rtype: bool
         """
         this_user = self._find_user(user_id=user_id)
-        return this_user.able_to_borrow(max_number_loans=max_loans, max_total_fines=max_fine)
+        return this_user.ok_to_checkout(max_borrowed=max_loans, max_fines=max_fine, max_overdue=max_overdue)
 
-    def checkout_item(self, user_id, item_requested, date):
+    def checkout_item(self, user_id, item_title, date):
         """
         Checks out the requested item for the user
         :param user_id: User ID number
         :type user_id: int
-        :param item_requested: Requested item for checking out
-        :type item_requested: Item
+        :param item_title: Requested item title for checking out
+        :type item_title: str
         :param date: Checkout date
         :type date: datetime or str? #TODO: Decide on date format
         :return: Nothing
         :rtype: Nothing
         """
         this_user = self._find_user(user_id=user_id)
-        this_user.checkout_item(item_requested=item_requested, date=date)
+        this_user.checkout_item(item_title=item_title, date=date)
 
-    def return_item(self, user_id, item_id):
+    def return_item(self, user_id, item_title):
         """
         Returns the item for the user
         :param user_id: User ID number that is returning the item
         :type user_id: int
-        :param item_id: Item ID number for returning
-        :type item_id: int
+        :param item_title: Item title for returning
+        :type item_title: str
         :return: Nothing
         :rtype: Nothing
         """
         this_user = self._find_user(user_id=user_id)
-        this_user.checkout_item(item_id=item_id)
+        this_user.remove_item(item_title=item_title)
 
     def get_fine_total(self, user_id):
         """
@@ -68,7 +68,7 @@ class UserList(list):
         :rtype: float
         """
         this_user = self._find_user(user_id=user_id)
-        return this_user.get_fine_total()
+        return this_user.total_fines()
 
     def pay_fine(self, user_id, amount):
         """
@@ -81,7 +81,7 @@ class UserList(list):
         :rtype: Nothing
         """
         this_user = self._find_user(user_id=user_id)
-        return this_user.pay_fine(amount=amount)
+        return this_user.subtract_from_fine_pot(amount=amount)
 
     def _find_user(self, user_id):
         """
