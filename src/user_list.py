@@ -28,7 +28,7 @@ class UserList(list):
         :return: True if user is able to borrow, else False
         :rtype: bool
         """
-        this_user = self._find_user(user_id=user_id)
+        this_user = self._find_user(user_id)
         return this_user.ok_to_checkout(max_borrowed=max_loans, max_fines=max_fine, max_overdue=max_overdue)
 
     def checkout_item(self, user_id, item_title, date):
@@ -43,7 +43,7 @@ class UserList(list):
         :return: Nothing
         :rtype: Nothing
         """
-        this_user = self._find_user(user_id=user_id)
+        this_user = self._find_user(user_id)
         this_user.checkout_item(item_title=item_title, date=date)
 
     def return_item(self, user_id, item_title):
@@ -56,8 +56,8 @@ class UserList(list):
         :return: Nothing
         :rtype: Nothing
         """
-        this_user = self._find_user(user_id=user_id)
-        this_user.remove_item(item_title=item_title)
+        this_user = self._find_user(user_id)
+        this_user.remove_item(item_title)
 
     def get_fine_total(self, user_id):
         """
@@ -67,7 +67,7 @@ class UserList(list):
         :return: Total fine associated with the User ID
         :rtype: float
         """
-        this_user = self._find_user(user_id=user_id)
+        this_user = self._find_user(user_id)
         return this_user.total_fines()
 
     def pay_fine(self, user_id, amount):
@@ -80,8 +80,8 @@ class UserList(list):
         :return: Nothing
         :rtype: Nothing
         """
-        this_user = self._find_user(user_id=user_id)
-        return this_user.subtract_from_fine_pot(amount=amount)
+        this_user = self._find_user(user_id)
+        return this_user.subtract_from_fine_pot(amount)
 
     def _find_user(self, user_id):
         """
@@ -94,3 +94,5 @@ class UserList(list):
         for user in self:
             if user.user_ID == user_id:
                 return user
+
+        # TODO: What happens if no user found? Implement when we learn Exceptions
