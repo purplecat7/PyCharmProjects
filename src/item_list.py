@@ -1,7 +1,5 @@
 # Libraries
-from item import Item
-from user import UserClass
-
+from src.item import Item
 
 class ItemList:
 
