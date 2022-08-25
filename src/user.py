@@ -26,15 +26,13 @@ class User:
         self.pot = 0
         self.myitems = ItemList()
 
-    # METHODS
+    @classmethod
 
     # find an item from item_list
     def find_item(self, item_title : str):
         """
-        Find an item on the user's item-list
-        Inputs:
-        - self, class
-        - item_title, title of item (book, dvd or journal)
+        Find an item on the user's item-list.
+        Input: item_title, title of item (book, dvd or journal)
         Output: object of the item
         """
         return self.myitems.get_item_from_title(item_title)
@@ -42,22 +40,16 @@ class User:
     # collect total fines from item_list
     def total_fines(self):
         """
-        Collect the total fines of the user from the user's item-list
-        Inputs:
-        - self, class
-        Output: total of all user fines
+        Collect the total fines of the user from the user's item-list.
+        Output: total of all the user's fines
         """
-        #find total fines from user's item list
         return self.myitems.get_total_fines(self.user_ID)
 
     # collect total number of items borrowed from item_list
     def total_borrowed(self):
         """
         Collect the total number of borrowed items from the user's item-list
-        Inputs:
-        - self, class
-        Output:
-        - total number of items borrowed
+        Output: total number of items borrowed
         """
         self.myitems.number_0f items()
         pass
@@ -65,41 +57,32 @@ class User:
     # collect total number of items overdue from item_list
     def total_overdue(self):
         """
-        Collect the total number of overdue items from the user's item-list
-        Inputs:
-        - self, class
-        Output:
-        - total number of items overdue
+        Collect the total number of overdue items from the user's item-list.
+        Output: total number of items overdue
         """
         return self.myitems.check_overdue()
 
     # adding fines to the accumulative pot after item is removed from item list
     def add_to_fine_pot(self, amount):
         """
-        Add fines to the accumulative pot of fines for the user
-        Inputs: self, class
-        - amount, fine to add to fine pot
+        Add fines to the accumulative pot of fines for the user.
+        Input: amount, fine to add to fine pot
         """
         self.pot +=amount
-        pass
 
     # subtracting fines from the accumulative pot
     def subtract_from_fine_pot(self, amount):
         """
-        Subtract fines from the accumulative pot of fines for the user
-        Inputs: - self, class
-                - amount, fine to add to fine pot
+        Subtract fines from the accumulative pot of fines for the user.
+        Input: amount, fine to add to fine pot
         """
         self.pot -= amount
-        pass
 
     # ask item_list to remove item is this for a returned item?
-    def remove_item(self, item_title):   #TODO check with ITEM LIST
+    def remove_item(self, item_title):
         """
         Remove an item from the user's item-list
-        Inputs:
-        - self, class
-        - item_title, title of item (book, dvd or journal)
+        Input: item_title, title of item (book, dvd or journal)
         """
         item = self.find_item(item_title)
         # get item fine
@@ -109,18 +92,14 @@ class User:
         #' get fine for the particular item
         # remove from item_list
         self.myitems.return_item(self, item)
-        pass
 
     # check pot plus fine amount against given amount from library
     def check_fines(self, max_fines):
         """
         Check if the fines are below the maximum fine amount prescribed by the library
-        Inputs:
-        - self, class
-        - max_fines, amount given by library
-        Outputs:
-        - True, below max amount
-        - False, not below
+        Input: max_fines, amount given by library
+        Outputs: - True, below max amount
+                 - False, not below
         """
         # get fines from item_list
         fines = self.total_fines(self)
@@ -142,12 +121,9 @@ class User:
     def check_borrowed(self, max_borrowed):
         """
         Check if the number of books borrowed is below the maximum amount prescribed by the library
-        Inputs:
-        - self, class
-        - max_borrowed, amount given by library
-        Outputs:
-        - True, below max amount
-        - False, not below
+        Input: max_borrowed, amount given by library
+        Outputs: - True, below max amount
+                 - False, not below
         """
         # get amount overdue from item_list
         borrowed_total = self.total_borrowed()
@@ -158,17 +134,12 @@ class User:
         else:
             return False
 
-
-    # check overdue amount against given amount from library
     def check_overdue(self, max_overdue):
         """
         Check if the number of books overdue is below the maximum amount prescribed by the library
-        Inputs:
-        - self, class
-        - max_overdue, amount given by library
-        Outputs:
-        - True, below max amount
-        - False, not below
+        Input: max_overdue, amount given by library
+        Outputs: - True, below max amount
+                 - False, not below
         """
         # get amount overdue from item_list
         overdue_total = self.total_overdue()
@@ -179,18 +150,16 @@ class User:
         else:
             return False
 
-    # ok to checkout
     def ok_to_checkout(self, max_fines, max_borrowed, max_overdue):
         """
-        Check if an account is ok to check out. Check previous functions are true?
-        Outputs:
-        - True, ok to checkout
-        - False, not ok
+        Check if an account is ok to check out.
+        Inputs: - max_fines, fine maximum amount given by library
+                - max_borrowed, maximum borrowing amount given by library
+                - max_overdue, maximum overdue amount given by library
+        Outputs: - True, ok to checkout
+                 - False, not ok
         """
-        # check that all the following are true:
-        # check_fines
-        # check_borrowed
-        # check_overdue
+        # check that all the following are true: check_fines, check_borrowed, check_overdue
         # return true if ok, false if not
         if self.check_fines(self, max_fines) == True and self.check_overdue(self, max_overdue) == True \
                 and self.check_borrowed(self, max_borrowed) == True:
@@ -198,18 +167,14 @@ class User:
         else:
             return False
 
-    # checkout an item
-    def checkout_item(self, item, date = None):
+    def checkout_item(self, item):
         """
         Checkout an item from the library and add to the user's item-list
-        Inputs:
-        - self, class
-        - item_title, title of item (book, dvd or journal) : str
-        -
+        Input: item_title, title of item (book, dvd or journal) : str
         """
         # give item_list title of item
         # item_list should add item to the item_list
-        self.myitems.checkout_item(self, item, date)
+        self.myitems.checkout_item(self, item)
 
 
 
