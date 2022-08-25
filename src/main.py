@@ -98,6 +98,7 @@ def build_library(library):
     item_builder.create_journal("Sleuthing in C#")
 
     item_builder.populate_library()
+    NumbID.reset_id()
 
 
 def build_users(library):
@@ -123,4 +124,3 @@ if __name__ == '__main__':
     scenario_judy_hacker(lib_controller)
     scenario_miss_marple(lib_controller)
     scenario_eric_halfbee(lib_controller)
-
