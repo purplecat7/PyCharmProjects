@@ -58,10 +58,11 @@ class TestUser(object):
         # Setup
         user_id = 101
         item_title = "Can You Keep a Secret?"
+        item = Item(1, "Can You Keep a Secret?")
 
         # Exercise
         user = User(user_id)
-        user.checkout_item(item_title)
+        user.checkout_item(item)
         item = user.find_item(item_title)
         result_item_title = item.get_title()
 
@@ -145,13 +146,16 @@ class TestUser(object):
         print('test_remove_item\n')
         # Setup
         user_id = 107
-        item_list = ["Down Under"]
+        item1 = Item("Down Under")
+        item2 = Item("A Spot of Bother")
+        item_title_to_remove = "Down Under"
+        item_list = [item1]
 
         # Exercise
         user = User(user_id)
-        user.checkout_item("Down Under")
-        user.checkout_item("A Spot of Bother")
-        user.remove_item("Down Under")
+        user.checkout_item(item1)
+        user.checkout_item(item2)
+        user.remove_item(item_title_to_remove)
         result_item_list = user.myitems._list
 
         # Verify
@@ -170,24 +174,24 @@ class TestUser(object):
         # Verify
         ns.assert_almost_equal(result_fine, fine, 2)
 
-    def test_check_borrowed_false(self):
+    def test_able_to_borrow_true(self):
         print('test_check_borrowed_false\n')
         # Setup
         user_id = 109
-        over_borrow_limit = False
+        user_able_to_borrow = True
 
         # Exercise
         user = User(user_id)
         result_over_borrow_limit = user.able_to_borrow(5)
 
         # Verify
-        ns.assert_equal(result_over_borrow_limit, over_borrow_limit)
+        ns.assert_equal(result_over_borrow_limit, user_able_to_borrow)
 
-    def test_check_borrowed_true(self):
+    def test_able_to_borrow_false(self):
         print('test_check_borrowed_true\n')
         # Setup
         user_id = 110
-        over_borrow_limit = True
+        user_able_to_borrow = False
         item1 = Item(1, "Down Under")
         item2 = Item(2, "A Spot of Bother")
 
@@ -198,7 +202,7 @@ class TestUser(object):
         result_over_borrow_limit = user.able_to_borrow(1)
 
         # Verify
-        ns.assert_equal(result_over_borrow_limit, over_borrow_limit)
+        ns.assert_equal(result_over_borrow_limit, user_able_to_borrow)
 
     def test_check_overdue(self):
         print('test_check_overdue\n')
