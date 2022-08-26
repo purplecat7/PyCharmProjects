@@ -14,3 +14,19 @@ class MaxFinesExceededError(Exception):
 
     def __str__(self):
         return repr(self.message)
+
+class CannotBorrowError(Exception):
+
+    def __init__(self):
+        self.message = "Cannot checkout."
+
+    def __str__(self):
+        return repr(self.message)
+
+class NotFoundError(Exception):
+
+    def __init__(self):
+        self.message = "The thing you seek is not here."
+
+    def __str__(self):
+        return repr(self.message)

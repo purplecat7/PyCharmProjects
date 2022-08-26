@@ -2,6 +2,8 @@
 File contains the user class for the alexandria library
 """
 from src.item_list import ItemList
+from src.checkout_error import CannotBorrowError
+
 
 class User:
     """
@@ -57,6 +59,7 @@ class User:
     def remove_item(self, item_title):
         """
         Remove an item from the user's item-list
+        :param item_title:
         Input: item_title, title of item (book, dvd or journal)
         """
         item = self.find_item(item_title)
@@ -75,7 +78,8 @@ class User:
                 - max_borrowed, maximum borrowing amount given by library
                 - max_overdue, maximum overdue amount given by library
         Outputs: - True, ok to checkout
-                 - False, not ok
+        :raise CannotBorrowError if not allowed to borrow
+
         """
         # get total fines
         fines = self.myitems.get_total_fines()
@@ -96,7 +100,7 @@ class User:
         if total_fines < max_fines and total_borrowed < max_borrowed: #and total_overdue <= max_overdue:
             return True
         else:
-            return False
+            raise CannotBorrowError()
 
     def checkout_item(self, item, date=None):
         """

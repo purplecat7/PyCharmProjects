@@ -1,6 +1,6 @@
 # Libraries
 
-
+from src.checkout_error import NotFoundError
 
 class ItemList:
 
@@ -28,21 +28,36 @@ class ItemList:
         :param identifier: Title
         :return: item
         """
+        retval = None
         for item in self._list:
             item_identifier = item.get_title()
             if identifier == item_identifier:
-                return item
+                retval = item
+                break
+
+        if retval:
+            return retval
+        else:
+            raise NotFoundError
 
     def get_item_from_id(self, identifier):
         """ Checks if an item is in the list based on its ID
 
         :param identifier: ID
         :return: item
+        :raise NotFoundError
         """
+        retval = None
         for item in self._list:
             item_identifier = item.get_id()
             if identifier == item_identifier:
-                return item
+                retval = item
+                break
+
+        if retval:
+            return retval
+        else:
+            raise NotFoundError
 
     def number_of_items(self):
         """ Gets the number of items in the list

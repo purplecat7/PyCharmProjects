@@ -1,5 +1,6 @@
 from src.user_list import UserList
 from src.item_list import ItemList
+from src.checkout_error import CannotBorrowError
 
 class Library():
     """
@@ -51,9 +52,16 @@ class Library():
         
         Returns:
             borrow_check (bool): Boolean of whether the user can checkout items
+
+            :raise CannotBorrowError
         """
-        borrow_check = self.users.able_to_borrow(user_id, self.max_loans, self.max_fines, self.max_overdue)
-        return borrow_check
+        try:
+            borrow_check = self.users.able_to_borrow(user_id, self.max_loans, self.max_fines, self.max_overdue)
+            return borrow_check
+        except CannotBorrowError:
+            raise
+        # except NotFoundError:  # TODO
+        #     raise
 
     def get_item(self, item_title):
         """

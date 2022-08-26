@@ -1,4 +1,5 @@
 import datetime
+from src.checkout_error import CannotBorrowError, NotFoundError
 
 
 class UserList(list):
@@ -7,7 +8,7 @@ class UserList(list):
     def __init__(self):
         """Initialises a list of library users"""
         super().__init__()
-        pass
+        self.found_user = None
 
     def add_user(self, new_user):
         """
@@ -33,9 +34,17 @@ class UserList(list):
         :type max_overdue: int
         :return: True if user is able to borrow, else False
         :rtype: bool
+        :raise CannotBorrowError
+        :raise NotFoundError
         """
-        this_user = self._find_user(user_id)
-        return this_user.ok_to_checkout(max_loans, max_fine, max_overdue)
+        try:
+            self._find_user(user_id)
+
+            return self.found_user.ok_to_checkout(max_loans, max_fine, max_overdue)
+        except CannotBorrowError:
+            raise
+        except NotFoundError:
+            raise
 
     def checkout_item(self, user_id, item_object, date=None):
         """
@@ -51,8 +60,8 @@ class UserList(list):
         """
         if date is None:
             date = datetime.datetime.today()
-        this_user = self._find_user(user_id)
-        this_user.checkout_item(item_object, date=date)
+        self._find_user(user_id)
+        self.found_user.checkout_item(item_object, date=date)
 
     def return_item(self, user_id, item_title):
         """
@@ -64,8 +73,8 @@ class UserList(list):
         :return: Nothing
         :rtype: Nothing
         """
-        this_user = self._find_user(user_id)
-        this_user.remove_item(item_title)
+        self._find_user(user_id)
+        self.found_user.remove_item(item_title)
 
     def get_fine_total(self, user_id):
         """
@@ -75,8 +84,8 @@ class UserList(list):
         :return: Total fine associated with the User ID
         :rtype: float
         """
-        this_user = self._find_user(user_id)
-        return this_user.total_fines()
+        self._find_user(user_id)
+        return self.found_user.total_fines()
 
     def pay_fine(self, user_id, amount):
         """
@@ -88,8 +97,8 @@ class UserList(list):
         :return: Nothing
         :rtype: Nothing
         """
-        this_user = self._find_user(user_id)
-        return this_user.subtract_from_fine_pot(amount)
+        self._find_user(user_id)
+        return self.found_user.subtract_from_fine_pot(amount)
 
     def _find_user(self, user_id):
         """
@@ -98,9 +107,14 @@ class UserList(list):
         :type user_id: int
         :return: Object of the found user
         :rtype: User
+        :raise NotFoundError
         """
+        self.found_user = None
         for user in self:
             if user.user_ID == user_id:
-                return user
+                self.found_user = user
+                break
 
+        if not self.found_user:
+            raise NotFoundError
         # TODO: What happens if no user found? Implement when we learn Exceptions
