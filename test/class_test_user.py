@@ -188,11 +188,13 @@ class TestUser(object):
         # Setup
         user_id = 110
         over_borrow_limit = True
+        item1 = Item(1, "Down Under")
+        item2 = Item(2, "A Spot of Bother")
 
         # Exercise
         user = User(user_id)
-        user.checkout_item("Down Under")
-        user.checkout_item("A Spot of Bother")
+        user.checkout_item(item1)
+        user.checkout_item(item2)
         result_over_borrow_limit = user.able_to_borrow(1)
 
         # Verify
@@ -203,11 +205,12 @@ class TestUser(object):
         # Setup
         user_id = 110
         are_overdue = True
+        item = Item(1, "Down Under")
 
         # Exercise
         user = User(user_id)
-        user.checkout_item("Down Under", date=datetime.datetime.today() - datetime.timedelta(days=100))
-        result_are_overdue = user.check_overdue(28)
+        user.checkout_item(item, date=datetime.datetime.today() - datetime.timedelta(days=100))
+        result_are_overdue = user.are_all_in_date(28)
 
         # Verify
         ns.assert_equal(result_are_overdue, are_overdue)
@@ -217,11 +220,12 @@ class TestUser(object):
         # Setup
         user_id = 110
         are_overdue = True
+        item = Item(1, "Down Under")
 
         # Exercise
         user = User(user_id)
-        user.checkout_item("Down Under", date=datetime.datetime.today() - datetime.timedelta(days=100))
-        result_are_overdue = user.check_overdue(28)
+        user.checkout_item(item, date=datetime.datetime.today() - datetime.timedelta(days=100))
+        result_are_overdue = user.are_all_in_date(28)
 
         # Verify
         ns.assert_equal(result_are_overdue, are_overdue)
@@ -231,11 +235,12 @@ class TestUser(object):
         # Setup
         user_id = 110
         are_overdue = True
+        item = Item(1, "Down Under")
 
         # Exercise
         user = User(user_id)
-        user.checkout_item("Down Under", date=datetime.datetime.today() - datetime.timedelta(days=100))
-        result_are_overdue = user.check_overdue(28)
+        user.checkout_item(item, date=datetime.datetime.today() - datetime.timedelta(days=100))
+        result_are_overdue = user.are_all_in_date(28)
 
         # Verify
         ns.assert_equal(result_are_overdue, are_overdue)
