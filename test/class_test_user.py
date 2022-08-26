@@ -4,7 +4,6 @@ from src.user import User
 from src.item import Item
 from src.item_list import ItemList
 import nose.tools as ns
-import time
 
 # Writing to stdout to record behaviour - one would never usually print from tests.
 # In run configuration, need to add '--nocapture' as nosetest parameter.
@@ -62,6 +61,7 @@ class TestUser(object):
 
         # Exercise
         user = User(user_id)
+        user.checkout_item(item_title)
         item = user.find_item(item_title)
         result_item_title = item.get_title()
 
