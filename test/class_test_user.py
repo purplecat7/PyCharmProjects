@@ -146,8 +146,8 @@ class TestUser(object):
         print('test_remove_item\n')
         # Setup
         user_id = 107
-        item1 = Item("Down Under")
-        item2 = Item("A Spot of Bother")
+        item1 = Item(1, "Down Under")
+        item2 = Item(2, "A Spot of Bother")
         item_title_to_remove = "Down Under"
         item_list = [item1]
 
