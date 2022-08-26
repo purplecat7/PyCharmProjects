@@ -4,7 +4,6 @@ from src.user import User
 from src.item import Item
 from src.item_list import ItemList
 import nose.tools as ns
-import time
 
 # Writing to stdout to record behaviour - one would never usually print from tests.
 # In run configuration, need to add '--nocapture' as nosetest parameter.
@@ -241,8 +240,8 @@ class TestUser(object):
         ns.assert_equal(result_are_overdue, are_overdue)
 
 
-    @ns.raises(KeyError)
-    def test_raise_exc_with_decorator(self):
-        print('test_raise_exc_with_decorator method\n')
-        a = ClassA()
-        a.raise_exc("A message")
+    # @ns.raises(KeyError)
+    # def test_raise_exc_with_decorator(self):
+    #     print('test_raise_exc_with_decorator method\n')
+    #     a = ClassA()
+    #     a.raise_exc("A message")
