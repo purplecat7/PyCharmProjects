@@ -35,7 +35,7 @@ class UserList(list):
         :rtype: bool
         """
         this_user = self._find_user(user_id)
-        return this_user.ok_to_checkout(max_borrowed=max_loans, max_fines=max_fine, max_overdue=max_overdue)
+        return this_user.ok_to_checkout(max_loans, max_fine, max_overdue)
 
     def checkout_item(self, user_id, item_object, date=None):
         """
@@ -52,7 +52,7 @@ class UserList(list):
         if date is None:
             date = datetime.datetime.today()
         this_user = self._find_user(user_id)
-        this_user.checkout_item(item_object=item_object, date=date)
+        this_user.checkout_item(item_object, date=date)
 
     def return_item(self, user_id, item_title):
         """

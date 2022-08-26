@@ -57,7 +57,7 @@ class ItemList:
         :param item:
         :return: Fine for the item
         """
-        return item.get_fine_due()
+        return item.calc_finedue()
 
     def get_total_fines(self):
         """ Calculates the total amount of fines of overdue items
@@ -67,16 +67,16 @@ class ItemList:
         """
         fines = 0
         for item in self._list:
-            fines += item.get_fine_due()
+            fines += item.calc_finedue()
         return fines
 
-    def checkout_item(self, item):
+    def checkout_item(self, item, date=None):
         """ Adds an item to the list and set the checkout date
 
         :return:
         """
         self._list.append(item)
-        item.set_checkout()
+        item.set_checkoutdate(past_date=date)
 
     def return_item(self, item):
         """ Removes an item to the list and reset the checkout date
