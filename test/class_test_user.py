@@ -178,7 +178,7 @@ class TestUser(object):
 
         # Exercise
         user = User(user_id)
-        result_over_borrow_limit = user.check_borrowed(5)
+        result_over_borrow_limit = user.able_to_borrow(5)
 
         # Verify
         ns.assert_equal(result_over_borrow_limit, over_borrow_limit)
@@ -193,7 +193,7 @@ class TestUser(object):
         user = User(user_id)
         user.checkout_item("Down Under")
         user.checkout_item("A Spot of Bother")
-        result_over_borrow_limit = user.check_borrowed(1)
+        result_over_borrow_limit = user.able_to_borrow(1)
 
         # Verify
         ns.assert_equal(result_over_borrow_limit, over_borrow_limit)
@@ -241,8 +241,8 @@ class TestUser(object):
         ns.assert_equal(result_are_overdue, are_overdue)
 
 
-    @ns.raises(KeyError)
-    def test_raise_exc_with_decorator(self):
-        print('test_raise_exc_with_decorator method\n')
-        a = ClassA()
-        a.raise_exc("A message")
+    # @ns.raises(KeyError)
+    # def test_raise_exc_with_decorator(self):
+    #     print('test_raise_exc_with_decorator method\n')
+    #     a = ClassA()
+    #     a.raise_exc("A message")
