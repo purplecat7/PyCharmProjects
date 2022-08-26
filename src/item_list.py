@@ -86,5 +86,16 @@ class ItemList:
         self._list.remove(item)
         item.reset_checkout()
 
+    def check_overdue(self):
+        """
+
+        :return:
+        """
+        list_overdue = 0
+        for item in self._list:
+            if item.get_fine_due() > 0:
+                list_overdue += 1
+        return list_overdue
+
 if __name__ == '__main__':
     pass
