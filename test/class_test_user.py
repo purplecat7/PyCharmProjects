@@ -61,6 +61,7 @@ class TestUser(object):
 
         # Exercise
         user = User(user_id)
+        user.checkout_item(item_title)
         item = user.find_item(item_title)
         result_item_title = item.get_title()
 
