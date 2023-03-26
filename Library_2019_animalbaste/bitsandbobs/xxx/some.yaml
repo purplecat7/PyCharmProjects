@@ -1,0 +1,82 @@
+# How the information in this file is best organised and parsed may be
+# different for different use cases. Parsing is done by the corresponding
+# .py file. Check this file for full understanding. For new use cases, use this
+# and the corresponding .py as a basis. Output to the process_manager must be
+# compliant with system requirements in the end.
+#
+# bethan.perkins@assimila.eu
+
+# The run mode
+mode: 'operational'
+
+# Information for scheduler
+frequency: 86400 #seconds
+
+# Target dataset for the run manager
+# operational_start: 'today at 00:00'
+run_target:
+  id: 'generations_{pest}_{country}'
+  type: 'DQDerived'
+
+# Multi-threading and multi-run definitions.
+threads:
+# - the contents of each thread
+  - thread_id: 'ken' # used for logging
+    runs:
+#   - group of runs in each thread. Only one in each here, could be more
+    - country: 'kenya'
+      pests:
+        - 'buss'
+        - 'lirh'
+        - 'maiz'
+        - 'helc'
+        - 'chil'
+        - 'bemi'
+        - 'tuta'
+#      start: '2010-03-01 00:00'
+#      stop: '2010-03-03 00:00'
+
+  - thread_id: 'gha' # used for logging
+    runs:
+#   V - group of runs in each thread. Only one in each here, could be more
+    - country: 'ghana'
+      pests:
+        - 'buss'
+        - 'lirh'
+        - 'maiz'
+        - 'helc'
+        - 'chil'
+        - 'bemi'
+        - 'tuta'
+#      start: '2010-03-01 00:00'
+#      stop: '2010-03-03 00:00'
+
+  - thread_id: 'zam' # used for logging
+    runs:
+#   V - group of runs in each thread. Only one in each here, could be more
+    - country: 'zambia'
+      pests:
+        - 'buss'
+        - 'lirh'
+        - 'maiz'
+        - 'helc'
+        - 'chil'
+        - 'bemi'
+        - 'tuta'
+#      start: '2010-03-01 00:00'
+#      stop: '2010-03-03 00:00'
+
+  - thread_id: 'rwa' # used for logging
+    runs:
+#   V - group of runs in each thread. Only one in each here, could be more
+    - country: 'rwanda'
+      pests:
+        - 'buss'
+        - 'lirh'
+        - 'maiz'
+        - 'helc'
+        - 'chil'
+        - 'bemi'
+        - 'tuta'
+#      start: '2018-03-01 00:00'
+#      stop: '2018-03-03 00:00'
