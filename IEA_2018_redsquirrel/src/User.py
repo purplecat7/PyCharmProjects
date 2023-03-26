@@ -1,4 +1,4 @@
-from src import ItemCollection as im
+from IEA_2018_redsquirrel.src import ItemCollection as im
 
 
 class User:

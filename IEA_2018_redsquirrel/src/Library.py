@@ -1,10 +1,9 @@
 # Library class, handles interactions with the great unwashed and our resplendent literature
 # amg 22/03/2018
 
-from src.UserCollection import UserCollection
-from src.ItemCollection import ItemCollection
-from src.BusinessRules import USER_ELIGIBLE_TO_BORROW
-from datetime import datetime as dt
+from IEA_2018_redsquirrel.src.UserCollection import UserCollection
+from IEA_2018_redsquirrel.src.ItemCollection import ItemCollection
+from IEA_2018_redsquirrel.src.BusinessRules import USER_ELIGIBLE_TO_BORROW
 
 
 class Library(object):
