@@ -1,4 +1,4 @@
-from src.user import User
+from LibSys_2018_sealofapproval.src.user import User
 import nose.tools as ns
 
 

@@ -1,6 +1,6 @@
-from src.user_list import UserList
-from src.user import User
-from src.user_not_valid import UserIdError
+from LibSys_2018_sealofapproval.src.user_list import UserList
+from LibSys_2018_sealofapproval.src.user import User
+from LibSys_2018_sealofapproval.src.user_not_valid import UserIdError
 import nose.tools as ns
 
 

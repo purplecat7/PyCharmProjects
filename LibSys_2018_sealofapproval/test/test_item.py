@@ -1,5 +1,5 @@
 from __future__ import print_function
-from src import item
+from LibSys_2018_sealofapproval.src import item
 import nose.tools as ns
 
 

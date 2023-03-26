@@ -1,7 +1,8 @@
 from __future__ import print_function
-from src import item_list, item
+from LibSys_2018_sealofapproval.src import item
+from LibSys_2018_sealofapproval.src import item_list
 import nose.tools as ns
-from src import except_item_not_available
+from LibSys_2018_sealofapproval.src import except_item_not_available
 
 
 class TestItemList(object):

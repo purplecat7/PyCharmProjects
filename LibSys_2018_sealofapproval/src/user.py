@@ -1,6 +1,7 @@
-import src.item_list as s
-import src.except_too_many_items
-import src.max_fine_error
+import LibSys_2018_sealofapproval.src.item_list as s
+import LibSys_2018_sealofapproval.src.except_too_many_items
+from LibSys_2018_sealofapproval import src
+
 
 class User():
 	"""
