@@ -1,5 +1,5 @@
-from LibSys_2017_cadets.src.library import LibraryController
-from LibSys_2017_cadets.src.user import User
+from Level2.LibSys_2017_cadets.src.library import LibraryController
+from Level2.LibSys_2017_cadets.src.user import User
 import datetime as dt
 import ItemManager as bob
 

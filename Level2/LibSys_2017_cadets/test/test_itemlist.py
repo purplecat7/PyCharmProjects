@@ -1,5 +1,5 @@
-from LibSys_2017_cadets.src.itemlist import ItemList
-from LibSys_2017_cadets.src.itemSubclasses import Book
+from Level2.LibSys_2017_cadets.src.itemlist import ItemList
+from Level2.LibSys_2017_cadets.src.itemSubclasses import Book
 
 import nose.tools as ns
 
