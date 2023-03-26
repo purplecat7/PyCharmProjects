@@ -10,7 +10,8 @@ CLASSES
 # note that print statements should not normally be in functions - they are
 # in some here for clarity in interpreting the behaviour.
 
-from IEA_2018_redsquirrel.src import Library, UserManager as um, ItemManager as im
+from Level2.IEA_2018_redsquirrel.src import Library
+from Level2.IEA_2018_redsquirrel.src import UserManager as um, ItemManager as im
 import datetime as dt
 # import lib_exceptions
 

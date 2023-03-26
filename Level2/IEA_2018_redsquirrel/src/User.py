@@ -1,4 +1,4 @@
-from IEA_2018_redsquirrel.src import ItemCollection as im
+from Level2.IEA_2018_redsquirrel.src import ItemCollection as im
 
 
 class User:
