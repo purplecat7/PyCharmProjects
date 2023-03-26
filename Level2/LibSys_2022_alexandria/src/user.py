@@ -1,8 +1,8 @@
 """
 File contains the user class for the alexandria library
 """
-from LibSys_2022_alexandria.src.item_list import ItemList
-from LibSys_2022_alexandria.src.checkout_error import CannotBorrowError
+from Level2.LibSys_2022_alexandria.src.item_list import ItemList
+from Level2.LibSys_2022_alexandria.src.checkout_error import CannotBorrowError
 
 
 class User:
