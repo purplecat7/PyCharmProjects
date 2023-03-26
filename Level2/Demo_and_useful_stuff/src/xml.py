@@ -2,7 +2,7 @@
 
 from lxml import etree
 
-tree = etree.parse("../config/test.py")
+tree = etree.parse("../config/test.xml")
 
 root = tree.getroot()
 print (root.tag)

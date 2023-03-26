@@ -1,0 +1,15 @@
+# Protect datasets
+# Provide all sub-products within a product for low-level protection of each
+# named sub-product, or provide just the product name to protect *all* its
+# sub-products by leaving the list empty thus:
+#  - product:
+#      name: justme
+#      subproducts:
+#
+
+protected:
+  - product:
+      name: ecmwf_operational_archive
+      subproducts:
+         - skt
+         - t2m
