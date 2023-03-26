@@ -1,8 +1,8 @@
-from src.library import Library
-from src.item_children import Book, DVD, Journal
-from src.item_builder import ItemBuilder
-from src.item_list import ItemList
-from src.numbid import NumbID
+from LibSys_2022_alexandria.src.library import Library
+from LibSys_2022_alexandria.src.item_children import Book, DVD, Journal
+from LibSys_2022_alexandria.src.item_builder import ItemBuilder
+from LibSys_2022_alexandria.src.item_list import ItemList
+from LibSys_2022_alexandria.src.numbid import NumbID
 import nose.tools as ns
 
 # Writing to stdout to record behaviour - one would never usually print from tests.

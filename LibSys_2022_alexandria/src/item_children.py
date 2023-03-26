@@ -1,5 +1,5 @@
 """ Defining classes for DVD, books and Journals. """
-from src.item import Item
+from LibSys_2022_alexandria.src.item import Item
 
 class Journal(Item):
     # Defining class attributes: fine rate (£ per day) and max_loan_time (days)

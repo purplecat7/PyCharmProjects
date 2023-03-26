@@ -1,7 +1,7 @@
 import datetime
 
-from src.user_list import UserList
-from src.checkout_error import NotFoundError
+from LibSys_2022_alexandria.src import UserList
+from LibSys_2022_alexandria.src.checkout_error import NotFoundError
 import nose.tools as ns
 
 # Writing to stdout to record behaviour - one would never usually print from tests.

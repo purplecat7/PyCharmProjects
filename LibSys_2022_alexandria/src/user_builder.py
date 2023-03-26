@@ -1,8 +1,8 @@
 """
 Used to add users to the library
 """
-from src.user import User
-from src.numbid import NumbID
+from LibSys_2022_alexandria.src.user import User
+from LibSys_2022_alexandria.src.numbid import NumbID
 
 
 class UserBuilder:

@@ -1,7 +1,7 @@
-from src.library import Library
-from src.user import User
-from src.user_builder import UserBuilder
-from src.numbid import NumbID
+from LibSys_2022_alexandria.src.library import Library
+from LibSys_2022_alexandria.src.user import User
+from LibSys_2022_alexandria.src import UserBuilder
+from LibSys_2022_alexandria.src.numbid import NumbID
 import nose.tools as ns
 import time
 

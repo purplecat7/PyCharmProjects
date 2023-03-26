@@ -1,6 +1,6 @@
 # Libraries
 
-from src.checkout_error import NotFoundError
+from LibSys_2022_alexandria.src.checkout_error import NotFoundError
 
 class ItemList:
 
