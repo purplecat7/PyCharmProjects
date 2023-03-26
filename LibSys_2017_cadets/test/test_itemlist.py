@@ -1,5 +1,5 @@
-from src.itemlist import ItemList
-from src.itemSubclasses import Book
+from LibSys_2017_cadets.src.itemlist import ItemList
+from LibSys_2017_cadets.src.itemSubclasses import Book
 
 import nose.tools as ns
 

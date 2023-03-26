@@ -1,9 +1,7 @@
 __author__ = 'nerc'
-from src.user import User
-from src.userlist import UserList
-from src.itemlist import ItemList
-from src.itemSubclasses import Book
-import src.library_exceptions as lex
+from LibSys_2017_cadets.src.user import User
+from LibSys_2017_cadets.src.userlist import UserList
+import LibSys_2017_cadets.src.library_exceptions as lex
 import nose.tools as ns
 
 
