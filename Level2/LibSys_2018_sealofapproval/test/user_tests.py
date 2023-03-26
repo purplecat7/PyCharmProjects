@@ -1,5 +1,4 @@
-from LibSys_2018_sealofapproval.src.user import User
-import nose.tools as ns
+from Level2.LibSys_2018_sealofapproval.src.user import User
 
 
 class TestUser():

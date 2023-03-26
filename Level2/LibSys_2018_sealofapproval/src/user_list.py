@@ -2,8 +2,7 @@
 A class that describes the user list.
 """
 
-from LibSys_2018_sealofapproval.src.user import User
-from LibSys_2018_sealofapproval.src.user_not_valid import UserIdError
+from Level2.LibSys_2018_sealofapproval.src.user_not_valid import UserIdError
 
 
 class UserList:

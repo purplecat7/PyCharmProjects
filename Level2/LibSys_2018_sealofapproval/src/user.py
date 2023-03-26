@@ -1,6 +1,4 @@
-import LibSys_2018_sealofapproval.src.item_list as s
-import LibSys_2018_sealofapproval.src.except_too_many_items
-from LibSys_2018_sealofapproval import src
+import Level2.LibSys_2018_sealofapproval.src.item_list as s
 
 
 class User():

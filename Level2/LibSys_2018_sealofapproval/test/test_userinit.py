@@ -1,6 +1,6 @@
 import nose.tools as ns
-from LibSys_2018_sealofapproval.src.library_manager import LibMgr
-from LibSys_2018_sealofapproval.src.userinit import UserInit
+from Level2.LibSys_2018_sealofapproval.src.library_manager import LibMgr
+from Level2.LibSys_2018_sealofapproval.src.userinit import UserInit
 
 class TestUserInit(object):
     """
