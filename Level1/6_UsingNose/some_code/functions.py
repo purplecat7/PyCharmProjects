@@ -24,8 +24,11 @@ def is_multiple_of_3(x):
 
 
 def is_multiple_of(x, n):
-    # Checks if the remainder when dividing x by n is zero
-    return (x % n) == 0
+    try:
+        # Checks if the remainder when dividing x by n is zero
+        return (x % n) == 0
+    except TypeError as te:
+        print (te.args)
 
 
 def my_func(the_value):
@@ -55,7 +58,7 @@ def my_array_func(the_array):
             result = the_array[num] * result
         return result
     except TypeError as te:
-        print te.message
+        print (te.args)
         raise te
 
 
@@ -67,16 +70,17 @@ def main():
 
     try:
         data=['a','b','c']
-        print my_array_func(data)
+        print (my_array_func(data))
     except TypeError:
-        print 'User is a muppet'
+        print ('User is a muppet')
 
-    print my_func('ducks')
-    print my_double2('hello')
-    print is_multiple_of('piglets', 4)
     print (my_func('ducks'))
     print (my_double2('hello'))
     print (is_multiple_of('piglets', 4))
+    print (my_func('ducks'))
+    print (my_double2('hello'))
+    print (is_multiple_of('piglets', 4))
+
 
 if __name__ == '__main__':
     main()

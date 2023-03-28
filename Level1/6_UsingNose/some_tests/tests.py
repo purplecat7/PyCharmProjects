@@ -11,6 +11,7 @@ run from the command line using 'nosetests tests.py'
 from some_code import functions as f
 import nose.tools as ns
 
+
 def setup_module():
     print('setup_module\n')
 
@@ -56,6 +57,7 @@ def test_my_array_func_integers():
     result = f.my_array_func(data)
     ns.assert_equal(result, 6)
 
+
 @ns.raises(TypeError)
 def test_my_array_func_letters():
     data=['a','b','c']
@@ -65,6 +67,7 @@ def test_my_array_func_letters():
 @ns.with_setup(setup=my_setup, teardown=my_teardown)
 def test_setup_teardown():
     print('test_setup_teardown called\n')
+
 
 @ns.raises(SystemExit)
 def test_sys_exit():
