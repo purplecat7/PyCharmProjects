@@ -2,6 +2,10 @@ src_skeleton/ : how code should start life from its design
     - no implementation details
     - all method docstrings fully explain the interface of each class
 
+src_skeleton_with_extras/ : intermediate stage
+    - some attribute initialisation
+    - extra comments to explain steps needed in the methods
+
 src/ : full working solution for library system.
     - there are some aspects which could be better
     - use cases described in the exercise are implemented

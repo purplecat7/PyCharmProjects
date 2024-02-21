@@ -18,7 +18,7 @@ class Counter:
 
 
 for c in Counter(3, 8):
-    print c
+    print (c)
 
 
 # OR use a generator
@@ -29,4 +29,4 @@ def counter(low, high):
         current += 1
 
 for c in counter(3, 8):
-    print c
+    print (c)

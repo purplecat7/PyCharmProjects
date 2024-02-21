@@ -60,7 +60,7 @@ class ItemList(list):
         """
         Remove an item object from the item list
 
-        :param item: the object to add to the list
+        :param item: the object to remove from the list
         :return: no return
         """
 
